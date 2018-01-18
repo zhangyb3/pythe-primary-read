@@ -1,0 +1,21 @@
+<template name='rgisterWin'>
+           <view class='rgister-box'>
+                 <view class='rgister-title'>注册</view>
+                 <view class=''>
+                      
+                 </view>
+           </view>
+</template>
+
+<template name='loadding'>
+           <view class='loadding-box'>
+                 <text>加载中，请稍后...</text>
+           </view>
+</template> 
+
+<template name='bottom-text'>
+           <view class='loaded-over'>
+                 <text>- 我是有底线的 -</text>
+           </view>
+</template>
+ 

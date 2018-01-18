@@ -1,0 +1,43 @@
+{
+  "pages":[
+    "pages/priReadList/priReadList",
+    "pages/priReadNotes/priReadNotes",
+    "pages/priReadNewWord/priReadNewWord",
+    "pages/priReadExcerpt/priReadExcerpt",
+    "pages/readContentPage/readContentPage"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar":{
+    "color":"#666",
+    "selectedColor":"#666",
+    "list":[{
+      "pagePath":"pages/priReadList/priReadList",
+      "text":"课本",
+      "iconPath":"images/books.png",
+      "selectedIconPath":"images/booksSelect.png"
+    },
+    {
+      "pagePath": "pages/priReadNotes/priReadNotes",
+      "text": "笔记",
+      "iconPath": "images/notes.png",
+      "selectedIconPath": "images/notesSelect.png"
+    },
+    {
+      "pagePath": "pages/priReadNewWord/priReadNewWord",
+      "text": "生词本",
+      "iconPath": "images/newWord.png",
+      "selectedIconPath": "images/newWordSelect.png"
+    },
+    {
+      "pagePath": "pages/priReadExcerpt/priReadExcerpt",
+      "text": "摘抄",
+      "iconPath": "images/excerpt.png",
+      "selectedIconPath": "images/excerptSelect.png"
+    }]
+  }
+}

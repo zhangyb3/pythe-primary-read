@@ -1,0 +1,56 @@
+.register-window {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.rgister-box {
+  width: 70%;
+  height:auto;
+  border-radius: 4px;
+  background-color: #fff;
+  padding: 40rpx;
+  box-sizing: border-box;
+  margin:auto auto;
+}
+
+.loadding {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  background-color: rgba(255, 255, 255, 0.3);
+  display: flex;
+  flex-direction: column;
+}
+
+.loadding-box {
+  width: 70%;
+  margin: auto auto;
+  height: 100px;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 4px;
+  text-align: center;
+  color: #fff;
+  line-height: 100px;
+}
+
+.loadding-box text {
+  color: #fff;
+  letter-spacing: 1px;
+}
+
+.loaded-over {
+  padding: 0rpx 0 60rpx;
+  text-align: center;
+}
+
+.loaded-over text {
+  color: #666;
+  font-size: 28rpx;
+}

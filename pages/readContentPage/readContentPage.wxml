@@ -1,0 +1,42 @@
+<import src='../../wxParse/wxParse.wxml' />
+<view class='read-conPage'>
+    <view class='about-article'>
+      <!-- 文章标题 -->
+      <view class='article-title'>{{articleContentInfo.title}}</view> 
+      <!-- 文章作者 -->
+      <view class='article-author'>- {{articleContentInfo.author}} -</view>
+
+      <audio hidden='true' src='{{articleContentInfo.audio}}' controls id='audioFile' bindtimeupdate='timeupdate' bindended='playEnd'></audio>
+      <view class='article-audio-box'>
+            <!-- 音频时长等信息 -->
+            <view class='audio-info'>
+                  <text class='audio-current-time'>{{audioChangeInfo.audioCurrentTime}}</text>
+                  <text class='audio-duration-time'>{{audioDurationTime}}</text>
+                  <view class='audio-bar-width'>
+                        <view class='audio-bar-center' bindtap='getTapPos' bindtouchmove='movePos'>
+                              <view class='audio-bar'>
+                                   <view class='color-audio-bar' style='width:{{colorBarWidth}}px'>
+                                   </view>
+                                   <view class='ball' style='left:{{colorBarWidth-2}}px'></view>
+                              </view>
+                        </view>
+                  </view>
+            </view>
+            <!-- 音频控制器     -->
+            <view class='audio-controller' bindtap='audioCtrer'>
+              <image src='{{audioChangeInfo.audioController}}'></image>
+            </view>
+      </view>
+      <!-- <view class='article-id-title'>★ {{articleid}} {{articleTitle}}</view> -->
+      <!-- 正文 -->
+      <view class='article-content' selectable='true'>    
+          <template is="wxParse" data="{{wxParseData:handleEssay.nodes}}"></template>  
+      </view>
+    </view>
+
+    <view class='fixedControler' hidden='{{isShowFixCtrl}}' bindtap='audioCtrer'>
+     <image src='{{audioChangeInfo.audioController}}'></image>
+    </view>
+</view>
+
+
