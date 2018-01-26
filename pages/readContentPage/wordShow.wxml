@@ -1,0 +1,11 @@
+
+
+<view>
+
+	<block wx:for="{{words}}" wx:key="">
+
+				<text id="" selectable='true'>{{item}}\n</text>
+      
+  </block>
+
+</view>

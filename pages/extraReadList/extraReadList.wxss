@@ -1,0 +1,74 @@
+@import "../templateDemo/templateDemo.wxss";
+
+.extra-list {
+  background-color: #f1f1f1;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+  padding-top:22rpx;
+}
+
+.extral-read {
+  background-color: #fff;
+  border-radius: 6px;
+  padding: 20rpx;
+  margin-bottom:22rpx;
+  box-shadow:1px 1px 5px rgba(208,208,208,0.6),-1px -1px 5px rgba(208,208,208,0.6);
+}
+
+.extralr-title {
+  
+}
+
+.ex-title{
+  padding-right: 120rpx;
+  width:100%;  
+  box-sizing: border-box;
+  font-size: 32rpx;
+  line-height: 40rpx;
+}
+
+.ex-level {
+  float: right;
+  font-size: 28rpx;
+  color: #f93;
+  display: block;
+  line-height: 40rpx;
+}
+
+.extra-brief {
+  line-height: 1.7;
+  font-size: 30rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  margin: 25rpx 0 20rpx;
+}
+
+.article-type, .type-similar {
+  float: left;
+  border-radius: 2px;
+  font-size: 28rpx;
+  height: 36rpx;
+  line-height: 36rpx;
+  padding:0 8rpx;
+}
+
+.article-type {
+  color: #666;
+  border: 1px solid #666;
+}
+
+.type-similar {
+  color: #f93;
+  border: 1px solid #f93;
+  margin-left:26rpx;
+}
+
+.ex-read-num {
+  float: right;
+  color: #666;
+  font-size: 24rpx;
+  line-height:36rpx;
+}

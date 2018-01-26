@@ -22,10 +22,23 @@
   />
 </template>
 
-<template name="WxEmojiView">
+<!-- <template name="WxEmojiView">
   <view class="WxEmojiView wxParse-inline" style="{{item.styleStr}}">
     <block wx:for="{{item.textArray}}" wx:key="">
       <block class="{{item.text == '\\n' ? 'wxParse-hide':''}}" wx:if="{{item.node == 'text'}}">{{item.text}}</block>
+      <block wx:elif="{{item.node == 'element'}}">
+        <image class="wxEmoji" src="{{item.baseSrc}}{{item.text}}" />
+      </block>
+    </block>
+  </view>
+</template> -->
+
+<template name="WxEmojiView">
+  <view class="WxEmojiView wxParse-inline" style="{{item.styleStr}}" id="{{'location_' + item.location}}" data-location="{{item.location}}" data-texts="{{item.textArray[0]}}" bindlongtap='bombHandle'>
+    <block wx:for="{{item.textArray}}" wx:key="">
+      <block class="{{item.text == '\\n' ? 'wxParse-hide':''}}" wx:if="{{item.node == 'text'}}">
+				<text id="" wx:if="{{item.type == 'text'}}" selectable='false'>{{item.text}}</text>
+			</block>
       <block wx:elif="{{item.node == 'element'}}">
         <image class="wxEmoji" src="{{item.baseSrc}}{{item.text}}" />
       </block>

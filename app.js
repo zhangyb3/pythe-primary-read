@@ -33,6 +33,7 @@ App({
       }
     })
   },
+  globalUrl:'https://check.pythe.cn/pythe-rest/rest/',
   globalData: {
     userInfo: null
   }

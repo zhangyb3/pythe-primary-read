@@ -24,7 +24,7 @@ var empty = makeMap("area,base,basefont,br,col,frame,hr,img,input,link,meta,para
 var block = makeMap("br,a,code,address,article,applet,aside,audio,blockquote,button,canvas,center,dd,del,dir,div,dl,dt,fieldset,figcaption,figure,footer,form,frameset,h1,h2,h3,h4,h5,h6,header,hgroup,hr,iframe,ins,isindex,li,map,menu,noframes,noscript,object,ol,output,p,pre,section,script,table,tbody,td,tfoot,th,thead,tr,ul,video");
 
 // Inline Elements - HTML 5
-var inline = makeMap("abbr,acronym,applet,b,basefont,bdo,big,button,cite,del,dfn,em,font,i,iframe,img,input,ins,kbd,label,map,object,q,s,samp,script,select,small,span,strike,strong,sub,sup,textarea,tt,u,var");
+var inline = makeMap("abbr,acronym,applet,b,basefont,bdo,big,button,cite,del,dfn,em,font,i,iframe,img,input,ins,kbd,label,map,object,q,s,samp,script,select,small,span,strike,strong,sub,sup,text,textarea,tt,u,var");
 
 // Elements that you can, intentionally, leave open
 // (and which close themselves)
@@ -73,7 +73,7 @@ function html2json(html, bindName) {
         node: bindName,
         nodes: [],
         images:[],
-        imageUrls:[]
+        imageUrls:[],
     };
     var index = 0;
     HTMLParser(html, {
@@ -93,7 +93,9 @@ function html2json(html, bindName) {
                 if (parent.nodes === undefined) {
                     parent.nodes = [];
                 }
-                node.index = parent.index + '.' + parent.nodes.length
+							
+                node.index = parent.index + '.' + parent.nodes.length;
+								node.location = parent.index + '_' + parent.nodes.length;
             }
 
             if (block[tag]) {
@@ -144,6 +146,7 @@ function html2json(html, bindName) {
                 }, {});
             }
 
+						
             //对img添加额外数据
             if (node.tag === 'img') {
                 node.imgIndex = results.images.length;
@@ -191,7 +194,9 @@ function html2json(html, bindName) {
                 if (parent.nodes === undefined) {
                     parent.nodes = [];
                 }
+								
                 parent.nodes.push(node);
+								
             } else {
                 bufArray.unshift(node);
             }
@@ -210,33 +215,43 @@ function html2json(html, bindName) {
             
             if (bufArray.length === 0) {
                 results.nodes.push(node);
+								
             } else {
                 var parent = bufArray[0];
                 if (parent.nodes === undefined) {
                     parent.nodes = [];
                 }
+								
                 parent.nodes.push(node);
+								
             }
         },
         chars: function (text) {
             //debug(text);
             var node = {
                 node: 'text',
-                text: text,
-                textArray:transEmojiStr(text)
+                // text: text,
+								// type: 'text',
+                textArray:transEmojiStr(text),
+								// children: transEmojiStr(text),
+								
             };
             
             if (bufArray.length === 0) {
                 node.index = index.toString()
                 index += 1
                 results.nodes.push(node);
+								
             } else {
                 var parent = bufArray[0];
                 if (parent.nodes === undefined) {
                     parent.nodes = [];
                 }
-                node.index = parent.index + '.' + parent.nodes.length
+								
+                node.index = parent.index + '.' + parent.nodes.length;
+								node.location = parent.index + '_' + parent.nodes.length;
                 parent.nodes.push(node);
+								
             }
         },
         comment: function (text) {
@@ -265,6 +280,7 @@ function transEmojiStr(str){
       var emojiObj = {}
       emojiObj.node = "text";
       emojiObj.text = str;
+			emojiObj.type = 'text';
       array = [emojiObj];
       return array;
   }

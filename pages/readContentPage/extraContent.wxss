@@ -1,0 +1,199 @@
+@import "../templateDemo/templateDemo.wxss";
+@import "../../wxParse/wxParse.wxss";
+
+view {
+  overflow: visible;
+}
+
+.read-conPage {
+  overflow: hidden;
+}
+
+.about-article {
+ 
+  padding: 30rpx 40rpx 80rpx;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.tapStyle{
+  position:absolute;
+  z-index:1;
+  background-color:#9ac7de;
+  border-radius:50%;
+ opacity: 0.2;
+}
+
+.article-title {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+.article-author {
+  font-size: 15px;
+  color: #f93;
+  text-align: center;
+  margin: 15rpx 0 0;
+}
+
+.article-id-title {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-top: 20rpx;
+}
+
+.article-content {
+  font-size: 16px;
+  line-height: 1.7;
+  text-align: justify;
+  margin-top: 20rpx;
+  overflow: hidden;
+}
+
+.article-content image {
+  width: 50%;
+  height: auto;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.article-audio-box {
+  padding: 40px 0 10px;
+}
+
+.audio-info {
+  overflow: hidden;
+}
+
+.audio-current-time, .audio-duration-time {
+  color: #666;
+  font-size: 12px;
+  display: inline-block;
+}
+
+.audio-current-time {
+  float: left;
+}
+
+.audio-duration-time {
+  float: right;
+}
+
+.audio-bar-width {
+  width: 100%;
+  padding: 0 40px;
+  box-sizing: border-box;
+  margin-top: 3px;
+  overflow: visible;
+}
+
+.audio-bar-center {
+  height: 12px;
+  width: 100%;
+  padding-top: 5px;
+  box-sizing: border-box;
+}
+
+.audio-bar {
+  height: 2px;
+  width: 100%;
+  background-color: #ccc;
+  position: relative;
+}
+
+.color-audio-bar {
+  position: absolute;
+  height: 4px;
+  width: 0%;
+  background-color: #f93;
+  top: -1px;
+  border-radius: 4px;
+}
+
+.ball {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #f93;
+  position: absolute;
+  top: -3px;
+  left: 0;
+}
+
+.audio-controller {
+  width: 30px;
+  height: 30px;
+  margin: 20px auto 0;
+}
+
+.audio-controller image {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.fixedControler {
+  width: 120rpx;
+  height: 120rpx;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  border-radius: 50%;
+  border: 2px solid #f93;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.fixedControler image {
+  width: 80rpx;
+  height: 80rpx;
+  display: block;
+  margin: 20rpx 24rpx;
+}
+
+.wxParse-p {
+  margin: 5px 0;
+}
+
+
+
+.ex-line {
+  padding: 10rpx 40rpx 10rpx 14rpx;
+  box-sizing: border-box;
+  border-left: 24rpx solid #f93;
+  color: #666;
+  height: 60rpx;
+  line-height: 40rpx;
+  
+}
+
+.more-extra {
+  float: right;
+  color: #f93;
+  font-size: 28rpx;
+}
+
+.a-groomExtra {
+  padding: 35rpx 40rpx 30rpx;
+  border-top: 1px solid #e6e6e6;
+}
+
+extra-groom .a-groomExtra:nth-child(1){
+  border-color: transparent;
+  
+}
+
+.groom-title {
+  color: #000;
+  font-size: 36rpx;
+  margin-bottom: 10rpx;
+}
+
+.goom-type, .goom-type text {
+  font-size: 28rpx;
+  color: #888;
+}
+
+.goom-type text {
+  float: right;
+}

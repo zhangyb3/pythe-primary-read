@@ -1,9 +1,30 @@
-<template name='rgisterWin'>
+<template name='registerWin'>
            <view class='rgister-box'>
-                 <view class='rgister-title'>注册</view>
-                 <view class=''>
-                      
+                 <!-- 身份切换 -->
+                 <view class='identity-change-frame'>
+                    <view class='identity-change userIdentity'>学生</view>
+                    <view class='identity-change'>老师</view>
                  </view>
+                 <!-- 欢迎语 -->
+                 <view class='register-welcome'>你终于来啦~（*^-^*）~</view>
+
+                 <view class='tel-num'>
+                       <input type='text' placeholder='手机号码：' placeholder-style="color:#666"></input>
+                 </view>
+
+                 <view class='Verif-code'>
+                       <view class='get-Verif-btn'>发送验证码</view>
+                       <input type='text' placeholder='验证码：' placeholder-style="color:#666"></input>
+                 </view>
+
+                 <view style='width:440rpx;height:60rpx;margin:20rpx auto 30rpx;'>
+                     <picker bindchange="changeGrade" value="{{registGrade[3]}}" range="{{registGrade}}">
+                           <view class='regist-grade'>{{registGrade}}</view>
+                           <!-- <view class='striangle-icon'></view> -->
+                      </picker>
+                 </view>
+
+                 <view class='register-btn'>注册</view>
            </view>
 </template>
 
@@ -17,5 +38,11 @@
            <view class='loaded-over'>
                  <text>- 我是有底线的 -</text>
            </view>
+</template>
+
+<template name='choice-grade'>
+        <view class=''>
+              
+        </view>
 </template>
  

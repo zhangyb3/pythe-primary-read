@@ -1,0 +1,26 @@
+.fw-explain {
+  padding: 40rpx;
+  box-sizing: border-box;
+  background-color:#fdfdf3;
+  overflow: hidden;
+}
+
+.fire-word {
+  overflow: hidden;
+}
+
+.fire-word text {
+  display: block;
+  float: left;
+  padding: 0 12rpx;
+  height: 54rpx;
+  line-height: 54rpx;
+  background-color: #e1dfc5;
+  margin-left: 12rpx;
+  margin-bottom: 36rpx;
+  border-radius: 4px;
+}
+
+.fire-word .addBgc{background-color: #f93;color:#fff;}
+
+.explain-word{line-height:1.8;margin-top:30rpx;}

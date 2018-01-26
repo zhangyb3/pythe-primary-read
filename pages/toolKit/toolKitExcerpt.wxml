@@ -1,0 +1,18 @@
+<import src='../templateDemo/templateDemo.wxml' />
+
+<view class='tk-excerpt' style='min-height:{{deviceHeight}}px;'>
+  <view style='min-height:{{deviceHeight-60}}px'>
+    
+    <!-- 摘抄列表 -->
+    <view class='excerpt-list' wx:for='{{excerptInfo}}' wx:key='unique'>
+          <view class='excerpt-txt' style='{{foldHeight[index]}}'>{{item.summary}}</view>
+          <view class='isFold'>
+             <image bindtap='foldExcerpt' data-excerpt='{{index}}' data-isfold='{{isfold[index]}}' src='{{foldIcon[index]}}'></image>
+          </view>
+          <view class='from-article'>摘抄自《{{item.title}}》</view>
+          <view class='excerpt-time'>{{item.time}}</view>
+    </view>
+  </view>
+  <template is='bottom-text'></template>
+
+</view>

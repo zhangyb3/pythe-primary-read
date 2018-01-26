@@ -1,42 +1,75 @@
 <import src='../../wxParse/wxParse.wxml' />
-<view class='read-conPage'>
-    <view class='about-article'>
-      <!-- 文章标题 -->
-      <view class='article-title'>{{articleContentInfo.title}}</view> 
-      <!-- 文章作者 -->
-      <view class='article-author'>- {{articleContentInfo.author}} -</view>
+<import src='../templateDemo/templateDemo.wxml' />
 
-      <audio hidden='true' src='{{articleContentInfo.audio}}' controls id='audioFile' bindtimeupdate='timeupdate' bindended='playEnd'></audio>
-      <view class='article-audio-box'>
-            <!-- 音频时长等信息 -->
-            <view class='audio-info'>
-                  <text class='audio-current-time'>{{audioChangeInfo.audioCurrentTime}}</text>
-                  <text class='audio-duration-time'>{{audioDurationTime}}</text>
-                  <view class='audio-bar-width'>
-                        <view class='audio-bar-center' bindtap='getTapPos' bindtouchmove='movePos'>
-                              <view class='audio-bar'>
-                                   <view class='color-audio-bar' style='width:{{colorBarWidth}}px'>
-                                   </view>
-                                   <view class='ball' style='left:{{colorBarWidth-2}}px'></view>
-                              </view>
-                        </view>
-                  </view>
+
+<view class='read-conPage' style='position:relative;' >
+  <view class='about-article' style='position:relative;z-index:3;'>
+    <!-- 文章标题 -->
+    <view class='article-title'>{{articleContentInfo.title}}</view>
+    <!-- 文章作者 -->
+    <view class='article-author' wx:if="{{null!=articleContentInfo.author}}">- {{articleContentInfo.author}} -</view>
+
+    <audio hidden='true' src='{{articleContentInfo.audio}}' controls id='audioFile' bindtimeupdate='timeupdate' bindended='playEnd'></audio>
+    <view class='article-audio-box' wx:if="{{-1==audioUrl}}">
+      <!-- 音频时长等信息 -->
+      <view class='audio-info'>
+        <text class='audio-current-time'>{{audioChangeInfo.audioCurrentTime}}</text>
+        <text class='audio-duration-time'>{{audioDurationTime}}</text>
+        <view class='audio-bar-width'>
+          <view class='audio-bar-center' bindtap='getTapPos' bindtouchmove='movePos'>
+            <view class='audio-bar'>
+              <view class='color-audio-bar' style='width:{{colorBarWidth}}px'>
+              </view>
+              <view class='ball' style='left:{{colorBarWidth-2}}px'></view>
             </view>
-            <!-- 音频控制器     -->
-            <view class='audio-controller' bindtap='audioCtrer'>
-              <image src='{{audioChangeInfo.audioController}}'></image>
-            </view>
+          </view>
+        </view>
       </view>
-      <!-- <view class='article-id-title'>★ {{articleid}} {{articleTitle}}</view> -->
-      <!-- 正文 -->
-      <view class='article-content' selectable='true'>    
-          <template is="wxParse" data="{{wxParseData:handleEssay.nodes}}"></template>  
+      <!-- 音频控制器     -->
+      <view class='audio-controller' bindtap='audioCtrer'>
+        <image src='{{audioChangeInfo.audioController}}'></image>
       </view>
     </view>
-
-    <view class='fixedControler' hidden='{{isShowFixCtrl}}' bindtap='audioCtrer'>
-     <image src='{{audioChangeInfo.audioController}}'></image>
+    <!-- <view class='article-id-title'>★ {{articleid}} {{articleTitle}}</view> -->
+    <!-- 正文 -->
+    <view class='article-content' bindtap='tapStyle' bindlongtap='tapStyle'>
+      <template is="wxParse" data="{{wxParseData:handleEssay.nodes}}"></template>
     </view>
+  </view>
+  
+  <!-- style='{{tapBgc}}' -->
+  <view class='tapStyle' animation="{{animationData}}" style='top:{{tapTop}}px;left:{{tapLeft}}px;{{wh}}'></view>
+  <!-- 相关推荐 -->
+  <view class='extra-groom'>
+    <view style='background-color:#f1f1f1;padding:10rpx 0;'>
+      <view class='ex-line'>相关课外阅读
+         <!-- <view class='more-extra' wx:if='{{similarEssayLength<=3}}'></view> -->
+         <view class='more-extra' bindtap='conMoreExtra'>更多推荐</view>
+       </view>
+    </view>
+
+    <view class='a-groomExtra' wx:for='{{similarThree}}' wx:key='unique' bindtap='readArticle' data-groomid='{{item.id}}' data-type='{{item.type}}'>
+      <view class='groom-title'>{{item.title}}</view>
+      <view class='goom-type' wx:if='{{item.type==0}}'>故事<text>{{item.pv}}人阅读过</text></view>
+      <view class='goom-type' wx:elif='{{item.type==1}}'>科学<text>{{item.pv}}人阅读过</text></view>
+      <view class='goom-type' wx:elif='{{item.type==2}}'>古诗文<text>{{item.pv}}人阅读过</text></view>
+      <view class='goom-type' wx:elif='{{item.type==3}}'>美文<text>{{item.pv}}人阅读过</text></view>
+      <view class='goom-type' wx:elif='{{item.type==4}}'>古文<text>{{item.pv}}人阅读过</text></view>
+      <view class='goom-type' wx:elif='{{item.type==5}}'>传记<text>{{item.pv}}人阅读过</text></view>
+      <view class='goom-type' wx:elif='{{item.type==6}}'>小说<text>{{item.pv}}人阅读过</text></view>
+      <view class='goom-type' wx:elif='{{item.type==7}}'>历史<text>{{item.pv}}人阅读过</text></view>
+      <view class='goom-type' wx:elif='{{item.type==8}}'>杂文<text>{{item.pv}}人阅读过</text></view>
+      <view class='goom-type' wx:elif='{{item.type==10}}'>课内<text>{{item.pv}}人阅读过</text></view>
+    </view>
+
+    <!-- 我是有底线的模板 -->
+    <view style='margin-top:20px;'>
+       <template is='bottom-text'></template>
+    </view>
+  </view>
+
+  <!-- 音频控制器 当用户上拉阅读课文是，上拉高度达到一定值时显示，小某一定值时隐藏 -->
+  <view class='fixedControler' hidden='{{isShowFixCtrl}}' bindtap='audioCtrer' wx:if="{{-1==audioUrl}}">
+    <image src='{{audioChangeInfo.audioController}}'></image>
+  </view>
 </view>
-
-

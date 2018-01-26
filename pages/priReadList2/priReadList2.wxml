@@ -1,0 +1,43 @@
+<import src='../templateDemo/templateDemo.wxml' />
+<view class='pri-read-list' style='min-height:{{deviceHeight}}px'>
+  <!-- 可拖动查看tab  -->
+  <view class='head-swipe'>
+    <view class='fix-grade'>年级</view>
+    <scroll-view class='scroll-grade' scroll-x='true'>
+      <view class='grade-pack'>
+        <view class="grade {{gradeId==131?'current-grade':''}}" bindtap='showGradeList' data-gradeId='131'>三年级上</view>
+        <view class="grade {{gradeId==132?'current-grade':''}}" bindtap='showGradeList' data-gradeId='132'>三年级下</view>
+        <view class="grade {{gradeId==141?'current-grade':''}}" bindtap='showGradeList' data-gradeId='141'>四年级上</view>
+        <view class="grade {{gradeId==142?'current-grade':''}}" bindtap='showGradeList' data-gradeId='142'>四年级下</view>
+        <view class="grade {{gradeId==151?'current-grade':''}}" bindtap='showGradeList' data-gradeId='151'>五年级上</view>
+        <view class="grade {{gradeId==152?'current-grade':''}}" bindtap='showGradeList' data-gradeId='152'>五年级下</view>
+        <view class="grade {{gradeId==161?'current-grade':''}}" bindtap='showGradeList' data-gradeId='161'>六年级上</view>
+        <view class="grade {{gradeId==162?'current-grade':''}}" bindtap='showGradeList' data-gradeId='162'>六年级下</view>
+      </view>
+    </scroll-view>
+  </view>
+  <!-- 可拖动查看tab  结束-->
+  <!--  -->
+  <view class='composition-list'>
+    <!-- <view class='composition-box'></view> -->
+    <view class='composition-box' wx:for='{{gradeChineseData}}' wx:key='unique' wx:for-item="gradeCd" bindtap='descriptCom' data-articleId='{{gradeCd.essay.id}}'>
+      <view class='composition' style='height:{{((deviceWidth-40)*0.3/1.36)+25}}px;'>
+        <text>{{gradeCd.essay.title}}</text>
+      </view>
+    </view>
+
+  </view>
+  <!--滑动到底部 显示‘我是有底线的’-->
+  <view hidden='{{isLoadOver}}'>
+    <template is='bottom-text'></template>
+  </view>
+</view>
+
+<!-- 正在加载中...模态弹窗 -->
+<view class='loadding' style='height:{{deviceHeight}}px' hidden='{{isLoadding}}'>
+  <template is='loadding'></template>
+</view>
+
+<view class='register-window' style='height:{{deviceHeight}}px' hidden='true'>
+  <template is='rgisterWin'></template>
+</view>

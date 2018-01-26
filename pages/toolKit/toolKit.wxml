@@ -1,0 +1,23 @@
+<view class='tool-kit' style='min-height:{{deviceHeight}}px'>
+      <view class='tool-kit-list'>
+            <view class='tool-list'>
+                  <image src='../../images/word-icon.png'></image>
+                  <view class='word-page' bindtap='toolKitwords'><view class='mine-page'>生词本</view></view>
+            </view>
+
+            <view class='tool-list'>
+                  <image src='../../images/think-icon.png'></image>
+                  <view class='word-page' bindtap='toolKitNotes'><view class='mine-page'>想法</view></view>
+            </view>
+
+            <view class='tool-list'>
+                  <image src='../../images/sentence-icon.png'></image>
+                  <view class='word-page' bindtap='toolKitExcerpt'><view class='mine-page'>摘抄</view></view>
+            </view>
+
+            <!-- <view class='tool-list'>
+                  <image src='../../images/note-icon.png'></image>
+                  <view class='word-page' ><view class='mine-page'>笔记 <text>4篇</text></view></view>
+            </view> -->
+      </view>
+</view>

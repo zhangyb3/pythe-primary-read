@@ -1,0 +1,30 @@
+<import src='../templateDemo/templateDemo.wxml' />
+
+<view class='extra-list' style='min-height:{{deviceHeight}}px;'>
+  <view style='min-height:{{deviceHeight-60}}px;'>
+        <view class='extral-read' wx:for='{{extraArticleList}}' wx:key='unique' data-extraid='{{item.id}}' data-type='{{item.type}}' bindtap='extraRead'>
+              <view class='extralr-title'>
+                 <text class='ex-level'>等级：0</text>
+                 <view class='ex-title'>{{item.title}}</view> 
+              </view>
+              <view class='extra-brief'>{{item.content}}</view> 
+
+              <view style='overflow:hidden;'>
+                    <view class='article-type' wx:if='{{item.type==0}}'>故事</view>
+                    <view class='article-type' wx:elif='{{item.type==1}}'>科学</view>
+                    <view class='article-type' wx:elif='{{item.type==2}}'>古诗文</view>
+                    <view class='article-type' wx:elif='{{item.type==3}}'>美文</view>
+                    <view class='article-type' wx:elif='{{item.type==4}}'>古文</view>
+                    <view class='article-type' wx:elif='{{item.type==5}}'>传记</view>
+                    <view class='article-type' wx:elif='{{item.type==6}}'>小说</view>
+                    <view class='article-type' wx:elif='{{item.type==7}}'>历史</view>
+                    <view class='article-type' wx:elif='{{item.type==8}}'>杂文</view>
+                    <view class='article-type' wx:elif='{{item.type==10}}'>课内</view>
+                    <view class='type-similar' wx:if='{{item.status==1}}'>结构相似</view>
+                    <view class='type-similar' wx:elif='{{item.status==0}}'>内容相似</view>
+                    <view class='ex-read-num'>{{item.pv}}人阅读</view>
+              </view>  
+        </view>
+  </view>
+  <template is='bottom-text'></template>
+</view>

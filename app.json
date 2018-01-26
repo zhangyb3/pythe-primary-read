@@ -1,10 +1,17 @@
 {
   "pages":[
     "pages/priReadList/priReadList",
-    "pages/priReadNotes/priReadNotes",
+    "pages/toolKit/toolKit",   
+    "pages/toolKit/toolKitNotes",
+    "pages/toolKit/toolKitNewWord",
+    "pages/toolKit/toolKitExcerpt",
     "pages/priReadNewWord/priReadNewWord",
-    "pages/priReadExcerpt/priReadExcerpt",
-    "pages/readContentPage/readContentPage"
+    "pages/withOut/withOut",
+    "pages/readContentPage/readContentPage",
+    "pages/readContentPage/extraContent",
+    "pages/readContentPage/fireWord",
+    "pages/extraReadList/extraReadList"
+    
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -15,29 +22,18 @@
   "tabBar":{
     "color":"#666",
     "selectedColor":"#666",
+    "backgroundColor": "#f1f1f1",
     "list":[{
       "pagePath":"pages/priReadList/priReadList",
-      "text":"课本",
+      "text":"首页",
       "iconPath":"images/books.png",
-      "selectedIconPath":"images/booksSelect.png"
+      "selectedIconPath":"images/booksSelected.png"
     },
     {
-      "pagePath": "pages/priReadNotes/priReadNotes",
-      "text": "笔记",
-      "iconPath": "images/notes.png",
-      "selectedIconPath": "images/notesSelect.png"
-    },
-    {
-      "pagePath": "pages/priReadNewWord/priReadNewWord",
-      "text": "生词本",
-      "iconPath": "images/newWord.png",
-      "selectedIconPath": "images/newWordSelect.png"
-    },
-    {
-      "pagePath": "pages/priReadExcerpt/priReadExcerpt",
-      "text": "摘抄",
-      "iconPath": "images/excerpt.png",
-      "selectedIconPath": "images/excerptSelect.png"
+      "pagePath": "pages/toolKit/toolKit",
+      "text": "工具箱",
+      "iconPath": "images/toolKit.png",
+      "selectedIconPath": "images/toolKitSelected.png"
     }]
   }
 }

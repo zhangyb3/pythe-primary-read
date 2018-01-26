@@ -1,0 +1,18 @@
+.tool-kit{background-color:#f1f1f1;}
+.tool-kit-list{padding:8rpx 30rpx 0;width:100%;box-sizing:border-box;}
+.tool-list{height:80rpx;padding-top:40rpx;box-sizing: border-box;margin-bottom:15rpx;}
+.tool-list image{width:40rpx;height:40rpx;float:left;display: block;margin-top:3rpx;}
+.word-page{padding-left:60rpx;width:100%;box-sizing: border-box;}
+.word-page .mine-page{display: block;width:100%;border-bottom:1px solid #ccc;padding-bottom:6rpx;letter-spacing: 1px;}
+.mine-page text{float:right;color:#f93;font-size:24rpx;}
+
+
+
+
+
+
+
+
+
+
+

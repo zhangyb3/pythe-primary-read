@@ -12,7 +12,7 @@
 /**
  * utils函数引入
  **/
-import showdown from './showdown.js';
+// import showdown from './showdown.js';
 import HtmlToJson from './html2json.js';
 /**
  * 配置及公有属性
@@ -34,12 +34,13 @@ function wxParse(bindName = 'wxParseData', type='html', data='<div class="color:
   if (type == 'html') {
     transData = HtmlToJson.html2json(data, bindName);
     console.log(JSON.stringify(transData, ' ', ' '));
-  } else if (type == 'md' || type == 'markdown') {
-    var converter = new showdown.Converter();
-    var html = converter.makeHtml(data);
-    transData = HtmlToJson.html2json(html, bindName);
-    console.log(JSON.stringify(transData, ' ', ' '));
-  }
+  } 
+	// else if (type == 'md' || type == 'markdown') {
+  //   var converter = new showdown.Converter();
+  //   var html = converter.makeHtml(data);
+  //   transData = HtmlToJson.html2json(html, bindName);
+  //   console.log(JSON.stringify(transData, ' ', ' '));
+  // }
   transData.view = {};
   transData.view.imagePadding = 0;
   if(typeof(imagePadding) != 'undefined'){
