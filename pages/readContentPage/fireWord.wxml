@@ -5,6 +5,17 @@
             <text wx:for='{{getBoomWord}}' class='{{classArray[index]}}' wx:key='unique' data-txt='{{item}}' data-li='{{index}}'  bindtap='explainWord'>{{item}}</text>          
       </view>
 
+      <view class='operate-word'>
+            <view class='search-wordBook' bindtap='naviToNewWord'>
+                  <image src='../../images/searchNW.png'></image>
+                  <text>查看生词本</text>
+            </view>
+            <view class='add-wordBook' bindtap='addToNewBook'>
+                  <image src='../../images/addNW.png'></image>
+                  <text>加入生词本</text>
+            </view>
+      </view>
+
       <view class='explain-word' wx:if='{{hasExplain==1}}'>
            <!-- <template is="wxParse" data="{{wxParseData:handleExplain.nodes}}"></template> -->
             <rich-text nodes="{{getWordExplain}}"></rich-text>           

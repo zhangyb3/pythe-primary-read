@@ -16,6 +16,15 @@
   
   <view class='tapStyle' animation="{{animationData}}" style='top:{{tapTop}}px;left:{{tapLeft}}px;{{wh}}'></view>
 
+  <!-- 炸词等弹框 -->
+  <view class='operate-model' style='{{operateModel}}'>
+        <view class='operate' bindtap='bombHandle'>炸词</view>       
+        <view class='operate' bindtap='recordNotes'>想法</view>       
+        <view class='operate' bindtap='extract'>摘抄</view>       
+        <view class='operate' bindtap='closeModel'>取消</view>       
+  </view> 
+
+
  <!-- 我是有底线的模板 -->
     <view style='margin-top:20px;'>
        <template is='bottom-text'></template>

@@ -1,0 +1,168 @@
+.register-window {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.loadding {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  background-color: rgba(255, 255, 255, 0.3);
+  display: flex;
+  flex-direction: column;
+}
+
+.loadding-box {
+  width: 70%;
+  margin: auto auto;
+  height: 100px;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 4px;
+  text-align: center;
+  color: #fff;
+  line-height: 100px;
+}
+
+.loadding-box text {
+  color: #fff;
+  letter-spacing: 1px;
+}
+
+.loaded-over {
+  padding: 0rpx 0 60rpx;
+  text-align: center;
+}
+
+.loaded-over text {
+  color: #666;
+  font-size: 28rpx;
+}
+
+.register {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0);
+  display: flex;
+  flex-direction: column;
+}
+
+.rgister-box {
+  width: 580rpx;
+  height: 510rpx;
+  border-radius: 4px;
+  overflow: hidden;
+  margin: auto auto;
+  background-color: #fff;
+  border: 1px solid #e6e6e6;
+  box-shadow:1px 1px 15px 1px rgba(208,208,208,0.6);
+}
+
+.identity-change-frame {
+  height: 70rpx;
+  width: 100%;
+}
+
+.identity-change {
+  height: 100%;
+  float: left;
+  width: 50%;
+  color: #999;
+  line-height: 64rpx;
+  background-color: #fff;
+  text-align: center;
+   border-bottom: 1px solid #e6e6e6;
+   box-sizing: border-box;
+}
+
+.identity-change.userIdentity {
+  background-color: #f93;
+  color: #fff;
+  border-color:#f93;
+}
+
+.register-welcome {
+  color: #999;
+  font-size: 20rpx;
+  line-height: 1;
+  margin: 34rpx 0 40rpx;
+  text-align: center;
+}
+
+.tel-num, .Verif-code {
+  width: 440rpx;
+  margin: 0 auto;
+  height: 60rpx;
+  line-height: 60rpx;
+}
+
+.Verif-code {
+  margin-top: 26rpx;
+  position: relative;
+	border-radius: 0 0 0 0;
+  background: none;
+}
+
+.tel-num input, .Verif-code input {
+  height: 100%;
+  padding: 4rpx;
+  box-sizing: border-box;
+  border-bottom: 1px solid #e6e6e6;
+  font-size: 28rpx;
+  min-height: 30rpx;
+  color:#666;
+}
+
+.tel-num input:focus {
+  border-color: e6e6e6;
+}
+
+.Verif-code input {
+  width: 100%;
+  padding-right: 108rpx;
+  box-sizing: border-box;
+}
+
+.get-Verif-btn {
+  color: #f93;
+  font-size: 20rpx;
+  line-height: 60rpx;
+  position: absolute;
+  right: 0;
+  top: 0;
+	border-radius: 0 0 0 0;
+  background: none;
+	border :1px solid white;
+}
+
+.studentGrade{
+  width:440rpx;height:60rpx;margin:20rpx auto 30rpx;display: none;
+}
+
+.rgister-box .showItem{display: block;}
+
+.regist-grade {
+  background-color: #f1f1f1;
+  font-size: 28rpx;
+  text-align: center;
+  line-height:60rpx;
+}
+
+
+.register-btn {
+  font-size: 34rpx;
+  width: 150rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  border: 1px solid #f93;
+  border-radius: 30rpx;
+  margin:20rpx auto 0;text-align: center;color:#f93;
+}

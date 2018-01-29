@@ -1,7 +1,7 @@
 .fw-explain {
   padding: 40rpx;
   box-sizing: border-box;
-  background-color:#fdfdf3;
+  background-color: #fdfdf3;
   overflow: hidden;
 }
 
@@ -21,6 +21,52 @@
   border-radius: 4px;
 }
 
-.fire-word .addBgc{background-color: #f93;color:#fff;}
+.fire-word .addBgc {
+  background-color: #f93;
+  color: #fff;
+}
 
-.explain-word{line-height:1.8;margin-top:30rpx;}
+.explain-word {
+  line-height: 1.8;
+  margin-top: 30rpx;
+}
+
+.operate-word {
+  overflow: hidden;
+  width:600rpx;
+  margin:20px auto 30px;
+}
+
+.search-wordBook {
+  float: left;
+  width:50%;
+  padding-right:40rpx;
+  box-sizing: border-box;
+}
+
+.add-wordBook {
+  float: right;
+  width:50%;
+  padding-left:40rpx;
+  box-sizing: border-box;
+  border-left:1px solid #aaa;
+}
+
+.operate-word image {
+  width: 40rpx;
+  height: 40rpx;
+  vertical-align: middle;
+}
+
+.operate-word text {
+  font-size: 36rpx;
+  letter-spacing: 2px;
+  color: #aaa;
+  display: inline-block;
+  vertical-align: middle;
+  padding-left:14rpx;
+}
+
+.add-wordBook{
+padding-left:20px;
+}

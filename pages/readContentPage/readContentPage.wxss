@@ -15,13 +15,13 @@ view {
   overflow: hidden;
 }
 
-.tapStyle{
-  position:absolute;
-  z-index:1;
-  background-color:#9ac7de;
-  border-radius:50%;
- opacity: 0.2;
-} 
+.tapStyle {
+  position: absolute;
+  z-index: 1;
+  background-color: #9ac7de;
+  border-radius: 50%;
+  opacity: 0.2;
+}
 
 .article-title {
   font-size: 20px;
@@ -134,20 +134,20 @@ view {
 }
 
 .fixedControler {
-  width: 120rpx;
-  height: 120rpx;
+  width: 100rpx;
+  height: 100rpx;
   position: fixed;
   top: 20px;
   right: 20px;
   border-radius: 50%;
   border: 2px solid #f93;
   background-color: rgba(255, 255, 255, 0.9);
-  z-index:4;
+  z-index: 4;
 }
 
 .fixedControler image {
-  width: 80rpx;
-  height: 80rpx;
+  width: 60rpx;
+  height: 60rpx;
   display: block;
   margin: 20rpx 24rpx;
 }
@@ -156,8 +156,6 @@ view {
   margin: 5px 0;
 }
 
-
-
 .ex-line {
   padding: 10rpx 40rpx 10rpx 14rpx;
   box-sizing: border-box;
@@ -165,7 +163,6 @@ view {
   color: #666;
   height: 60rpx;
   line-height: 40rpx;
-  
 }
 
 .more-extra {
@@ -179,9 +176,8 @@ view {
   border-top: 1px solid #e6e6e6;
 }
 
-extra-groom .a-groomExtra:nth-child(1){
+.extra-groom .a-groomExtra:nth-child(1) {
   border-color: transparent;
-  
 }
 
 .groom-title {
@@ -198,3 +194,24 @@ extra-groom .a-groomExtra:nth-child(1){
 .goom-type text {
   float: right;
 }
+
+.operate-model {
+  position: fixed;
+  width:280px;
+  height:70px;
+  background-color:rgba(0,0,0,0.9);
+  border-radius:4px;
+  z-index:10;
+  display:none;
+}
+.operate{
+  float:left;
+  height:100%;
+  width:25%;
+  line-height: 70px;
+  color:#fff;
+  font-size:18px;
+  text-align:center;
+  letter-spacing:2px;
+}
+

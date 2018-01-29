@@ -27,7 +27,7 @@
   padding:0 10rpx;
   border: 1px solid #ccc;
   border-radius: 4px;
-  margin-left:32rpx;margin-bottom:26rpx;
+  margin-right:32rpx;margin-bottom:26rpx;
   font-size:28rpx;
   height:44rpx;
   line-height: 44rpx;

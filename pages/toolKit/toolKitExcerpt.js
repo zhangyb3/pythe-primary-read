@@ -2,13 +2,18 @@
 //获取应用实例
 const app = getApp()
 
+var config = require("../../utils/config.js");
+var user = require("../../utils/user.js");
+
 Page({
   data: {
     deviceHeight: 0,
     excerptInfo: [],
     foldIcon: [],
     foldHeight: [],
-    isfold: []
+    isfold: [],
+		pageNum:1,
+		
   },
 
   onLoad: function () {
@@ -17,10 +22,12 @@ Page({
 
     wx.request({
       url: app.globalUrl +'personal/summary/select?studentId=182&pageNum=1&pageSize=10',
-      data: {},
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
+      data: {
+				studentId: wx.getStorageSync(user.StudentID),
+				pageNum: 1,
+				pageSize: 10,
+			},
+      method: 'GET',
       success: function (res) {
         var excerptInfo = res.data.data;
         console.log(res.data.data)

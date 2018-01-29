@@ -9,8 +9,8 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "1.7.2",
-	"appid": "wx341f13cb3e75d864",
-	"projectname": "primaryReadPZ",
+	"appid": "wxbdc8195ca3c033a4",
+	"projectname": "pythe-primary-read",
 	"condition": {
 		"search": {
 			"current": -1,

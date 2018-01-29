@@ -1,4 +1,4 @@
-@import "../templateDemo/templateDemo.wxss";
+@import "../template/register.wxss";
 
 .primary-read-list {
   background-color: #f1f1f1;

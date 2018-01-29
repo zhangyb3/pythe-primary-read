@@ -2,6 +2,8 @@
 //获取应用实例
 const app = getApp()
 var WxParse = require('../../wxParse/wxParse.js')
+var config = require("../../utils/config.js");
+var user = require("../../utils/user.js");
 
 Page({
   data: {
@@ -9,12 +11,16 @@ Page({
     getBoomWord:[],
     classArray:[],   //点击词语后，添加一个类
     getWordExplain:'',
-    hasExplain:1
+    hasExplain:1,
+    tapWord:'',
+		essayId:null,
+		explainWord:null,
   },
 
   onLoad: function (options) {
     var that=this;
     this.getDevice();
+		this.data.essayId = options.essayId
     var getBoomWord = decodeURIComponent(options.words).split(',');
     var classArray = that.data.classArray;
     for (var i = 0; i < getBoomWord.length;i++){
@@ -45,13 +51,15 @@ Page({
     var that=this;
     var getWordExplain='';
     var index = e.currentTarget.dataset.li;
+    this.data.explainWord = e.currentTarget.dataset.txt;
     var classArray = that.data.classArray;
     for (var i = 0; i < that.data.getBoomWord.length; i++) {
       classArray[i] = '';
     }
     classArray[index]='addBgc';
     that.setData({
-      classArray: classArray
+      classArray: classArray,
+      tapWord:e.currentTarget.dataset.li
     })
     wx.request({
       url: app.globalUrl +'xiandaiwen', //仅为示例，并非真实的接口地址
@@ -81,6 +89,47 @@ Page({
           console.log(err)
       }
     })
+  },
+
+  naviToNewWord:function(){
+    wx.navigateTo({
+      url: '../toolKit/toolKitNewWord',
+    })
+  },
+
+  addToNewBook:function(options){
+    var that=this;
+    var tapWord = that.data.explainWord;
+    if (tapWord==null){
+      wx.showToast({
+        title: '尚未选择生词',
+        icon:'none',
+        image: '../../images/warn.png',
+        duration: 2000
+      })
+    }else{
+
+			wx.request({
+				url: config.PytheRestfulServerURL + '/personal/word/insert',
+				data: {
+					word: that.data.explainWord,
+					essayId: that.data.essayId,
+					studentId: wx.getStorageSync(user.StudentID)
+				},
+				method: 'GET',
+				success: function(res) {
+					wx.showToast({
+						title: '添加成功',
+						icon: 'success',
+						image: '../../images/success.png',
+						duration: 2000
+					})
+				},
+				fail: function(res) {},
+				complete: function(res) {},
+			})
+      
+    }
   }
 
 })

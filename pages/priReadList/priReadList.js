@@ -1,7 +1,11 @@
 //index.js
 //获取应用实例
 const app = getApp()
-// var temps = require('../templateDemo/templateDemo.wxml');
+
+var register = require("../../utils/register.js");
+var login = require("../../utils/login.js");
+var user = require("../../utils/user.js");
+var base = require("../../utils/base.js");
 
 Page({
   data: {
@@ -33,15 +37,53 @@ Page({
     pageNum:1,
     isLoadding:true,
     isLoadOver:true,
-    isResgiste:true,
+    
     changeIdentify:0,
     registGrade: ['一年级', '二年级', '三年级', '四年级', '五年级', '六年级', '初一级', '初二级', '初三级', '高一级', '高二级', '高三级'],
     registGradeIndex:0,
     registSubject: ['语文', '数学', '英语', '化学', '物理', '生物', '政治', '历史', '地理'],
-    subjectIndex:0
+    subjectIndex:0,
+
+		grades: [
+			{
+				gradeId: null,
+				grade: '请选择',
+			},
+
+
+		],
+		grade_index: 0,
+
+		subjects: [
+			{
+				subjectId: null,
+				subject: '请选择',
+			},
+
+
+		],
+		subject_index: 0,
+
+		hide_subject_selection: true,
+		hide_grade_selection: false,
+		selectStudent: true,
+		selectTeacher: false,
+
+		registerParams: {
+			status: null,
+			gradeId: null,
+			subjectId: null,
+		},
+
+		countdownText: '发送验证码',
+		second: 60,
+
   },
 
   onLoad: function () {
+
+		wx.setStorageSync(user.StudentID,-1);
+		wx.setStorageSync(user.GradeID, -1);
     var that=this;
     that.getDevice(); 
     // 用户的年级  
@@ -51,25 +93,57 @@ Page({
     })
 
     console.log('onload:'+gradeId + ',' + that.data.versionTxt);
-    // 请求年级课文信息
-    wx.request({
-      url: app.globalUrl + 'wx/kewen?studentId=154&gradeId=' + gradeId +'&level1=%E4%BA%BA%E6%95%99%E7%89%88&pageNum=1&pageSize=6', //仅为示例，并非真实的接口地址
-      data: {
-
-      },
-      header: {
-        'content-type': 'application/json',
-      },
-
-      // method：'GET'
-      success: function (res) {
-        console.log(res.data.data)
-        that.setData({
-          gradeChineseData: res.data.data
-        })
-      }
-    })
+    
   },
+
+	onShow:function(){
+		var that = this;
+		
+		if(wx.getStorageSync("alreadyRegister") == 'no')
+		{
+			wx.showLoading({
+				title: '加载中',
+				mask: true,
+				success: function (res) { },
+				fail: function (res) { },
+				complete: function (res) { },
+			})
+			base.loginSystem(this,
+				()=>{
+					wx.hideLoading()
+				}
+			);
+			register.loadRegisterSelections(this);
+		}
+		
+		
+	},
+
+	initLoad:function(){
+		var that = this;
+		that.setData({
+			username: wx.getStorageSync("wxNickName"),
+			avatar: wx.getStorageSync("avatarUrl")
+		});
+		// 请求年级课文信息
+		wx.request({
+			url: app.globalUrl + 'wx/kewen', //仅为示例，并非真实的接口地址
+			data: {
+				studentId: wx.getStorageSync(user.StudentID),
+				gradeId: wx.getStorageSync(user.GradeID),
+				level1: that.data.versionTxt,
+				pageNum: 1,
+				pageSize: 6
+			},
+			method: 'GET',
+			success: function (res) {
+				console.log(res.data.data)
+				that.setData({
+					gradeChineseData: res.data.data
+				})
+			}
+		});
+	},
 
   // 获取用户设备信息
   getDevice: function () {
@@ -192,13 +266,15 @@ Page({
 
     // 更换年级之后，从新请求年级课文信息
     wx.request({
-      url: app.globalUrl + 'wx/kewen?studentId=154&gradeId=' + gradeId +'&level1=%E4%BA%BA%E6%95%99%E7%89%88&pageNum=1&pageSize=6', //仅为示例，并非真实的接口地址
+      url: app.globalUrl + 'wx/kewen', 
       data: {
-
+				studentId: wx.getStorageSync(user.StudentID),
+				gradeId: wx.getStorageSync(user.GradeID),
+				level1: that.data.versionTxt,
+				pageNum: 1,
+				pageSize: 6
       },
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
+      method: 'GET',
       success: function (res) {
         console.log(res.data.data)
         that.setData({
@@ -217,14 +293,18 @@ Page({
     })
     wx.request({
       
-      // url: app.globalUrl + 'kewen?gradeId=' + that.data.gradeId + '&level1=%E4%BA%BA%E6%95%99%E7%89%88&pageNum=' + pageNum + '&pageSize=15&studentId=154', 
-      url: app.globalUrl + 'wx/kewen?studentId=154&gradeId=' + that.data.gradeId + '&level1=%E4%BA%BA%E6%95%99%E7%89%88&pageNum=' + pageNum + '&pageSize=6', 
+      url: app.globalUrl + 'wx/kewen', 
       data: {
-
+				studentId: wx.getStorageSync(user.StudentID),
+				gradeId: wx.getStorageSync(user.GradeID),
+				level1: that.data.versionTxt,
+				pageNum: pageNum,
+				pageSize: 6
       },
       header: {
         'content-type': 'application/json' // 默认值
       },
+			method:'GET',
       success: function (res) {
         var getAllData = that.data.gradeChineseData.concat(res.data.data)
         console.log(res.data)
@@ -305,6 +385,31 @@ Page({
       changeIdentify: 1
     })
   },
+
+
+	selectStudent: function (e) {
+		console.log("学生");
+		this.setData({
+			hide_subject_selection: true,
+			hide_grade_selection: false,
+			select_student: true,
+			select_teacher: false
+		})
+
+		this.data.registerParams.status = 0;
+	},
+	selectTeacher: function (e) {
+		console.log("老师");
+		this.setData({
+			hide_subject_selection: false,
+			hide_grade_selection: true,
+			select_student: false,
+			select_teacher: true
+		})
+
+		this.data.registerParams.status = 1;
+		this.data.registerParams.gradeId = 332;
+	},
  
   // 点击更多 查看更多课外阅读
   moreExtra:function(e,options){
@@ -331,5 +436,111 @@ Page({
       })
     }
     
-  }
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	gradeChange: function (e) {
+		console.log('年级', this.data.grades[e.detail.value])
+		this.setData({
+			grade_index: e.detail.value
+		})
+
+		this.data.registerParams.gradeId = this.data.grades[e.detail.value].gradeid;
+	},
+	subjectChange: function (e) {
+		console.log('科目', this.data.subjects[e.detail.value])
+		this.setData({
+			subject_index: e.detail.value
+		})
+
+		this.data.registerParams.subjectId = this.data.subjects[e.detail.value].subjectid;
+	},
+
+	//注册
+	phoneNumberInput: function (e) {
+		var registerPhoneNum = e.detail.value;
+		console.log(e.detail.value);
+		wx.setStorageSync('registerPhoneNum', registerPhoneNum);
+	},
+
+	sendVerificationCode: function (res) {
+		console.log(wx.getStorageSync('registerPhoneNum'));
+		register.sendVerificationCode(wx.getStorageSync('registerPhoneNum'));
+
+		//重发倒数
+		var that = this;
+
+		that.setData({
+			second: 60,
+			lock_countdown: true,
+		});
+		countdown(that);
+		if (second < 0) {
+			that.setData({
+				countdownText: "重发验证码",
+				lock_countdown: false,
+			});
+		}
+	},
+
+	verificationCodeInput: function (e) {
+		var verificationCode = e.detail.value;
+		console.log(e.detail.value);
+		wx.setStorageSync('verificationCode', verificationCode);
+	},
+
+	registerToMainPage: function (e) {
+		register.commitRegister(this);
+	},
+
+	cancelRegister: function (e) {
+		this.setData({
+			hide_login: true,
+		});
+
+	},
+
+
+
+
+
+
 })
+
+
+function countdown(that) {
+	var second = that.data.second;
+	if (second < 0) {
+		that.setData({
+			countdownText: "重发验证码",
+			lock_countdown: false,
+		});
+		return;
+	}
+
+	var time = setTimeout(function () {
+		that.setData({
+
+			countdownText: second + '秒后可重发',
+			second: second - 1,
+			lock_countdown: true,
+		});
+		countdown(that);
+	}
+		, 1000)
+}

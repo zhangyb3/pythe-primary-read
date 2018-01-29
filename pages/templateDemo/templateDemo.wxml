@@ -9,7 +9,7 @@
                  <view class='register-welcome'>你终于来啦~（*^-^*）~</view>
 
                  <view class='tel-num'>
-                       <input type='text' placeholder='手机号码：' placeholder-style="color:#666"></input>
+                       <input type='text' placeholder='手机号码：' placeholder-style="color:#666"  ></input>
                  </view>
 
                  <view class='Verif-code'>

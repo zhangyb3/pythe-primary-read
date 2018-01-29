@@ -1,6 +1,9 @@
 //index.js
 //获取应用实例
 var WxParse = require('../../wxParse/wxParse.js')
+var config = require("../../utils/config.js");
+var user = require("../../utils/user.js");
+
 const app = getApp()
 Page({
   data: {
@@ -22,9 +25,12 @@ Page({
     essayId:'',
     audioUrl:1,
     animationData: {},
-    tapTop:0,
-    tapLeft:0,
-    wh:'width:0px;height:0px;'
+    tapTop:0,  //点击本文时，小圆点的出现位置
+    tapLeft: 0, //点击本文时，小圆点的出现位置 
+    wh:'width:0px;height:0px;', //小圆点的初始宽高
+    operateModel:'',
+    winWidth:0,
+    selectedWord:''
   },
 
   // 限制性onready方法，改变当前播放的进度以获取音频总时长
@@ -308,20 +314,29 @@ Page({
       })
     }
   },
-
+  
+  getSentence: function (e, options){
+    console.log(e.currentTarget.dataset.texts);
+    this.setData({
+      selectedWord: e.currentTarget.dataset.texts.text
+    })
+  },
 //  炸词
   bombHandle: function (e,options) {
-    console.log(e.currentTarget.dataset.texts);
+    var that=this;
+    that.setData({
+      operateModel: 'display:none;'
+    })
     wx.request({
       url: app.globalUrl +'xiandaiwen/double/bomb',
       data: {
-        sentence: e.currentTarget.dataset.texts
+        sentence: that.data.selectedWord
       },
       method: 'POST',
       success: function (res) {
         console.log(res.data);
         wx.navigateTo({
-          url: 'fireWord?words=' + encodeURIComponent(res.data.data),
+          url: 'fireWord?words=' + encodeURIComponent(res.data.data) + "&essayId=" + that.data.essayId,
           success: function (res) { },
           fail: function (res) { },
           complete: function (res) { },
@@ -331,12 +346,43 @@ Page({
       complete: function (res) { },
     })
     var bombLocation = e.currentTarget.dataset.location;
-    console.log('#location_' + bombLocation.toString());
+    // console.log('#location_' + bombLocation.toString());
     var sq = wx.createSelectorQuery();
-    sq.select('#location_' + bombLocation.toString()).boundingClientRect(function (rect) {
+    sq.select('#location_' + bombLocation).boundingClientRect(function (rect) {
       console.log(rect);
     }).exec();
+
+    
   },
+
+	//摘抄
+	extract:function(e){
+		var that = this;
+		wx.request({
+			url: config.PytheRestfulServerURL + '/personal/summary/insert',
+			data: {
+				summary: that.data.selectedWord,
+				essayId: that.data.essayId,
+				studentId: wx.getStorageSync(user.StudentID)
+			},
+			method: 'POST',
+			success: function(res) {
+				wx.showToast({
+					title: '添加成功',
+					icon: 'success',
+					image: '../../images/success.png',
+					duration: 2000
+				})
+			},
+			fail: function(res) {},
+			complete: function(res) {
+				that.setData({
+					operateModel: 'display:none;'
+				})
+			},
+		})
+	},
+
 
   // 点击推荐更多
   conMoreExtra:function(options){
@@ -367,16 +413,53 @@ Page({
     
   },
 
+//点击或长按文章文本
   tapStyle:function(e){
     console.log(e.changedTouches[0].clientX);
     console.log(e.changedTouches[0].clientY);
+    var that=this;
     var tapX = e.changedTouches[0].pageX;
     var tapY = e.changedTouches[0].pageY;
-    var wh ='width:200px;height:200px;'
+    var wh ='width:200px;height:200px;';
+    // 模态弹框
+    
+    wx.createSelectorQuery().selectAll('.operate-model').boundingClientRect(function (rects) {
+      rects.forEach(function (rect) {    
+        var operateWidth=rect.width ;  
+      })
+    }).exec();
+    wx.getSystemInfo({
+      success: function (res) {       
+        that.setData({
+          winWidth:res.windowWidth
+        })      
+      }
+    })
+
+    var operateModel='';
+    var modelPosLeft = e.changedTouches[0].clientX ;
+    var modelPosTop = e.changedTouches[0].clientY - 75;
+    if (modelPosLeft<140){
+      modelPosLeft=20;  
+      operateModel = 'left:' + modelPosLeft + 'px;top:' + modelPosTop + 'px;display:block;'
+    } else if (that.data.winWidth-modelPosLeft<140){
+      modelPosLeft=20;
+      operateModel = 'right:' + modelPosLeft + 'px;top:' + modelPosTop + 'px;display:block;'
+    }else{
+      modelPosLeft = e.changedTouches[0].clientX-140;
+      operateModel = 'left:' + modelPosLeft + 'px;top:' + modelPosTop + 'px;display:block;'      
+    }; 
+
+    if (modelPosTop < 75) {
+      modelPosTop = e.changedTouches[0].clientY+30;
+      operateModel = 'left:' + modelPosLeft + 'px;top:' + modelPosTop + 'px;display:block;'
+    }  
+    //!!!!!
     this.setData({
       tapTop: tapY-100,
       tapLeft: tapX-100,
-      wh:wh
+      wh:wh,
+      operateModel: operateModel,
     })
     var animation = wx.createAnimation({
       duration: 600,
@@ -391,5 +474,12 @@ Page({
     this.setData({
       animationData: this.animation.export()
     })
+  },
+
+  closeModel:function(){
+     var that=this;
+     that.setData({
+       operateModel:'display:none;'
+     })
   }
 })

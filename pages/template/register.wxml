@@ -1,0 +1,41 @@
+<template name='registerWin'>
+           
+	<view class='rgister-box'>
+                 <!-- 身份切换 -->
+                 <view class='identity-change-frame'>
+                    <view class="identity-change {{select_student==true?'userIdentity':''}}"  bindtap='selectStudent'>学生</view>
+                    <view class="identity-change {{select_teacher==true?'userIdentity':''}}" bindtap='selectTeacher'>老师</view>
+                 </view>
+                 <!-- 欢迎语 -->
+                 <view class='register-welcome'>你终于来啦~（*^-^*）~</view>
+
+                 <view class='tel-num'>
+                       <input type='text' placeholder='手机号码：' placeholder-style="color:#666" bindinput="phoneNumberInput"></input>
+                 </view>
+
+                 <view class='Verif-code'>
+                       <button disabled="{{lock_countdown}}" class='get-Verif-btn' bindtap="sendVerificationCode">{{countdownText}}</button>
+                       <input type='text' placeholder='验证码：' placeholder-style="color:#666" bindinput="verificationCodeInput"></input>
+                 </view>
+
+                 <view  class="studentGrade {{select_student==true?'showItem':''}}" >
+                     <picker bindchange="gradeChange" value="{{grade_index}}" range="{{gradeRange}}">
+                           <view class='regist-grade'>{{gradeRange[grade_index]}}</view>
+                           <!-- <view class='striangle-icon'></view> -->
+                      </picker>
+                 </view>
+
+                 <view  class="studentGrade {{select_teacher==true?'showItem':''}}" >
+                     <picker bindchange="subjectChange" value="{{subject_index}}" range="{{subjectRange}}">
+                           <view class='regist-grade'>{{subjectRange[subject_index]}}</view>
+                           <!-- <view class='striangle-icon'></view> -->
+                      </picker>
+                 </view>
+
+                 <view class='register-btn' bindtap="registerToMainPage">注册</view>
+           </view>
+
+</template>
+
+
+ 

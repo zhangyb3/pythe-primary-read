@@ -1,6 +1,8 @@
 //index.js
 //获取应用实例
 const app = getApp()
+var config = require("../../utils/config.js");
+var user = require("../../utils/user.js");
 
 Page({
   data: {

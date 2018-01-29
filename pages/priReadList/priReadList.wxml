@@ -1,4 +1,4 @@
-<import src='../templateDemo/templateDemo.wxml' />
+
 
 <view class='primary-read-list' style='min-height:{{deviceHeight}}px;'>
   <!-- 首页轮播图   -->
@@ -12,14 +12,14 @@
     <view style='height:80rpx;'>
       <!-- 用户头像 -->
       <view class='user-pic'>
-        <image src='{{getUserInfo.pic}}'></image>
+        <image src='{{avatar}}'></image>
       </view>
 
       <view class='user-info-text'>
         <view class='user-info-top'>
           <!-- 用户名 -->
           <view class='user-name'>
-            <text>陈晓敏陈晓敏</text>
+            <text>{{username}}</text>
           </view>
           <!-- 年级 选择-->
           <view class='userChoic-grade'>
@@ -69,73 +69,16 @@
 </view>
 
 <!-- 注册弹窗 -->
-<!-- hidden='{{isResgiste}}' -->
-<view class='register' style='height:{{deviceHeight}}px;' hidden='{{isResgiste}}' hidden='{{isResgiste}}'>
-   <!-- <template is='registerWin' data='{{...item}}'></template>   -->
+<import src="../template/register.wxml" />
+<view class='register' style='height:{{deviceHeight}}px;' hidden='{{alreadyRegister}}' >
 
-   <view class='rgister-box'>
-                 <!-- 身份切换 -->
-                 <view class='identity-change-frame'>
-                    <view class="identity-change {{changeIdentify==0?'userIdentity':''}}"  bindtap='studentIdentify'>学生</view>
-                    <view class="identity-change {{changeIdentify==1?'userIdentity':''}}" bindtap='teacherIdentify'>老师</view>
-                 </view>
-                 <!-- 欢迎语 -->
-                 <view class='register-welcome'>你终于来啦~（*^-^*）~</view>
+    <template is='registerWin' data='{{select_student,select_teacher,lock_countdown,grade_index,gradeRange,subject_index,subjectRange,second,countdownText}}'></template>   
 
-                 <view class='tel-num'>
-                       <input type='text' placeholder='手机号码：' placeholder-style="color:#666"></input>
-                 </view>
-
-                 <view class='Verif-code'>
-                       <view class='get-Verif-btn'>发送验证码</view>
-                       <input type='text' placeholder='验证码：' placeholder-style="color:#666"></input>
-                 </view>
-
-                 <view  class="studentGrade {{changeIdentify==0?'showItem':''}}" >
-                     <picker bindchange="choiceRegGrade" value="{{registGradeIndex}}" range="{{registGrade}}">
-                           <view class='regist-grade'>{{registGrade[registGradeIndex]}}</view>
-                           <!-- <view class='striangle-icon'></view> -->
-                      </picker>
-                 </view>
-
-                 <view  class="studentGrade {{changeIdentify==1?'showItem':''}}" >
-                     <picker bindchange="subject" value="{{subjectIndex}}" range="{{registSubject}}">
-                           <view class='regist-grade'>{{registSubject[subjectIndex]}}</view>
-                           <!-- <view class='striangle-icon'></view> -->
-                      </picker>
-                 </view>
-
-                 <view class='register-btn'>注册</view>
-           </view>
 </view>
 <!-- 注册弹窗 结束 -->
 
 <!-- picker-view -->
-<view class='popup-grade' style='height:{{deviceHeight}}px;' hidden='{{isPicker}}'>
 
-  <view class='pick-content'> 
-    <!-- 按钮 -->
-    <view class='picker-btn'>
-      <view class='' style='float:left;' bindtap='closePicker'>取消</view>
-      <view class='' style='float:right;' bindtap='sureGrade'>确定</view>
-    </view>
-    <!-- 按钮 结束-->
-
-    <picker-view indicator-style="height: 50px;" style="width: 100%; height: 220px;" value="{{value}}" bindchange="changeGrade">
-      <picker-view-column>
-        <view wx:for="{{setGrade[0]}}" wx:key='unique' style="line-height: 50px">{{item}}</view>
-      </picker-view-column>
-      <picker-view-column>
-        <view wx:for="{{setGrade[1]}}" wx:key='unique' style="line-height: 50px">{{item}}</view>
-      </picker-view-column>
-      <picker-view-column>
-        <view wx:for="{{setGrade2[2]}}" wx:key='unique' style="line-height: 50px">{{item}}</view>
-      </picker-view-column>
-    </picker-view>
-  </view>
-
-
-</view>
 <!-- picker-view结束 -->
 
 <!-- 正在加载中...模态弹窗 -->
