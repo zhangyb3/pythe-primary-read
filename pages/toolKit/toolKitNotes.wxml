@@ -7,7 +7,7 @@
             <view class='tk-note-subtitle' style='{{notesHeight[index]}}'>{{item.content}}</view>
 
             <view class='notes-info'>
-                  <view class='notes' style='max-height:{{notesHeight2[index]}}rpx;'>我的笔记，我的笔记，我的笔记我的笔记，我的笔记，我的笔记我的笔记，我的笔记，我的笔记我的笔记，我的笔记，我的笔记我的笔记，我的笔记，我的笔记我的笔记，我的笔记，我的笔记我的笔记，我的笔记，我的笔记我的笔记，我的笔记，我的笔记我的笔记，我的笔记，我的笔记</view>
+                  <view class='notes' style='max-height:{{notesHeight2[index]}}rpx;'>{{item.note}}</view>
 
                   <view class='note-mark-info'>
                         <text class='noted-time'>2017-12-12</text>

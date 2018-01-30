@@ -65,22 +65,20 @@ Page({
 			},
 			method: 'GET',
 			success: function (res) {
-				var getAllData = that.data.gradeChineseData.concat(res.data.data)
-				console.log(res.data)
+				var rawBookData = res.data.data;
+				var rawBook = [];
+				for (var count = 0; count < rawBookData.length; count++) {
+					var temp = {};
+					temp.data = rawBookData[count];
+					temp.isEdit = false;
+					rawBook.push(temp);
+				}
+				var getAllData = that.data.rawBook.concat(rawBook);
+				
 				if (res.data.data) {
-					if (res.data.data.length == 6) {
-						console.log('成功加载数据' + res.data.data.length + '条');
-						that.setData({
-							isLoadOver: true
-						})
-					} else if (res.data.data.length > 0 && res.data.data.length < 6) {
-						console.log('成功加载数据' + res.data.data.length + '条');
-						that.setData({
-							isLoadOver: false
-						})
-					}
+					
 					that.setData({
-						gradeChineseData: getAllData,
+						rawBook: getAllData,
 						pageNum: pageNum,
 						isLoadding: true
 					});

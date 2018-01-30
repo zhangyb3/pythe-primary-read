@@ -1,34 +1,19 @@
 //index.js
 //获取应用实例
 const app = getApp()
+var config = require("../../utils/config.js");
+var user = require("../../utils/user.js");
 
 Page({
   data: {
     deviceHeight:0,
-    notesInfo:[    //存放用户笔记信息
-      {
-        'title':'昭君出塞',
-        'subTitle':'王昭君是古代四大美女之一',
-        'content':'文章阅读笔记文章阅读笔记文章阅读笔'
-      },
-
-      {
-        'title': '昭君出塞',
-        'subTitle': '王昭君是古代四大美女之一',
-        'content': '文章阅读笔记文章阅读笔记文章阅读笔记文章阅读笔记文章阅读笔记文章阅读笔记文章阅读笔记文章阅读笔记文章阅读笔记文章阅读笔记文章阅读笔记'
-      },
-
-      {
-        'title': '昭君出塞',
-        'subTitle': '王昭君是古代四大美女之一',
-        'content': '文章阅读笔记文章阅读笔记文章阅读笔记文章阅读笔记文章阅读笔记文章阅读笔记文章阅读笔记文章阅读笔记文章阅读笔记文章阅读笔记文章阅读笔记文章阅读笔记文章阅读笔记文章阅读笔记文章阅读笔记文章阅读笔记文章阅读笔记文章阅读笔记文章阅读笔记文章阅读笔记文章阅读笔记文章阅读笔记'
-      },
-    ],
+    notesInfo:[],
     
     notesHeight: [],
     notesHeight2:[],
     foldTxt:[],
-    param:[]
+    param:[],
+		pageNum: 1,
    
   },
 
@@ -54,6 +39,78 @@ Page({
     });
     console.log(notesHeight)
   },
+
+	onShow:function(){
+		var that = this;
+		wx.request({
+			url: config.PytheRestfulServerURL + '/personal/note/select',
+			data: {
+				studentId: wx.getStorageSync(user.StudentID),
+				pageNum: 1,
+				pageSize: 10,
+			},
+			method: 'GET',
+			success: function(res) {
+				if(res.data.status == 200)
+				{
+					that.data.notesInfo = res.data.data;
+					that.setData({
+						notesInfo: res.data.data
+					});
+				}
+			},
+			fail: function(res) {},
+			complete: function(res) {},
+		})
+	},
+
+	onReachBottom: function () {
+		var that = this;
+		var pageNum = that.data.pageNum + 1
+		that.setData({
+			isLoadding: false
+		})
+		wx.request({
+
+			url: app.globalUrl + '/personal/note/select',
+			data: {
+				studentId: wx.getStorageSync(user.StudentID),
+				pageNum: pageNum,
+				pageSize: 10,
+			},
+			method: 'GET',
+			success: function (res) {
+				
+				var getAllData = that.data.notesInfo.concat(res.data.data);
+
+				if (res.data.data) {
+
+					that.setData({
+						rawBook: getAllData,
+						pageNum: pageNum,
+						isLoadding: true
+					});
+					console.log(that.data.pageNum);
+				} else if (null == res.data.data) {
+					console.log('没有更多数据加载了哟');
+					that.setData({
+						isLoadding: true,
+						isLoadOver: false
+					});
+				}
+
+				// console.log(that.data.gradeChineseData)
+			},
+
+			fail: function (err) {
+				wx.showToast({
+					title: '数据加载失败',
+					duration: 2000
+				})
+
+			}
+		})
+	},
 
   // 获取用户设备信息
   getDevice: function () {
