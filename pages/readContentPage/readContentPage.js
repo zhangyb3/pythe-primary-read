@@ -59,13 +59,12 @@ Page({
  onShow:function(){
   var that=this;
    wx.request({
-     url: app.globalUrl +'kewen/query?studentId=151&essayId=' + that.data.essayId,
+     url: app.globalUrl +'kewen/query',
      data: {
-
+			studentId: wx.getStorageSync(user.StudentID),
+			essayId: that.data.essayId
      },
-     header: {
-       'content-type': 'application/json' // 默认值
-     },
+     method:'GET',
      success: function (res) {
        // 获取课文，并解析
        var essayContain = res.data.data.essay.content;
@@ -362,11 +361,16 @@ Page({
   },
 
 	recordNotes:function(e){
+		var that = this;
 		wx.navigateTo({
 			url: '../addThinks/addThinks?sentence=' + encodeURIComponent(this.data.selectedWord) + '&sentenceLocation=' + this.data.selectedWordLocation + '&essayId=' + this.data.essayId,
 			success: function(res) {},
 			fail: function(res) {},
-			complete: function(res) {},
+			complete: function(res) {
+				that.setData({
+					operateModel: 'display:none;'
+				})
+			},
 		})
 	},
 

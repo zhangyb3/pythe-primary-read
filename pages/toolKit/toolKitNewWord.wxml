@@ -3,22 +3,24 @@
 <view class='toolKit-nw' style='min-height:{{deviceHeight}}px'>
    <view style='min-height:{{deviceHeight-60}}px'>
 
-	 <view class='raw_book_list' wx:for='{{rawBook}}' wx:key='unique'>
+	 <view class='raw_book_list' wx:for='{{rawBook}}' wx:key='unique' wx:for-index="essay_index">
 
-    <view class='article-nw' data-raw_book="{{item}}" >
-          <view class='nk-title'>{{item.title}}
+    <view class='article-nw' data-raw_book="{{item.data}}" data-index="{{essay_index}}">
+          <view class='nk-title'>{{item.data.title}}
 					      <view class='edit-right'>
-								    <text class='del-txt' hidden='{{isEdit}}'>删除</text>
-								    <text class='edit' bindtap='edit'>编辑</text>
+								    <text class='del-txt' wx:if='{{item.isEdit == true}}' data-index="{{essay_index}}" bindtap='cancelRawWords'>删除</text>
+								    <text class='edit' wx:if="{{item.isEdit == false}}" data-index="{{essay_index}}" bindtap='edit'>编辑</text>
+										<text class='edit' wx:if="{{item.isEdit == true}}" data-index="{{essay_index}}" bindtap='cancelEdit'>取消</text>
 								</view>
 					</view> 
 
-				<view class='word_list' wx:for='{{item.wordList}}' wx:key='unique'>
+				
           <view class='tk-new-word'>
-                <text>{{item}}</text>
-                
+						<view class='word_list' wx:for='{{item.data.wordList}}' wx:key='unique'>
+                <text data-word="{{item}}"  data-essay_index="{{essay_index}}" bindtap='selectRawWord'>{{item}}</text>
+            </view>  
           </view>
-				</view>
+				
 
     </view>
     

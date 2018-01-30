@@ -10,7 +10,8 @@ Page({
 		pageNum: 1,
 		isLoadding: true,
 		isLoadOver: true, 
-		isEdit:true
+		rawBook:[],
+		cancelRawWords:{},
   },
 
   onLoad: function () {
@@ -26,11 +27,18 @@ Page({
 			},
 			method: 'GET',
 			success: function (res) {
-				var rawBook = res.data.data;
-				console.log(res.data.data)
+				var rawBookData = res.data.data;
 				
+				for(var count = 0; count < rawBookData.length; count++)
+				{
+					var temp= {};
+					temp.data = rawBookData[count];
+					temp.isEdit = false;
+					that.data.rawBook.push(temp);
+				}
+				console.log("raw book", that.data.rawBook);
 				that.setData({
-					rawBook: rawBook,
+					rawBook: that.data.rawBook,
 				});
 				
 			}
@@ -111,11 +119,71 @@ Page({
   },
 
 	// 编辑
-	edit:function(){
+	edit:function(e){
+		
+		var indexCount = e.currentTarget.dataset.index;
+		this.data.rawBook[indexCount].isEdit = true;
 		this.setData({
-			isEdit:false
-		})
-	}
+			rawBook: this.data.rawBook
+		});
+
+	},
+
+	//取消编辑
+	cancelEdit:function(e){
+		var indexCount = e.currentTarget.dataset.index;
+		this.data.rawBook[indexCount].isEdit = false;
+		this.setData({
+			rawBook: this.data.rawBook
+		});
+	},
+
+	selectRawWord:function(e){
+		console.log(e);
+		var essayIndex = e.currentTarget.dataset.essay_index;
+		var selectedWord = e.currentTarget.dataset.word;
+		if(this.data.rawBook[essayIndex].isEdit == true)
+		{
+			if (this.data.cancelRawWords.hasOwnProperty(this.data.rawBook[essayIndex].data.essayid.toString()))
+			{
+				this.data.cancelRawWords[this.data.rawBook[essayIndex].data.essayid.toString()].push(selectedWord);
+			}
+			else
+			{
+				var temp = [];
+				temp.push(selectedWord);
+				this.data.cancelRawWords[this.data.rawBook[essayIndex].data.essayid.toString()]=temp;
+			} 
+			console.log('cancel words', this.data.cancelRawWords);
+		}
+		else
+		{
+			//到新页面
+
+		}
+
+	},
+
+	cancelRawWords:function(e){
+		var that = this;
+		var indexCount = e.currentTarget.dataset.index;
+		if (this.data.rawBook[indexCount].isEdit == true)
+		{
+			wx.request({
+				url: config.PytheRestfulServerURL + '/personal/word/delete',
+				data: {
+					words: JSON.stringify(that.data.cancelRawWords[that.data.rawBook[indexCount].data.essayid.toString()]),
+					status: 0,
+					essayId: that.data.rawBook[indexCount].data.essayid,
+					studentId: wx.getStorageSync(user.StudentID)
+				},
+				method: 'POST',
+				success: function(res) {},
+				fail: function(res) {},
+				complete: function(res) {},
+			})
+		}
+	},
 
 
 })

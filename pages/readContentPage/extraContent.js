@@ -17,7 +17,9 @@ Page({
     wh: 'width:0px;height:0px;',
     operateModel: '',
     winWidth: 0,
-    selectedWord: ''
+		selectedWord: '',
+		essayContent: null,
+		selectedWordLocation: null
   },
 
   onLoad: function (options) {
@@ -36,13 +38,13 @@ Page({
     console.log('id：' + that.data.essayId)
     console.log('type：' + that.data.groomType)
     wx.request({
-      url: app.globalUrl +'essays/query?essayId=' + parseInt(that.data.essayId) + '&type=' + parseInt(that.data.groomType)+'&studentId=154',
+      url: app.globalUrl +'essays/query',
       data: {
-
+				essayId: that.data.essayId,
+				type: that.data.groomType,
+				studentId: wx.getStorageSync(user.StudentID)
       },
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
+      method:'GET',
       success: function (res) {
         // 获取课文，并解析
        

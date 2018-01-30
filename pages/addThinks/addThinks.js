@@ -39,9 +39,20 @@ Page({
 				len: that.data.selectedWord.length
 			},
 			method: 'POST',
-			success: function(res) {},
+			success: function(res) {
+				wx.showToast({
+					title: '添加成功',
+					icon: 'success',
+					image: '../../images/success.png',
+					duration: 2000
+				})
+			},
 			fail: function(res) {},
-			complete: function(res) {},
+			complete: function(res) {
+				wx.navigateBack({
+					delta: 1,
+				})
+			},
 		})
 	},
 
