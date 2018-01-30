@@ -2,80 +2,22 @@
 
 <view class='toolKit-nw' style='min-height:{{deviceHeight}}px'>
    <view style='min-height:{{deviceHeight-60}}px'>
-    <view class='article-nw'>
-          <view class='nk-title'>荷塘月色</view> 
 
+	 <view class='raw_book_list' wx:for='{{rawBook}}' wx:key='unique'>
+
+    <view class='article-nw' data-raw_book="{{item}}" >
+          <view class='nk-title'>{{item.title}}</view> 
+
+				<view class='word_list' wx:for='{{item.wordList}}' wx:key='unique'>
           <view class='tk-new-word'>
-                <text>国门</text>
-                <text>劳顿</text>
-                <text>恐吓</text>
-                <text>如痴如醉</text>
-                <text>天生丽质</text>
-                <text>出落</text>
-                <text>舱</text>
-                <text>体面</text>
-                <text>体面</text>
-                <text>体面</text>
-                <text>国门</text>
-                <text>劳顿</text>
-                <text>恐吓</text>
-                <text>如痴如醉</text>
-                <text>天生丽质</text>
-                <text>出落</text>
-                <text>舱</text>
-                <text>体面</text>
-                <text>体面</text>
-                <text>体面</text>
+                <text>{{item}}</text>
+                
           </view>
+				</view>
+
     </view>
     
-    <view class='article-nw'>
-          <view class='nk-title'>荷塘月色</view> 
-
-          <view class='tk-new-word'>
-                <text>国门</text>
-                <text>劳顿</text>
-                <text>恐吓</text>
-                <text>如痴如醉</text>
-                <text>天生丽质</text>
-                <text>出落</text>
-                <text>舱</text>
-                <text>体面</text>
-                <text>体面</text>
-                <text>体面</text>
-                <text>国门</text>
-                <text>劳顿</text>
-                <text>恐吓</text>
-                <text>如痴如醉</text>
-                <text>天生丽质</text>
-                <text>出落</text>
-                <text>舱</text>
-                <text>体面</text>
-                <text>体面</text>
-                <text>体面</text>
-          </view>
-    </view>
-
-    <view class='article-nw'>
-          <view class='nk-title'>荷塘月色</view> 
-
-          <view class='tk-new-word'>
-                <text>国门</text>
-                <text>劳顿</text>
-                <text>恐吓</text>
-                <text>如痴如醉</text>
-                <text>天生丽质</text>
-                <text>出落</text>
-                <text>舱</text>
-                <text>体面</text>
-                <text>体面</text>
-                <text>体面</text>
-                <text>国门</text>
-                <text>劳顿</text>
-                <text>恐吓</text>
-               
-          </view>
-    </view>
+   </view>
   
    </view>
    

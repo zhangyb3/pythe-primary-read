@@ -21,7 +21,7 @@ Page({
     var that = this;
 
     wx.request({
-      url: app.globalUrl +'personal/summary/select?studentId=182&pageNum=1&pageSize=10',
+      url: app.globalUrl +'personal/summary/select',
       data: {
 				studentId: wx.getStorageSync(user.StudentID),
 				pageNum: 1,
