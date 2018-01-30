@@ -44,7 +44,7 @@
       <view class='pri-article-title'>
         <text class='pri-title-text' data-articleId='{{gradeCd.essay.id}}' bindtap='descriptCom'>{{gradeCd.essay.title}}</text>
         <text class='read-icon' data-articleId='{{gradeCd.essay.id}}' bindtap='descriptCom'></text>
-        <text class='learned-num'>{{gradeCd.pv}}人学习过</text>
+        <text class='learned-num'>{{gradeCd.essay.pv}}人学习过</text>
       </view>
 
       <view class='extra-article'>
