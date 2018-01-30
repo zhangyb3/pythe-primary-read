@@ -110,7 +110,51 @@ Page({
 			})
 			base.loginSystem(this,
 				()=>{
-					wx.hideLoading()
+					wx.hideLoading();
+					var gradeText = ''; 
+					var level1 = parseInt(wx.getStorageSync(user.GradeID) / 100);
+					var level2 = parseInt((wx.getStorageSync(user.GradeID) % 100) / 10);
+					if(level1 == 1){
+						gradeText = gradeText + '';
+					}
+					if (level1 == 2) {
+						gradeText = gradeText + '初';
+					}
+					if (level1 == 3) {
+						gradeText = gradeText + '高';
+					}
+					var level2Text = ''
+					switch (level2)
+					{
+						case 1:
+							level2Text = '一';
+							break;
+						case 2:
+							level2Text = '二';
+							break;
+						case 3:
+							level2Text = '三';
+							break;
+						case 4:
+							level2Text = '四';
+							break;
+						case 5:
+							level2Text = '五';
+							break;
+						case 6:
+							level2Text = '六';
+							break;
+						
+					}
+					gradeText = gradeText + level2Text;
+					if(level1 == 1){
+						gradeText = gradeText + '年'
+					}
+					console.log("年级："+gradeText);
+					that.setData({
+						gradeText: gradeText
+					});
+					
 				}
 			);
 			register.loadRegisterSelections(this);

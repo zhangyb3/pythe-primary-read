@@ -10,6 +10,7 @@ Page({
 		pageNum: 1,
 		isLoadding: true,
 		isLoadOver: true, 
+		isEdit:true
   },
 
   onLoad: function () {
@@ -108,6 +109,13 @@ Page({
       }
     })
   },
+
+	// 编辑
+	edit:function(){
+		this.setData({
+			isEdit:false
+		})
+	}
 
 
 })

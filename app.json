@@ -10,7 +10,8 @@
     "pages/readContentPage/readContentPage",
     "pages/readContentPage/extraContent",
     "pages/readContentPage/fireWord",
-    "pages/extraReadList/extraReadList"
+    "pages/extraReadList/extraReadList",
+		"pages/addThinks/addThinks"
     
   ],
   "window":{

@@ -6,7 +6,12 @@
 	 <view class='raw_book_list' wx:for='{{rawBook}}' wx:key='unique'>
 
     <view class='article-nw' data-raw_book="{{item}}" >
-          <view class='nk-title'>{{item.title}}</view> 
+          <view class='nk-title'>{{item.title}}
+					      <view class='edit-right'>
+								    <text class='del-txt' hidden='{{isEdit}}'>删除</text>
+								    <text class='edit' bindtap='edit'>编辑</text>
+								</view>
+					</view> 
 
 				<view class='word_list' wx:for='{{item.wordList}}' wx:key='unique'>
           <view class='tk-new-word'>

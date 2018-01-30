@@ -1,0 +1,20 @@
+
+<view class='add-thinks'>
+    
+     <view class='get-select-word'>
+           <scroll-view scroll-y='true'>{{selectedWord}}</scroll-view>
+     </view>
+
+     <view class='user-input' >
+           <textarea placeholder='请输入笔记' auto-focus='true' placeholder-class='' bindinput='getNoteContent'></textarea>
+     </view> 
+     
+     <button class='fabu' bindtap='insertNote'>发布</button>
+
+</view>
+
+
+
+
+
+

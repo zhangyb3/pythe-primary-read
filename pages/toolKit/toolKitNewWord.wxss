@@ -32,3 +32,7 @@
   height:44rpx;
   line-height: 44rpx;
 }
+
+.edit-right{float:right;}
+.edit-right text{color:#f93;}
+.edit{margin-left:20px}

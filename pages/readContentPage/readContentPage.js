@@ -30,7 +30,9 @@ Page({
     wh:'width:0px;height:0px;', //小圆点的初始宽高
     operateModel:'',
     winWidth:0,
-    selectedWord:''
+    selectedWord:'',
+		essayContent:null,
+		selectedWordLocation:null
   },
 
   // 限制性onready方法，改变当前播放的进度以获取音频总时长
@@ -70,7 +72,7 @@ Page({
        var audioUrl = (res.data.data.essay.audio).search(/null/);
        console.log('audioUrl'+audioUrl);
        WxParse.wxParse('handleEssay', 'html', essayContain, that);
-
+			that.data.essayContent = essayContain;
        //返回课文信息
        that.setData({
          articleContentInfo: res.data.data.essay,
@@ -317,6 +319,10 @@ Page({
   
   getSentence: function (e, options){
     console.log(e.currentTarget.dataset.texts);
+		var sentence = e.currentTarget.dataset.texts.text;
+
+		var originalContent = this.data.essayContent;
+		this.data.selectedWordLocation = originalContent.indexOf(sentence);
     this.setData({
       selectedWord: e.currentTarget.dataset.texts.text
     })
@@ -354,6 +360,15 @@ Page({
 
     
   },
+
+	recordNotes:function(e){
+		wx.navigateTo({
+			url: '../addThinks/addThinks?sentence=' + encodeURIComponent(this.data.selectedWord) + '&sentenceLocation=' + this.data.selectedWordLocation + '&essayId=' + this.data.essayId,
+			success: function(res) {},
+			fail: function(res) {},
+			complete: function(res) {},
+		})
+	},
 
 	//摘抄
 	extract:function(e){

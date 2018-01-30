@@ -23,14 +23,14 @@
           </view>
           <!-- 年级 选择-->
           <view class='userChoic-grade'>
-            <view class='show-grade'>{{setGrade[2][userGrade]}}</view>
+            <view class='show-grade'>{{gradeText}}级</view>
             <view class='change-grade-btn' bindtap='tapChangeGrade'>更换</view>
             <!-- {{setGrade[0][version]}}，{{setGrade[1][education]}}，{{setGrade[2][userGrade]}} -->
             <!-- <view class='striangle-icon'></view> -->
           </view>
         </view>
 
-        <view class='user-extraRead'>目前已阅读0篇课外文章</view>
+        <view class='user-extraRead'>目前已阅读x篇课外文章</view>
       </view>
     </view>
 

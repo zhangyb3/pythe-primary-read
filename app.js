@@ -2,7 +2,7 @@
 App({
   onLaunch: function () {
     
-
+		wx.setStorageSync('StudentID', -1);
 		wx.setStorageSync("alreadyRegister", 'no');
     
   },
