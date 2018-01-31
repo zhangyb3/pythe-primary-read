@@ -361,6 +361,21 @@ function loginSystem(the,complete) {
 
 }
 
+//降序函数  
+var desc = function (x, y) {
+	if (x > y)
+		return -1;  //返回一个小于0 的数即可  
+	else
+		return 1;  //返回一个大于0 的数即可  
+}
+//升序函数  
+var asc = function (x, y) {
+	if (x > y)
+		return 1;  //返回一个大于0 的数即可  
+	else
+		return -1;  //返回一个小于0 的数即可  
+}  
+
 module.exports = {
     login: login.login,
     checkLogin: login.checkLogin,
@@ -407,4 +422,7 @@ module.exports = {
     MY_TEACHER_COLLECTION_URL_DETAIL: MY_TEACHER_COLLECTION_URL_DETAIL,
 
     loginSystem: loginSystem,
+
+		asc:asc,
+		desc:desc
 }

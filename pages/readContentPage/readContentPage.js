@@ -3,6 +3,7 @@
 var WxParse = require('../../wxParse/wxParse.js')
 var config = require("../../utils/config.js");
 var user = require("../../utils/user.js");
+var base = require("../../utils/base.js");
 
 const app = getApp()
 Page({
@@ -32,7 +33,8 @@ Page({
     winWidth:0,
     selectedWord:'',
 		essayContent:null,
-		selectedWordLocation:null
+		selectedWordLocation:null,
+		tempEssayContent:null,
   },
 
   // 限制性onready方法，改变当前播放的进度以获取音频总时长
@@ -51,7 +53,8 @@ Page({
     that.setData({
       essayId: options.essayId
     })
-   
+	
+
   },
 
   
@@ -66,12 +69,55 @@ Page({
      },
      method:'GET',
      success: function (res) {
+
        // 获取课文，并解析
        var essayContain = res.data.data.essay.content;
        var audioUrl = (res.data.data.essay.audio).search(/null/);
        console.log('audioUrl'+audioUrl);
-       WxParse.wxParse('handleEssay', 'html', essayContain, that);
-			that.data.essayContent = essayContain;
+			 that.data.essayContent = essayContain;
+
+			 //加载笔记信息后展示内容
+			 wx.request({
+				 url: app.globalUrl + 'wx/essay/line',
+				 data: {
+					 studentId: wx.getStorageSync(user.StudentID),
+					 essayId: that.data.essayId
+				 },
+				 method: 'GET',
+				 success: function(res) {
+					if(res.data.status == 200)
+					{
+						console.log(res);
+						var linesJSON = JSON.parse(res.data.data.lineC);
+						var locs = [];
+						var lines = {};
+						for (var key in linesJSON) {
+							console.log('key', key);
+							var oneLine = key.split('_');
+							console.log('loc', oneLine);
+							locs.push(parseInt(oneLine[0]));
+							lines[oneLine[0]] = oneLine[1];
+							
+						}
+						locs.sort(base.desc);
+						for(var count in locs){
+							
+							var replaceContent = that.data.essayContent.substring(parseInt(locs[count]), parseInt(locs[count]) + parseInt(lines[locs[count]]));
+							console.log('replace content', replaceContent);
+							that.data.essayContent = that.data.essayContent.replace("<p>" + replaceContent + "</p>", "<p style='text-decoration:underline;'>" + replaceContent + "</p>");
+						}
+
+					}
+					
+					WxParse.wxParse('handleEssay', 'html', that.data.essayContent, that);
+
+					
+				 },
+				 fail: function(res) {},
+				 complete: function(res) {},
+			 })
+       
+			
        //返回课文信息
        that.setData({
          articleContentInfo: res.data.data.essay,
@@ -325,6 +371,12 @@ Page({
     this.setData({
       selectedWord: e.currentTarget.dataset.texts.text
     })
+
+		//在选中文本添加特效
+		this.data.tempEssayContent = this.data.essayContent;
+		this.data.essayContent = this.data.essayContent.replace("<p>"+sentence+"</p>", "<p style='text-decoration:underline;'>" + sentence + "</p>");
+		WxParse.wxParse('handleEssay', 'html', this.data.essayContent, this);
+
   },
 //  炸词
   bombHandle: function (e,options) {
@@ -499,6 +551,9 @@ Page({
      var that=this;
      that.setData({
        operateModel:'display:none;'
-     })
+
+     });
+		 that.data.essayContent = that.data.tempEssayContent;
+		 WxParse.wxParse('handleEssay', 'html', that.data.essayContent, that);
   }
 })
