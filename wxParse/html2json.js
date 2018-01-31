@@ -126,6 +126,11 @@ function html2json(html, bindName) {
                         value = value.split(' ');
                     }
                     
+										if (name == 'data-nid') {
+											console.dir(value);
+											//  value = value.join("")
+											node.nid = value;
+										}
 
                     // if attr already exists
                     // merge it

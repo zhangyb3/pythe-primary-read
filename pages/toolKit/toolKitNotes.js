@@ -54,8 +54,27 @@ Page({
 				if(res.data.status == 200)
 				{
 					that.data.notesInfo = res.data.data;
+					for (var i = 0; i < that.data.notesInfo.length; i++) {
+						var time = new Date(that.data.notesInfo[i].time);
+						console.log((time));
+						var exYear = time.getFullYear();
+						var exMonth = time.getMonth() + 1;
+						if (exMonth < 10) {
+							exMonth = '0' + exMonth;
+						}
+						var exDate = time.getDate();
+						var exHour = time.getHours();
+						if (exHour < 10) {
+							exHour = '0' + exHour;
+						}
+						var exMinutes = time.getMinutes();
+						if (exMinutes < 10) {
+							exMinutes = '0' + exMinutes;
+						}
+						that.data.notesInfo[i].time = exYear + '-' + exMonth + '-' + exDate + ' ' + exHour + ':' + exMinutes;
+					}
 					that.setData({
-						notesInfo: res.data.data
+						notesInfo: that.data.notesInfo
 					});
 				}
 			},
@@ -80,8 +99,27 @@ Page({
 			},
 			method: 'GET',
 			success: function (res) {
-				
-				var getAllData = that.data.notesInfo.concat(res.data.data);
+				var tempNotes = res.data.data
+				for (var i = 0; i < tempNotes.length; i++) {
+					var time = new Date(tempNotes[i].time);
+					console.log((time));
+					var exYear = time.getFullYear();
+					var exMonth = time.getMonth() + 1;
+					if (exMonth < 10) {
+						exMonth = '0' + exMonth;
+					}
+					var exDate = time.getDate();
+					var exHour = time.getHours();
+					if (exHour < 10) {
+						exHour = '0' + exHour;
+					}
+					var exMinutes = time.getMinutes();
+					if (exMinutes < 10) {
+						exMinutes = '0' + exMinutes;
+					}
+					tempNotes[i].time = exYear + '-' + exMonth + '-' + exDate + ' ' + exHour + ':' + exMinutes;
+				}
+				var getAllData = that.data.notesInfo.concat(tempNotes);
 
 				if (res.data.data) {
 
@@ -99,7 +137,7 @@ Page({
 					});
 				}
 
-				// console.log(that.data.gradeChineseData)
+				
 			},
 
 			fail: function (err) {

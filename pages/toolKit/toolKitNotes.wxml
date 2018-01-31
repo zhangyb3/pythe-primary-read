@@ -10,7 +10,7 @@
                   <view class='notes' style='max-height:{{notesHeight2[index]}}rpx;'>{{item.note}}</view>
 
                   <view class='note-mark-info'>
-                        <text class='noted-time'>2017-12-12</text>
+                        <text class='noted-time'>{{item.time}}</text>
                         <image class='notes-share' src='../../images/share.png'></image>
                         <view class='notes-fold' bindtap='foldMore' data-fold='{{index}}' data-param='{{param[index]}}'>{{foldTxt[index]}}</view>
                   </view>
