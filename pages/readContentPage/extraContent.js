@@ -69,20 +69,21 @@ Page({
 							var linesJSON = JSON.parse(res.data.data.lineC);
 							var locs = [];
 							var lines = {};
+							var nids = {};
 							for (var key in linesJSON) {
 								console.log('key', key);
 								var oneLine = key.split('_');
 								console.log('loc', oneLine);
 								locs.push(parseInt(oneLine[0]));
 								lines[oneLine[0]] = oneLine[1];
-
+								nids[oneLine[0]] = linesJSON[key].nid;
 							}
 							locs.sort(base.desc);
 							for (var count in locs) {
 
 								var replaceContent = that.data.essayContent.substring(parseInt(locs[count]), parseInt(locs[count]) + parseInt(lines[locs[count]]));
 								console.log('replace content', replaceContent);
-								that.data.essayContent = that.data.essayContent.replace("<p>" + replaceContent + "</p>", "<p style='text-decoration:underline;'>" + replaceContent + "</p>");
+								that.data.essayContent = that.data.essayContent.replace("<p>" + replaceContent + "</p>", "<p style='text-decoration:underline;' data-nid='" + nids[locs[count]] + "' >" + replaceContent + "</p>");
 							}
 
 						}

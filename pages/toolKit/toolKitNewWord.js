@@ -10,6 +10,7 @@ Page({
 		pageNum: 1,
 		isLoadding: true,
 		isLoadOver: true, 
+		classArray: [],
 		rawBook:[],
 		cancelRawWords:{},
   },
@@ -34,11 +35,17 @@ Page({
 					var temp= {};
 					temp.data = rawBookData[count];
 					temp.isEdit = false;
+					that.data.classArray[count] = new Array();
+					for(var wordNum = 0; wordNum < rawBookData[count].wordList.length; wordNum++)
+					{
+						that.data.classArray[count][wordNum] = '';
+					}
 					that.data.rawBook.push(temp);
 				}
 				console.log("raw book", that.data.rawBook);
 				that.setData({
 					rawBook: that.data.rawBook,
+					classArray: that.data.classArray,
 				});
 				
 			}
@@ -67,18 +74,25 @@ Page({
 			success: function (res) {
 				var rawBookData = res.data.data;
 				var rawBook = [];
+				var classArray = [];
 				for (var count = 0; count < rawBookData.length; count++) {
 					var temp = {};
 					temp.data = rawBookData[count];
 					temp.isEdit = false;
+					classArray[count] = new Array();
+					for (var wordNum = 0; wordNum < rawBookData[count].wordList.length; wordNum++) {
+						classArray[count][wordNum] = '';
+					}
 					rawBook.push(temp);
 				}
 				var getAllData = that.data.rawBook.concat(rawBook);
-				
+				that.data.classArray = that.data.classArray.concat(classArray);
+
 				if (res.data.data) {
 					
 					that.setData({
 						rawBook: getAllData,
+						classArray: that.data.classArray,
 						pageNum: pageNum,
 						isLoadding: true
 					});
@@ -131,14 +145,22 @@ Page({
 	cancelEdit:function(e){
 		var indexCount = e.currentTarget.dataset.index;
 		this.data.rawBook[indexCount].isEdit = false;
+		for(var count = 0; count < this.data.rawBook[indexCount].data.wordList.length; count++)
+		{
+			this.data.classArray[indexCount][count] = '';
+
+		}
+		this.data.cancelRawWords[this.data.rawBook[indexCount].data.essayid] = [];
 		this.setData({
-			rawBook: this.data.rawBook
+			rawBook: this.data.rawBook,
+			classArray: this.data.classArray,
 		});
 	},
 
 	selectRawWord:function(e){
 		console.log(e);
 		var essayIndex = e.currentTarget.dataset.essay_index;
+		var wordIndex = e.currentTarget.dataset.index;
 		var selectedWord = e.currentTarget.dataset.word;
 		if(this.data.rawBook[essayIndex].isEdit == true)
 		{
@@ -151,6 +173,10 @@ Page({
 				var temp = [];
 				temp.push(selectedWord);
 				this.data.cancelRawWords[this.data.rawBook[essayIndex].data.essayid.toString()]=temp;
+				this.data.classArray[essayIndex][wordIndex] = 'addBGC';
+				this.setData({
+					classArray: this.data.classArray,
+				});
 			} 
 			console.log('cancel words', this.data.cancelRawWords);
 		}

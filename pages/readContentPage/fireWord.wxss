@@ -24,7 +24,7 @@
 .fire-word .addBgc {
   background-color: #f93;
   color: #fff;
-}
+} 
 
 .explain-word {
   line-height: 1.8;

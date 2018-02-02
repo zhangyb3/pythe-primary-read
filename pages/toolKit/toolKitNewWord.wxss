@@ -33,6 +33,11 @@
   line-height: 44rpx;
 }
 
+.tk-new-word .addBGC {
+	background-color: #f93;
+  color: #fff;
+}
+
 .edit-right{float:right;}
 .edit-right text{color:#f93;}
 .edit{margin-left:20px}

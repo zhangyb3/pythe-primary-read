@@ -4,7 +4,7 @@ const app = getApp()
 var WxParse = require('../../wxParse/wxParse.js')
 var config = require("../../utils/config.js");
 var user = require("../../utils/user.js");
-
+ 
 Page({
   data: {
     deviceHeight:0,
