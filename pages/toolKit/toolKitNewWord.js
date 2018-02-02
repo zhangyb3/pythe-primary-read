@@ -199,7 +199,9 @@ Page({
 		else
 		{
 			//到新页面
-
+      wx.navigateTo({
+        url: 'explainWord?word=' + e.currentTarget.dataset.word,
+      })
 		}
 
 	},

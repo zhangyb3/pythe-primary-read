@@ -66,7 +66,7 @@
     <template is='bottom-text'></template>
   </view>
 
-</view> 
+</view>
 
 <!-- 注册弹窗 -->
 <import src="../template/register.wxml" />

@@ -155,9 +155,6 @@ Page({
 						gradeText: gradeText
 					});
 					
-				},
-				()=>{
-					wx.hideLoading();
 				}
 			);
 			register.loadRegisterSelections(this);

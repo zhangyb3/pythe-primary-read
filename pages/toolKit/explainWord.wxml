@@ -1,0 +1,26 @@
+<import src='../../wxParse/wxParse.wxml' />
+
+<view style='padding:20px;box-sizing:border-box;'>
+      <view class='explain-word' wx:if='{{hasExplain==1}}'>
+           <!-- <template is="wxParse" data="{{wxParseData:handleExplain.nodes}}"></template> -->
+            <rich-text nodes="{{getWordExplain}}"></rich-text>           
+      </view>
+
+      <view wx:elif='{{hasExplain==0}}'>
+        <image mode='widthFix' src='../../images/without.png' style='display:block;width:80%;margin:0 auto;'></image>
+      </view>
+</view>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

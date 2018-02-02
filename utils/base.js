@@ -305,7 +305,7 @@ function cleanCacheFile(quantity)
   });
 }
 
-function loginSystem(the,success,fail) {
+function loginSystem(the,complete) {
   var that = the;
 
   wx.login({
@@ -345,7 +345,7 @@ function loginSystem(the,success,fail) {
 				alreadyRegister: true,
 			});
 			that.initLoad();
-			typeof success == "function" && success();
+			typeof complete == "function" && complete();
     },
 		()=>{
 			
@@ -353,7 +353,7 @@ function loginSystem(the,success,fail) {
 				alreadyRegister: false,
 			});
 			that.initLoad();
-			typeof fail == "function" && fail();
+			typeof complete == "function" && complete();
 		}
   );
 
