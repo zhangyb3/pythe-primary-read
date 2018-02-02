@@ -35,6 +35,7 @@ Page({
 		essayContent:null,
 		selectedWordLocation:null,
 		tempEssayContent:null,
+		isAudio:false,
   },
 
   // 限制性onready方法，改变当前播放的进度以获取音频总时长
@@ -73,6 +74,15 @@ Page({
        // 获取课文，并解析
        var essayContain = res.data.data.essay.content;
        var audioUrl = (res.data.data.essay.audio).search(/null/);
+			 if(-1==audioUrl){
+				 that.setData({
+					 isAudio:false,
+				 });
+			 }else{
+				 that.setData({
+					 isAudio: true,
+				 });
+			 }
        console.log('audioUrl'+audioUrl);
 			 that.data.essayContent = essayContain;
 

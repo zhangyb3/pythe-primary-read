@@ -10,7 +10,7 @@
     <view class='article-author' wx:if="{{null!=articleContentInfo.author}}">- {{articleContentInfo.author}} -</view>
 
     <audio hidden='true' src='{{articleContentInfo.audio}}' controls id='audioFile' bindtimeupdate='timeupdate' bindended='playEnd'></audio>
-    <view class='article-audio-box' wx:if="{{-1==audioUrl}}">
+    <view class='article-audio-box' hidden="{{isAudio}}">
       <!-- 音频时长等信息 -->
       <view class='audio-info'>
         <text class='audio-current-time'>{{audioChangeInfo.audioCurrentTime}}</text>
