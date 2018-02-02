@@ -2,7 +2,9 @@
 <view class='add-thinks'>
     
      <view class='get-select-word'>
-           <scroll-view scroll-y='true'>{{selectedWord}}</scroll-view>
+           <scroll-view scroll-y='true'>
+					   <view class='scroll-txt'>{{selectedWord}}</view> 
+					 </scroll-view>
      </view>
 
      <view class='user-input' >

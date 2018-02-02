@@ -17,7 +17,7 @@
 				
           <view class='tk-new-word'>
 						<view class='word_list' wx:for='{{item.data.wordList}}' wx:key='unique'>
-                <text class="{{classArray[essay_index][index]}}" data-word="{{item}}" data-index='{{index}}' data-essay_index="{{essay_index}}" bindtap='selectRawWord'>{{item}}</text>
+                <text class="{{classArray[essay_index][index]}}" data-word="{{item}}" data-index='{{index}}' data-essay_index="{{essay_index}}" bindtap='selectRawWord'  wx:if="{{visibleArray[essay_index][index]}}">{{item}}</text>
             </view>  
           </view>
 				

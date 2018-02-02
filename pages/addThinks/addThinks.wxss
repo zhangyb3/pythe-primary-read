@@ -1,8 +1,11 @@
 page {
   height: 100%;
   background-color: #fff;
-  padding: 0 20px;
-  box-sizing: border-box;
+  
+}
+.add-thinks{
+padding: 0 20px;
+box-sizing: border-box;
 }
 
 .get-select-word {
@@ -20,6 +23,11 @@ page {
   box-sizing: border-box;
   border-left: 4px solid #f93;
 }
+.scroll-txt{
+	width: 100%;
+	max-height:270px;
+	
+}
 
 .user-input {
   min-height: 100px;
@@ -29,7 +37,9 @@ page {
   text-align: justify;
   line-height: 1.7;
 }
-
+.user-input textarea{
+max-width:100%;
+}
 .fabu {
   width: 50%;
   font-size: 16px;

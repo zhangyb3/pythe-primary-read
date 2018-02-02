@@ -11,8 +11,10 @@ Page({
 		isLoadding: true,
 		isLoadOver: true, 
 		classArray: [],
+		visibleArray: [],
 		rawBook:[],
 		cancelRawWords:{},
+		cancelRawWordsIndexes:{},
   },
 
   onLoad: function () {
@@ -36,9 +38,11 @@ Page({
 					temp.data = rawBookData[count];
 					temp.isEdit = false;
 					that.data.classArray[count] = new Array();
+					that.data.visibleArray[count] = new Array();
 					for(var wordNum = 0; wordNum < rawBookData[count].wordList.length; wordNum++)
 					{
 						that.data.classArray[count][wordNum] = '';
+						that.data.visibleArray[count][wordNum] = true;
 					}
 					that.data.rawBook.push(temp);
 				}
@@ -46,6 +50,7 @@ Page({
 				that.setData({
 					rawBook: that.data.rawBook,
 					classArray: that.data.classArray,
+					visibleArray: that.data.visibleArray,
 				});
 				
 			}
@@ -75,24 +80,29 @@ Page({
 				var rawBookData = res.data.data;
 				var rawBook = [];
 				var classArray = [];
+				var visibleArray = [];
 				for (var count = 0; count < rawBookData.length; count++) {
 					var temp = {};
 					temp.data = rawBookData[count];
 					temp.isEdit = false;
 					classArray[count] = new Array();
+					visibleArray[count] = new Array();
 					for (var wordNum = 0; wordNum < rawBookData[count].wordList.length; wordNum++) {
 						classArray[count][wordNum] = '';
+						visibleArray[count][wordNum] = true;
 					}
 					rawBook.push(temp);
 				}
 				var getAllData = that.data.rawBook.concat(rawBook);
 				that.data.classArray = that.data.classArray.concat(classArray);
+				that.data.visibleArray = that.data.visibleArray.concat(visibleArray);
 
 				if (res.data.data) {
 					
 					that.setData({
 						rawBook: getAllData,
 						classArray: that.data.classArray,
+						visibleArray: that.data.visibleArray,
 						pageNum: pageNum,
 						isLoadding: true
 					});
@@ -151,9 +161,11 @@ Page({
 
 		}
 		this.data.cancelRawWords[this.data.rawBook[indexCount].data.essayid] = [];
+		this.data.cancelRawWordsIndexes[this.data.rawBook[indexCount].data.essayid] = [];
 		this.setData({
 			rawBook: this.data.rawBook,
 			classArray: this.data.classArray,
+			visibleArray: this.data.visibleArray,
 		});
 	},
 
@@ -164,19 +176,23 @@ Page({
 		var selectedWord = e.currentTarget.dataset.word;
 		if(this.data.rawBook[essayIndex].isEdit == true)
 		{
+			this.data.classArray[essayIndex][wordIndex] = 'addBGC';
+			this.setData({
+				classArray: this.data.classArray,
+			});
 			if (this.data.cancelRawWords.hasOwnProperty(this.data.rawBook[essayIndex].data.essayid.toString()))
 			{
 				this.data.cancelRawWords[this.data.rawBook[essayIndex].data.essayid.toString()].push(selectedWord);
+				this.data.cancelRawWordsIndexes[this.data.rawBook[essayIndex].data.essayid.toString()].push(wordIndex);
 			}
 			else
 			{
 				var temp = [];
 				temp.push(selectedWord);
 				this.data.cancelRawWords[this.data.rawBook[essayIndex].data.essayid.toString()]=temp;
-				this.data.classArray[essayIndex][wordIndex] = 'addBGC';
-				this.setData({
-					classArray: this.data.classArray,
-				});
+				var indexTemp = [];
+				indexTemp.push(wordIndex);
+				this.data.cancelRawWordsIndexes[this.data.rawBook[essayIndex].data.essayid.toString()] = indexTemp;
 			} 
 			console.log('cancel words', this.data.cancelRawWords);
 		}
@@ -190,19 +206,34 @@ Page({
 
 	cancelRawWords:function(e){
 		var that = this;
-		var indexCount = e.currentTarget.dataset.index;
-		if (this.data.rawBook[indexCount].isEdit == true)
+		var essayIndex = e.currentTarget.dataset.index;
+		if (this.data.rawBook[essayIndex].isEdit == true)
 		{
+			
+			//请求后台将数据删除
 			wx.request({
 				url: config.PytheRestfulServerURL + '/personal/word/delete',
 				data: {
-					words: JSON.stringify(that.data.cancelRawWords[that.data.rawBook[indexCount].data.essayid.toString()]),
+					words: JSON.stringify(that.data.cancelRawWords[that.data.rawBook[essayIndex].data.essayid.toString()]),
 					status: 0,
-					essayId: that.data.rawBook[indexCount].data.essayid,
+					essayId: that.data.rawBook[essayIndex].data.essayid,
 					studentId: wx.getStorageSync(user.StudentID)
 				},
 				method: 'POST',
-				success: function(res) {},
+				success: function(res) {
+					if(res.data.status == 200)
+					{
+						//隐藏被删除的生词
+						var indexes = that.data.cancelRawWordsIndexes[that.data.rawBook[essayIndex].data.essayid.toString()];
+						for(var count = 0; count < indexes.length; count++)
+						{
+							that.data.visibleArray[essayIndex][indexes[count]] = false;
+						}
+						that.setData({
+							visibleArray: that.data.visibleArray,
+						});
+					}
+				},
 				fail: function(res) {},
 				complete: function(res) {},
 			})

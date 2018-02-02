@@ -7,22 +7,36 @@ var base = require("../../utils/base.js");
 
 const app = getApp()
 Page({
-  data: {
-    deviceHeight:0,
-    similarThree: [],
-    essayId: '',
-    groomType:'',
-    animationData: {},
-    tapTop: 0,
-    tapLeft: 0,
-    wh: 'width:0px;height:0px;',
-    operateModel: '',
-    winWidth: 0,
+	data: {
+		isPlay: 0,  //状态，是否在播放中，1播放中，0暂停
+		audioChangeInfo: {
+			audioController: '../../images/pause.png',  //播放、暂停的图标
+			audioCurrentTime: '00:00'   //当期播放时长
+		},
+		audioDurationTime: '00:23',//经过处理的总时间
+		initdurTime: 0,    //未处理的总时长
+		initcurTime: 0,    //未处理的当前播放时长
+		barLength: 0,      //灰色bar的长度
+		speed: 0,          //速度=barLength/initdurTime
+		colorBarWidth: 0,   //颜色进度条长度
+		barOffsetLeft: 0,    //bar距离屏幕左边的距离
+		articleContentInfo: {}, // 文章内容信息
+		isShowFixCtrl: true,     //是否显示固定的播放器
+		similarThree: [],
+		essayId: '',
+		audioUrl: 1,
+		animationData: {},
+		tapTop: 0,  //点击本文时，小圆点的出现位置
+		tapLeft: 0, //点击本文时，小圆点的出现位置 
+		wh: 'width:0px;height:0px;', //小圆点的初始宽高
+		operateModel: '',
+		winWidth: 0,
 		selectedWord: '',
 		essayContent: null,
 		selectedWordLocation: null,
-		tempEssayContent:null
-  },
+		tempEssayContent: null,
+		isAudio: false,
+	},
 
   onLoad: function (options) {
     var that = this;
@@ -52,6 +66,15 @@ Page({
 				// 获取课文，并解析
 				var essayContain = res.data.data.essay.content;
 				// var audioUrl = (res.data.data.essay.audio).search(/null/);
+				// if (-1 == audioUrl) {
+				// 	that.setData({
+				// 		isAudio: false,
+				// 	});
+				// } else {
+				// 	that.setData({
+				// 		isAudio: true,
+				// 	});
+				// }
 				// console.log('audioUrl' + audioUrl);
 				that.data.essayContent = essayContain;
 
