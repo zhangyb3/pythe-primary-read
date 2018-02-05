@@ -19,25 +19,7 @@ Page({
 
   onLoad: function () {
     this.getDevice();
-    var that=this;
-    var notesHeight = [];
-    var notesHeight2 = [];
-    var foldTxt=[];
-    var param=[];
-    for (var i = 0; i < that.data.notesInfo.length;i++){
-      notesHeight[i] = "max-height:80rpx;overflow:hidden;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;";
-      notesHeight2[i] = "max-height:114rpx;overflow:hidden;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;";
-      foldTxt[i]='展开';
-      param[i]=1
-    };
-
-    that.setData({
-      notesHeight: notesHeight,
-      notesHeight2: notesHeight2,
-      foldTxt: foldTxt,
-      param: param
-    });
-    console.log(notesHeight)
+    
   },
 
 	onShow:function(){
@@ -76,13 +58,35 @@ Page({
 					that.setData({
 						notesInfo: that.data.notesInfo
 					});
+
+          that.fold();
 				}
 			},
 			fail: function(res) {},
 			complete: function(res) {},
 		})
 	},
+  fold:function(){
+    var that = this;
+    var notesHeight = [];
+    var notesHeight2 = [];
+    var foldTxt = [];
+    var param = [];
+    for (var i = 0; i < that.data.notesInfo.length; i++) {
+      notesHeight[i] = "max-height:80rpx;overflow:hidden;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;";
+      notesHeight2[i] = "max-height:114rpx;overflow:hidden;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;";
+      foldTxt[i] = '展开';
+      param[i] = 1
+    };
 
+    that.setData({
+      notesHeight: notesHeight,
+      notesHeight2: notesHeight2,
+      foldTxt: foldTxt,
+      param: param
+    });
+    console.log(notesHeight)
+  },
 	onReachBottom: function () {
 		var that = this;
 		var pageNum = that.data.pageNum + 1
