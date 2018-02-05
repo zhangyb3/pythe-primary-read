@@ -111,49 +111,7 @@ Page({
 			base.loginSystem(this,
 				()=>{
 					wx.hideLoading();
-					var gradeText = ''; 
-					var level1 = parseInt(wx.getStorageSync(user.GradeID) / 100);
-					var level2 = parseInt((wx.getStorageSync(user.GradeID) % 100) / 10);
-					if(level1 == 1){
-						gradeText = gradeText + '';
-					}
-					if (level1 == 2) {
-						gradeText = gradeText + '初';
-					}
-					if (level1 == 3) {
-						gradeText = gradeText + '高';
-					}
-					var level2Text = ''
-					switch (level2)
-					{
-						case 1:
-							level2Text = '一';
-							break;
-						case 2:
-							level2Text = '二';
-							break;
-						case 3:
-							level2Text = '三';
-							break;
-						case 4:
-							level2Text = '四';
-							break;
-						case 5:
-							level2Text = '五';
-							break;
-						case 6:
-							level2Text = '六';
-							break;
-						
-					}
-					gradeText = gradeText + level2Text;
-					if(level1 == 1){
-						gradeText = gradeText + '年'
-					}
-					console.log("年级："+gradeText);
-					that.setData({
-						gradeText: gradeText
-					});
+					base.parseGradeIdToGradeText(wx.getStorageSync(user.GradeID),this);
 					
 				},
 				()=>{
@@ -172,12 +130,13 @@ Page({
 			username: wx.getStorageSync("wxNickName"),
 			avatar: wx.getStorageSync("avatarUrl")
 		});
+		
 		// 请求年级课文信息
 		wx.request({
 			url: app.globalUrl + 'wx/kewen', //仅为示例，并非真实的接口地址
 			data: {
 				studentId: wx.getStorageSync(user.StudentID),
-				gradeId: wx.getStorageSync(user.GradeID),
+				gradeId: that.data.gradeId,
 				level1: that.data.versionTxt,
 				pageNum: 1,
 				pageSize: 6
@@ -185,6 +144,19 @@ Page({
 			method: 'GET',
 			success: function (res) {
 				console.log(res.data.data)
+				if(res.data.status == 400){
+					wx.showModal({
+						title: '提示',
+						content: res.data.msg,
+						showCancel: false,
+						confirmText: '我知道了',
+						confirmColor: '',
+						success: function(res) {},
+						fail: function(res) {},
+						complete: function(res) {},
+					})
+				}
+
 				that.setData({
 					gradeChineseData: res.data.data
 				})
@@ -256,9 +228,11 @@ Page({
     var versionTxt = that.data.setGrade[0][that.data.version];  //获取用户选择的版本
     var education = that.data.education+1;
     var userGrade = that.data.userGrade;
+		
     if (education==1){ 
         if (userGrade==0){
            gradeId=131;
+
         } else if (userGrade==1){
           gradeId = 132;
         } else if (userGrade == 2) {
@@ -303,32 +277,17 @@ Page({
         gradeId = 332;
       }
     };
-
+		
     that.setData({
       versionTxt: versionTxt,
       gradeId: gradeId,
+			
       pageNum: 1,
       isLoadOver: true
     });
-
+		base.parseGradeIdToGradeText(that.data.gradeId, that);
     // 更换年级之后，从新请求年级课文信息
-    wx.request({
-      url: app.globalUrl + 'wx/kewen', 
-      data: {
-				studentId: wx.getStorageSync(user.StudentID),
-				gradeId: wx.getStorageSync(user.GradeID),
-				level1: that.data.versionTxt,
-				pageNum: 1,
-				pageSize: 6
-      },
-      method: 'GET',
-      success: function (res) {
-        console.log(res.data.data)
-        that.setData({
-          gradeChineseData: res.data.data
-        })
-      }
-    })
+   that.initLoad();
   },
 
   //上拉加载
@@ -343,7 +302,7 @@ Page({
       url: app.globalUrl + 'wx/kewen', 
       data: {
 				studentId: wx.getStorageSync(user.StudentID),
-				gradeId: wx.getStorageSync(user.GradeID),
+				gradeId: that.data.gradeId,
 				level1: that.data.versionTxt,
 				pageNum: pageNum,
 				pageSize: 6

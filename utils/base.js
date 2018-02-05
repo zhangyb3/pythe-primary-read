@@ -343,6 +343,7 @@ function loginSystem(the,success,fail) {
 			
 			that.setData({
 				alreadyRegister: true,
+				gradeId: wx.getStorageSync(user.GradeID),
 			});
 			that.initLoad();
 			typeof success == "function" && success();
@@ -375,6 +376,64 @@ var asc = function (x, y) {
 	else
 		return -1;  //返回一个小于0 的数即可  
 }  
+
+
+function parseGradeIdToGradeText(gradeId,the){
+	var that = the;
+	var gradeText = '';
+	var level1 = parseInt(gradeId / 100);
+	var level2 = parseInt((gradeId % 100) / 10);
+	var level3 = parseInt((gradeId % 10));
+	if (level1 == 1) {
+		gradeText = gradeText + '';
+	}
+	if (level1 == 2) {
+		gradeText = gradeText + '初';
+	}
+	if (level1 == 3) {
+		gradeText = gradeText + '高';
+	}
+	var level2Text = ''
+	switch (level2) {
+		case 1:
+			level2Text = '一';
+			break;
+		case 2:
+			level2Text = '二';
+			break;
+		case 3:
+			level2Text = '三';
+			break;
+		case 4:
+			level2Text = '四';
+			break;
+		case 5:
+			level2Text = '五';
+			break;
+		case 6:
+			level2Text = '六';
+			break;
+
+	}
+	gradeText = gradeText + level2Text;
+	if (level1 == 1) {
+		gradeText = gradeText + '年级';
+	}
+	else{
+		gradeText = gradeText + '级';
+	}
+	if (level3 == 1) {
+		gradeText = gradeText + '上';
+	}
+	if (level3 == 2) {
+		gradeText = gradeText + '下';
+	}
+	console.log("年级：" + gradeText);
+	that.setData({
+		gradeText: gradeText
+	});
+	return gradeText;
+}
 
 module.exports = {
     login: login.login,
@@ -424,5 +483,7 @@ module.exports = {
     loginSystem: loginSystem,
 
 		asc:asc,
-		desc:desc
+		desc:desc,
+
+		parseGradeIdToGradeText: parseGradeIdToGradeText
 }

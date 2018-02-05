@@ -125,11 +125,11 @@
   border-color: e6e6e6;
 }
 
-.Verif-code input {
+ .Verif-code input {
   width: 100%;
   padding-right: 108rpx;
   box-sizing: border-box;
-}
+} 
 
 .get-Verif-btn {
   color: #f93;

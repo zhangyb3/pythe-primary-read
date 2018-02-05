@@ -37,6 +37,7 @@ var login = (success, fail) => {
               wx.setStorageSync('alreadyRegister', 'yes');
               
               wx.setStorageSync(user.GradeID, registerInfo.gradeid);
+							
 							wx.setStorageSync(user.StudentID, registerInfo.studentid);
               
               wx.setStorageSync(user.UserNickName, registerInfo.username);
