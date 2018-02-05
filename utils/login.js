@@ -16,7 +16,7 @@ const DECODE_USER_DATA = `${config.PytheRestfulServerURL}/user/decode`;//解密�
  * 登录
  */
 var login = (success, fail) => {
-    checkLogin(() => {
+    // checkLogin(() => {
         //DO NOTHING
         // 检查是否有注册过
         register.checkRegister(
@@ -49,12 +49,20 @@ var login = (success, fail) => {
           },
           (userRegisterResult) => {
             console.log(userRegisterResult);
+						typeof fail == "function" && fail();
           },
         );
         console.log("已登录");
-    }, () => {
-        remoteLogin(success, fail)
-    })
+    // }, () => {
+    //     remoteLogin(
+		// 			()=>{
+		// 				typeof success == "function" && success();
+		// 			}, 
+		// 			()=>{
+		// 				typeof fail == "function" && fail();
+		// 			}
+		// 		);
+    // })
 }
 
 /**
@@ -105,11 +113,6 @@ var remoteLogin = (success, fail) => {
                 key: user.js_code,
                 data: loginRes.code,
             });
-
-            //SID,TID临时测试数据
-            // wx.setStorageSync(user.StudentID, 'studentID');
-            // wx.setStorageSync(user.TeacherID, 'teacherID');
-            // wx.setStorageSync(user.UserID, 'userID');
 
             
             wx.request({

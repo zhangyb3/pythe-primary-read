@@ -319,6 +319,28 @@ function loginSystem(the,success,fail) {
           wx.setStorageSync('avatarUrl', rawData.avatarUrl);
           // wx.setStorageSync('userNickName', rawData.nickName);
           wx.setStorageSync('wxNickName', rawData.nickName);
+
+					//登录
+					login.login(
+						() => {
+
+							that.setData({
+								alreadyRegister: true,
+								gradeId: wx.getStorageSync(user.GradeID),
+							});
+							that.initLoad();
+							typeof success == "function" && success();
+						},
+						() => {
+
+							that.setData({
+								alreadyRegister: false,
+							});
+							that.initLoad();
+							typeof fail == "function" && fail();
+						}
+					);
+
         },
         fail: function () {
           // fail
@@ -337,26 +359,7 @@ function loginSystem(the,success,fail) {
   })
 
 
-  //登录
-  login.login(
-    () => {
-			
-			that.setData({
-				alreadyRegister: true,
-				gradeId: wx.getStorageSync(user.GradeID),
-			});
-			that.initLoad();
-			typeof success == "function" && success();
-    },
-		()=>{
-			
-			that.setData({
-				alreadyRegister: false,
-			});
-			that.initLoad();
-			typeof fail == "function" && fail();
-		}
-  );
+  
 
   wx.setStorageSync('exitSystem', 'no');
 
