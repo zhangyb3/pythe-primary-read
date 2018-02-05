@@ -115,11 +115,11 @@ Page({
 							
 							var replaceContent = that.data.essayContent.substring(parseInt(locs[count]), parseInt(locs[count]) + parseInt(lines[locs[count]]));
 							console.log('replace content', replaceContent);
-							that.data.essayContent = that.data.essayContent.replace("<p>" + replaceContent + "</p>", "<p style='text-decoration:underline;' data-nid='" + nids[locs[count]] + "' >" + replaceContent + "</p>");
+							that.data.essayContent = that.data.essayContent.replace(replaceContent , "<p style='text-decoration:underline;' data-nid='" + nids[locs[count]] + "' >" + replaceContent + "</p>");
 						}
 
 					}
-					
+					console.log('after line',that.data.essayContent);
 					WxParse.wxParse('handleEssay', 'html', that.data.essayContent, that);
 
 					
