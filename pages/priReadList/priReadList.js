@@ -78,6 +78,7 @@ Page({
 		countdownText: '发送验证码',
 		second: 60,
 
+		contentNotNull: true
   },
 
   onLoad: function () {
@@ -145,21 +146,17 @@ Page({
 			success: function (res) {
 				console.log(res.data.data)
 				if(res.data.status == 400){
-					wx.showModal({
-						title: '提示',
-						content: res.data.msg,
-						showCancel: false,
-						confirmText: '我知道了',
-						confirmColor: '',
-						success: function(res) {},
-						fail: function(res) {},
-						complete: function(res) {},
+					that.setData({
+						contentNotNull: false,
+					});
+				}else{
+
+					that.setData({
+						contentNotNull: true,
+						gradeChineseData: res.data.data
 					})
 				}
 
-				that.setData({
-					gradeChineseData: res.data.data
-				})
 			}
 		});
 	},

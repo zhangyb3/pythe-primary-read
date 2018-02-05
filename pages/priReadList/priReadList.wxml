@@ -34,7 +34,8 @@
       </view>
     </view>
 
-    <view class='recommend-title'>已根据课文推荐出相关课外文章</view>
+    <view class='recommend-title' wx:if="{{contentNotNull == true}}">已根据课文推荐出相关课外文章</view>
+		<view class='recommend-title' wx:if="{{contentNotNull == false}}">暂无相关内容</view>
   </view>
   <!-- 用户登录后显示用户信息 结束-->
 
