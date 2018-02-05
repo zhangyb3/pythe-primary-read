@@ -37,7 +37,7 @@
   <view class="WxEmojiView wxParse-inline" style="{{item.styleStr}}" id="{{'location_' + item.location}}" data-location="{{item.location}}" data-texts="{{item.textArray[0]}}" data-nid="{{item.nid}}" bindlongtap='getSentence'>
     <block wx:for="{{item.textArray}}" wx:key="">
       <block class="{{item.text == '\\n' ? 'wxParse-hide':''}}" wx:if="{{item.node == 'text'}}">
-				<text id="" wx:if="{{item.type == 'text'}}" selectable='false'>{{item.text}}</text>
+				<text id="" wx:if="{{item.type == 'text'}}" >{{item.text}}</text>
 			</block>
       <block wx:elif="{{item.node == 'element'}}">
         <image class="wxEmoji" src="{{item.baseSrc}}{{item.text}}" />

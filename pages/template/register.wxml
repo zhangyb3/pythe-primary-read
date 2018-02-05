@@ -2,10 +2,10 @@
            
 	<view class='rgister-box'>
                  <!-- 身份切换 -->
-                 <view class='identity-change-frame'>
+                 <!-- <view class='identity-change-frame'>
                     <view class="identity-change {{select_student==true?'userIdentity':''}}"  bindtap='selectStudent'>学生</view>
                     <view class="identity-change {{select_teacher==true?'userIdentity':''}}" bindtap='selectTeacher'>老师</view>
-                 </view>
+                 </view> -->
                  <!-- 欢迎语 -->
                  <view class='register-welcome'>你终于来啦~（*^-^*）~</view>
 

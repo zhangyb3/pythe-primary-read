@@ -234,6 +234,9 @@ Page({
 						that.setData({
 							visibleArray: that.data.visibleArray,
 						});
+
+						that.data.cancelRawWords[that.data.rawBook[essayIndex].data.essayid.toString()] = [];
+						that.data.cancelRawWordsIndexes[that.data.rawBook[essayIndex].data.essayid.toString()] = [];
 					}
 				},
 				fail: function(res) {},

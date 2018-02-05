@@ -2,6 +2,7 @@
 <import src='../templateDemo/templateDemo.wxml' />
 
 
+
 <view class='read-conPage' style='position:relative;' >
   <view class='about-article' style='position:relative;z-index:3;'>
     <!-- 文章标题 -->
@@ -38,7 +39,7 @@
   </view>
   
   <!-- style='{{tapBgc}}' 点击出现圆圈+背景色-->
-  <view class='tapStyle' animation="{{animationData}}" style='top:{{tapTop}}px;left:{{tapLeft}}px;{{wh}}'></view>
+  <!-- <view class='tapStyle' animation="{{animationData}}" style='top:{{tapTop}}px;left:{{tapLeft}}px;{{wh}}'></view> -->
 
   <!-- 炸词等弹框 -->
   <view class='operate-model' style='{{operateModel}}'>

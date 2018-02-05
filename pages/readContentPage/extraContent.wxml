@@ -18,7 +18,7 @@
   </view>
   
   <!-- style='{{tapBgc}}' 点击出现圆圈+背景色-->
-  <view class='tapStyle' animation="{{animationData}}" style='top:{{tapTop}}px;left:{{tapLeft}}px;{{wh}}'></view>
+  <!-- <view class='tapStyle' animation="{{animationData}}" style='top:{{tapTop}}px;left:{{tapLeft}}px;{{wh}}'></view> -->
 
   <!-- 炸词等弹框 -->
   <view class='operate-model' style='{{operateModel}}'>
@@ -29,26 +29,8 @@
   </view>
   <!-- 相关推荐 -->
   <view class='extra-groom'>
-    <view style='background-color:#f1f1f1;padding:10rpx 0;'>
-      <view class='ex-line'>相关课外阅读
-         <!-- <view class='more-extra' wx:if='{{similarEssayLength<=3}}'></view> -->
-         <view class='more-extra' bindtap='conMoreExtra'>更多推荐</view>
-       </view>
-    </view>
-
-    <view class='a-groomExtra' wx:for='{{similarThree}}' wx:key='unique' bindtap='readArticle' data-groomid='{{item.id}}' data-type='{{item.type}}'>
-      <view class='groom-title'>{{item.title}}</view>
-      <view class='goom-type' wx:if='{{item.type==0}}'>故事<text>{{item.pv}}人阅读过</text></view>
-      <view class='goom-type' wx:elif='{{item.type==1}}'>科学<text>{{item.pv}}人阅读过</text></view>
-      <view class='goom-type' wx:elif='{{item.type==2}}'>古诗文<text>{{item.pv}}人阅读过</text></view>
-      <view class='goom-type' wx:elif='{{item.type==3}}'>美文<text>{{item.pv}}人阅读过</text></view>
-      <view class='goom-type' wx:elif='{{item.type==4}}'>古文<text>{{item.pv}}人阅读过</text></view>
-      <view class='goom-type' wx:elif='{{item.type==5}}'>传记<text>{{item.pv}}人阅读过</text></view>
-      <view class='goom-type' wx:elif='{{item.type==6}}'>小说<text>{{item.pv}}人阅读过</text></view>
-      <view class='goom-type' wx:elif='{{item.type==7}}'>历史<text>{{item.pv}}人阅读过</text></view>
-      <view class='goom-type' wx:elif='{{item.type==8}}'>杂文<text>{{item.pv}}人阅读过</text></view>
-      <view class='goom-type' wx:elif='{{item.type==10}}'>课内<text>{{item.pv}}人阅读过</text></view>
-    </view>
+    
+    
 
     <!-- 我是有底线的模板 -->
     <view style='margin-top:20px;'>

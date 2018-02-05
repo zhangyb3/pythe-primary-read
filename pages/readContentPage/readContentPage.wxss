@@ -1,12 +1,15 @@
 @import "../templateDemo/templateDemo.wxss";
 @import "../../wxParse/wxParse.wxss";
 
+
+
 view {
   overflow: visible;
 }
 
 .read-conPage {
   overflow: hidden;
+	user-select: none;
 }
 
 .about-article {
