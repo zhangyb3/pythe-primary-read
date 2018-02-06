@@ -175,7 +175,7 @@ Page({
 
 		//在选中文本添加特效
 		this.data.tempEssayContent = this.data.essayContent;
-		this.data.essayContent = this.data.essayContent.replace("<p>" + sentence + "</p>", "<p style='text-decoration:underline;'>" + sentence + "</p>");
+		this.data.essayContent = this.data.essayContent.replace(sentence , "<p style='text-decoration:underline;'>" + sentence + "</p>");
 		WxParse.wxParse('handleEssay', 'html', this.data.essayContent, this);
 
 	},
