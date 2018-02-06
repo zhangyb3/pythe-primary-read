@@ -10,7 +10,9 @@
              <image bindtap='foldExcerpt' data-excerpt='{{index}}' data-isfold='{{isfold[index]}}' src='{{foldIcon[index]}}'></image>
           </view>
           <view class='from-article'>摘抄自《{{item.title}}》</view>
-          <view class='excerpt-time'>{{item.time}}</view>
+          <view class='excerpt-time'>{{item.time}}
+                <text data-excerptid='{{item.id}}' bindtap='delExcerpt' style='margin-left:40rpx;font-size:28rpx;'>删除</text>
+          </view>
     </view>
   </view>
   <template is='bottom-text'></template>

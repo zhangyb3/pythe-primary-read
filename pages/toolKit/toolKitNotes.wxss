@@ -19,8 +19,9 @@
 .note-mark-info{overflow: hidden;margin-top:20rpx;padding-left:22rpx;}
 .note-mark-info text,.note-mark-info view{font-size:28rpx;color:#666;}
 .noted-time{float:left;}
-.notes-share,.notes-fold{float:right;}
+.notes-share,.notes-fold,.del-notes{float:right;}
 .notes-share{width:40rpx;height:40rpx;display: block;margin-left:40rpx;
 }
+.del-notes{margin-right:40rpx;}
 
 
