@@ -3,12 +3,13 @@
 const app = getApp()
 var config = require("../../utils/config.js");
 var user = require("../../utils/user.js");
-
+var WxParse = require('../../wxParse/wxParse.js')
+var base = require("../../utils/base.js");
 Page({
   data: {
     deviceHeight:0,
     notesInfo:[],
-    
+    // displays:[],
     notesHeight: [],
     notesHeight2:[],
     foldTxt:[],
@@ -35,6 +36,7 @@ Page({
 			success: function(res) {
 				if(res.data.status == 200)
 				{
+          // console.log(res.data)
 					that.data.notesInfo = res.data.data;
 					for (var i = 0; i < that.data.notesInfo.length; i++) {
 						var time = new Date(that.data.notesInfo[i].time);
@@ -66,6 +68,7 @@ Page({
 			complete: function(res) {},
 		})
 	},
+
   fold:function(){
     var that = this;
     var notesHeight = [];
@@ -87,6 +90,7 @@ Page({
     });
     console.log(notesHeight)
   },
+
 	onReachBottom: function () {
 		var that = this;
 		var pageNum = that.data.pageNum + 1
@@ -167,8 +171,8 @@ Page({
   },
 
   foldMore:function(e){
-    console.log(e.target.dataset.fold);
-    console.log(e.target.dataset.param);
+    // console.log(e.target.dataset.fold);
+    // console.log(e.target.dataset.param);
     var that=this;
     var param = that.data.param;
     var fold = e.target.dataset.fold;
@@ -199,6 +203,45 @@ Page({
       })
     }
     
+  },
+
+  delNotes:function(e){
+    var that=this;
+    // console.log(e.currentTarget.dataset.noteid);
+    var notes = [];
+    notes.push(e.currentTarget.dataset.noteid);
+    wx.request({
+      url: app.globalUrl+'personal/note/all/delete', 
+      data: {
+        "studentId": wx.getStorageSync(user.StudentID),
+        "notes": JSON.stringify(notes),
+        "status": 0
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success: function (res) {
+       console.log(res.data);
+       if (res.data.status==200){
+         that.onShow();
+         wx.showToast({
+           title: '删除成功',
+           icon: 'none',
+           image: '../../images/success.png',
+           duration: 2000
+         })
+       }else{
+         wx.showToast({
+           title: '哎呀，出错了',
+           icon: 'none',
+           image: '../../images/warn.png',
+           duration: 2000
+         })
+       }
+              
+      }
+    })
   }
 
 })

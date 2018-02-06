@@ -4,7 +4,8 @@ const app = getApp()
 
 var config = require("../../utils/config.js");
 var user = require("../../utils/user.js");
-
+var WxParse = require('../../wxParse/wxParse.js')
+var base = require("../../utils/base.js");
 Page({
   data: {
     deviceHeight: 0,
@@ -17,11 +18,12 @@ Page({
 		isLoadOver: true,
 		
   },
-
-  onLoad: function () {
+  onLoad:function(){
     this.getDevice();
-    var that = this;
+  },
 
+  onShow: function () {
+    var that = this;
     wx.request({
       url: app.globalUrl +'personal/summary/select',
       data: {
@@ -177,5 +179,44 @@ Page({
     }
 
   },
+
+  delExcerpt:function(e){
+    console.log(e)
+    console.log('id:'+e.currentTarget.dataset.excerptid);
+    var that=this;
+    var summaries=[];
+    summaries.push(e.currentTarget.dataset.excerptid) ;
+    wx.request({
+      url: app.globalUrl +'personal/sumary/delete', 
+      data: {
+        "studentId": wx.getStorageSync(user.StudentID),
+        "summaries": JSON.stringify(summaries),
+        "status": 0
+      },
+      method:'POST',
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success: function (res) {
+        console.log(res.data)
+        if (res.data.status == 200) {
+          that.onShow();
+          wx.showToast({
+            title: '删除成功',
+            icon: 'none',
+            image: '../../images/success.png',
+            duration: 2000
+          })
+        } else {
+          wx.showToast({
+            title: '哎呀，出错了',
+            icon: 'none',
+            image: '../../images/warn.png',
+            duration: 2000
+          })
+        }
+      }
+    })
+  }
 
 })

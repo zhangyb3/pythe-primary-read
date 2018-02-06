@@ -1,7 +1,7 @@
 .fw-explain {
   padding: 40rpx;
   box-sizing: border-box;
-  background-color: #fdfdf3;
+  background-color: #fff;
   overflow: hidden;
 }
 

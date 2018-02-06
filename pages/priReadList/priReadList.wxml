@@ -30,7 +30,7 @@
           </view>
         </view>
 
-        <view class='user-extraRead'>目前已阅读x篇课外文章</view>
+        <!-- <view class='user-extraRead'>目前已阅读x篇课外文章</view> -->
       </view>
     </view>
 
