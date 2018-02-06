@@ -162,12 +162,16 @@
   text-overflow: ellipsis;
   overflow: hidden;
   border-left: 6rpx solid #f93;
+  padding-right:40rpx;
 }
 
 .extra-article .recommadation {
   line-height: 1.5;
   font-size: 28rpx;
   margin-top:16rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .extra-article .recommadation:nth-child(1){
