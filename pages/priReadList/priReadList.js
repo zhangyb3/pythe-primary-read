@@ -82,8 +82,8 @@ Page({
   },
 
   onLoad: function () {
-
-		wx.setStorageSync(user.StudentID,-1);
+		wx.setStorageSync('StudentID', -1);
+		wx.setStorageSync("alreadyRegister", 'no');
 		wx.setStorageSync(user.GradeID, -1);
     var that=this;
     that.getDevice(); 
@@ -123,6 +123,10 @@ Page({
 		}
 		
 		
+	},
+
+	onUnload:function(){
+		// wx.clearStorageSync();
 	},
 
 	initLoad:function(){
