@@ -155,6 +155,12 @@ function html2json(html, bindName) {
 						if (node.tag === 'center'){
 							node.styleStr = "align-items:center; text-align:center;";
 						}
+						if (node.tag === 'p' && node.hasOwnProperty('attr') ) {
+							if (node.attr.hasOwnProperty('align') && node.attr.align == 'center'){
+								node.styleStr = "align-items:center; text-align:center;";
+							}
+							
+						}
 						
             //对img添加额外数据
             if (node.tag === 'img') {
@@ -166,6 +172,7 @@ function html2json(html, bindName) {
                 imgUrl = wxDiscode.urlToHttpUrl(imgUrl, __placeImgeUrlHttps);
                 node.attr.src = imgUrl;
                 node.from = bindName;
+								node.styleStr = "align-items:center; ";
                 results.images.push(node);
                 results.imageUrls.push(imgUrl);
             }
