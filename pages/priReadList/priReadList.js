@@ -145,7 +145,7 @@ Page({
 			method: 'GET',
 			success: function (res) {
 				console.log(res.data.data)
-				if(res.data.status == 400){
+				if(res.data.status != 200){
 					that.setData({
 						contentNotNull: false,
 					});

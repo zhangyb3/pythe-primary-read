@@ -1,5 +1,5 @@
 
-var AppID = "wx341f13cb3e75d864";
+var AppID = "wxbdc8195ca3c033a4";
 
 var MerchantID = "1438382702";
 

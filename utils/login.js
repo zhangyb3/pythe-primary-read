@@ -16,7 +16,7 @@ const DECODE_USER_DATA = `${config.PytheRestfulServerURL}/user/decode`;//解密�
  * 登录
  */
 var login = (success, fail) => {
-    // checkLogin(() => {
+    checkLogin(() => {
         //DO NOTHING
         // 检查是否有注册过
         register.checkRegister(
@@ -53,16 +53,43 @@ var login = (success, fail) => {
           },
         );
         console.log("已登录");
-    // }, () => {
-    //     remoteLogin(
-		// 			()=>{
-		// 				typeof success == "function" && success();
-		// 			}, 
-		// 			()=>{
-		// 				typeof fail == "function" && fail();
-		// 			}
-		// 		);
-    // })
+    }, () => {
+        remoteLogin(()=>{
+					// 检查是否有注册过
+					register.checkRegister(
+						(userRegisterResult) => {
+							console.log('check register : ' + JSON.stringify(userRegisterResult));
+							//如果没注册过，则注册
+							var registerInfo = userRegisterResult.data.data;
+
+							if (userRegisterResult.data.status == 400) {
+								wx.setStorageSync('alreadyRegister', 'no');
+
+								//注册
+								typeof fail == "function" && fail();
+							}
+							else if (userRegisterResult.data.status == 200) {
+								wx.setStorageSync('alreadyRegister', 'yes');
+
+								wx.setStorageSync(user.GradeID, registerInfo.gradeid);
+
+								wx.setStorageSync(user.StudentID, registerInfo.studentid);
+
+								wx.setStorageSync(user.UserNickName, registerInfo.username);
+
+								wx.setStorageSync(user.Status, registerInfo.status);
+
+								typeof success == "function" && success();
+							}
+						},
+						(userRegisterResult) => {
+							console.log(userRegisterResult);
+							typeof fail == "function" && fail();
+						},
+					);
+					console.log("已登录");
+				});
+    })
 }
 
 /**
@@ -122,7 +149,7 @@ var remoteLogin = (success, fail) => {
                     // AppID: config.AppID,
                     // AppSecret: config.AppSecret,
                 },
-                complete: function (res) {
+                success: function (res) {
                     if (res.statusCode != 200) {//失败
                         console.error("登录失败", res);
                         var data = res.data || { msg: '无法请求服务器' };
