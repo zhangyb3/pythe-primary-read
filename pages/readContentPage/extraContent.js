@@ -8,6 +8,8 @@ var base = require("../../utils/base.js");
 const app = getApp()
 Page({
 	data: {
+    windowHeight: 0,
+    isLayer: true,
 		isPlay: 0,  //状态，是否在播放中，1播放中，0暂停
 		audioChangeInfo: {
 			audioController: '../../images/pause.png',  //播放、暂停的图标
@@ -41,6 +43,13 @@ Page({
   onLoad: function (options) {
     var that = this;
     that.getDevice();
+    wx.getSystemInfo({
+      success: function (res) {
+        that.setData({
+          windowHeight: res.windowHeight
+        })
+      }
+    })
     console.log(options)
     that.setData({
       essayId: options.essayId,
@@ -184,7 +193,8 @@ Page({
 	bombHandle: function (e, options) {
 		var that = this;
 		that.setData({
-			operateModel: 'display:none;'
+			operateModel: 'display:none;',
+      isLayer:true
 		})
 		wx.request({
 			url: app.globalUrl + 'xiandaiwen/double/bomb',
@@ -222,7 +232,8 @@ Page({
 			fail: function (res) { },
 			complete: function (res) {
 				that.setData({
-					operateModel: 'display:none;'
+					operateModel: 'display:none;',
+          isLayer:true
 				})
 			},
 		})
@@ -250,7 +261,8 @@ Page({
 			fail: function (res) { },
 			complete: function (res) {
 				that.setData({
-					operateModel: 'display:none;'
+					operateModel: 'display:none;',
+          isLayer:true
 				})
 			},
 		})
@@ -331,6 +343,7 @@ Page({
       tapLeft: tapX - 100,
       wh: wh,
       operateModel: operateModel,
+      isLayer:false
     })
     var animation = wx.createAnimation({
       duration: 600,
@@ -350,7 +363,8 @@ Page({
 	closeModel: function () {
 		var that = this;
 		that.setData({
-			operateModel: 'display:none;'
+			operateModel: 'display:none;',
+      isLayer:true
 
 		});
 		that.data.essayContent = that.data.tempEssayContent;

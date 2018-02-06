@@ -21,12 +21,7 @@
   <!-- <view class='tapStyle' animation="{{animationData}}" style='top:{{tapTop}}px;left:{{tapLeft}}px;{{wh}}'></view> -->
 
   <!-- 炸词等弹框 -->
-  <view class='operate-model' style='{{operateModel}}'>
-        <view class='operate' bindtap='bombHandle'>炸词</view>       
-        <view class='operate' bindtap='recordNotes'>想法</view>       
-        <view class='operate' bindtap='extract'>摘抄</view>       
-        <view class='operate' bindtap='closeModel'>取消</view>       
-  </view>
+  
   <!-- 相关推荐 -->
   <view class='extra-groom'>
     
@@ -44,3 +39,11 @@
   </view>
 
 </view>
+
+<view class='operate-model' style='{{operateModel}}'>
+        <view class='operate' bindtap='bombHandle'>炸词</view>       
+        <view class='operate' bindtap='recordNotes'>想法</view>       
+        <view class='operate' bindtap='extract'>摘抄</view>       
+        <view class='operate' bindtap='closeModel'>取消</view>       
+</view>
+<view class='layer' style='height:{{windowHeight}}px;' hidden='{{isLayer}}' bindtap='closeModel'></view>

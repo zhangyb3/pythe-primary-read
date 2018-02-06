@@ -24,4 +24,12 @@
 }
 .del-notes{margin-right:40rpx;}
 
+.shareBtn{
+  width:40rpx;height:40rpx;
+  float:right;border-color:#fff;margin-left:40rpx;
+}
 
+
+button[plain]{
+  border:1px solid #fff;width:40rpx;height:40rpx;
+}
