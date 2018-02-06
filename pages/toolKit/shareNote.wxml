@@ -8,6 +8,6 @@
                  <text class='colorBorder top-border'></text>
                  <text class='colorBorder  bottom-border'></text>
             </view> 
-            <view style='margin-top:15px;text-align:right;'>-《{{title}}》-</view>
+            <view wx:if="{{fromWhere != 'outside'}}" style='margin-top:15px;text-align:right;' data-essay='{{essayId}}'>-《{{title}}》-</view>
       </view>
 </view>

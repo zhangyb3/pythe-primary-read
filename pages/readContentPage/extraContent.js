@@ -269,6 +269,20 @@ Page({
 	},
 
 
+	sentenceHandle: function (e) {
+		console.log(e);
+		var dataset = e.currentTarget.dataset;
+		if (dataset.hasOwnProperty('nid')) {
+			wx.navigateTo({
+				url: '../toolKit/shareNote?nid=' + dataset.nid + "&from=outside",
+				success: function (res) { },
+				fail: function (res) { },
+				complete: function (res) { },
+			})
+		}
+	},
+
+
   // 点击推荐更多
   conMoreExtra: function (options) {
     var that = this;

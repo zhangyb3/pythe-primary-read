@@ -34,7 +34,7 @@
 </template> -->
 
 <template name="WxEmojiView">
-  <view class="WxEmojiView wxParse-inline" style="{{item.styleStr}}" id="{{'location_' + item.location}}" data-location="{{item.location}}" data-texts="{{item.textArray[0]}}" data-nid="{{item.nid}}" bindlongtap='getSentence'>
+  <view class="WxEmojiView wxParse-inline" style="{{item.styleStr}}" id="{{'location_' + item.location}}" data-location="{{item.location}}" data-texts="{{item.textArray[0]}}" data-nid="{{item.nid}}" bindlongtap='getSentence' >
     <block wx:for="{{item.textArray}}" wx:key="">
       <block class="{{item.text == '\\n' ? 'wxParse-hide':''}}" wx:if="{{item.node == 'text'}}">
 				<text id="" wx:if="{{item.type == 'text'}}" >{{item.text}}</text>
@@ -117,7 +117,7 @@
     </block>
     <!--其他块级标签-->
     <block wx:elif="{{item.tagType == 'block'}}">
-      <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}" data-nid="{{item.nid}}">
+      <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}" data-nid="{{item.nid}}" bindtap='sentenceHandle'>
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
           <template is="wxParse1" data="{{item}}" />
         </block>

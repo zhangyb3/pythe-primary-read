@@ -248,9 +248,10 @@ Page({
     var title = e.currentTarget.dataset.title;
     var content = e.currentTarget.dataset.content;
     var note = e.currentTarget.dataset.note;
+		var nid = e.currentTarget.dataset.nid;
     console.log(e)
     wx.navigateTo({
-      url: 'shareNote?title=' + title + '&content=' + content+'&note='+note,
+      url: 'shareNote?title=' + title + '&content=' + content+'&note='+note + '&nid=' + nid,
     })
   },
 

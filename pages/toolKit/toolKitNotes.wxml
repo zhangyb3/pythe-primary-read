@@ -11,7 +11,7 @@
 
                   <view class='note-mark-info'>
                         <text class='noted-time'>{{item.time}}</text>
-                        <image class='notes-share' src='../../images/share.png' bindtap='toShare' data-title='{{item.title}}' data-content='{{item.content}}' data-note='{{item.note}}'></image> 
+                        <image class='notes-share' src='../../images/share.png' bindtap='toShare' data-nid="{{item.id}}" data-title='{{item.title}}' data-content='{{item.content}}' data-note='{{item.note}}'></image> 
                         <!-- <button plain='true' class='shareBtn' open-type="share">
                           <image class='notes-share' src='../../images/share.png'></image>
                         </button> -->
