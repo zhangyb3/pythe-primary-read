@@ -151,6 +151,10 @@ function html2json(html, bindName) {
                 }, {});
             }
 
+						//古诗词居中
+						if (node.tag === 'center'){
+							node.styleStr = "align-items:center; text-align:center;";
+						}
 						
             //对img添加额外数据
             if (node.tag === 'img') {
