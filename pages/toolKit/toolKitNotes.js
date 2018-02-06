@@ -36,7 +36,7 @@ Page({
 			success: function(res) {
 				if(res.data.status == 200)
 				{
-          // console.log(res.data)
+          console.log(res.data)
 					that.data.notesInfo = res.data.data;
 					for (var i = 0; i < that.data.notesInfo.length; i++) {
 						var time = new Date(that.data.notesInfo[i].time);
@@ -242,6 +242,18 @@ Page({
               
       }
     })
-  }
+  },
+
+  toShare:function(e){
+    var title = e.currentTarget.dataset.title;
+    var content = e.currentTarget.dataset.content;
+    var note = e.currentTarget.dataset.note;
+    console.log(e)
+    wx.navigateTo({
+      url: 'shareNote?title=' + title + '&content=' + content+'&note='+note,
+    })
+  },
+
+  
 
 })

@@ -1,0 +1,13 @@
+<view class='share-notes' style='min-height:{{windowHeight}}px;'>
+      <view style='overflow:hidden;'>
+              <button class='shareBtn' open-type="share">分享笔记</button>
+      </view>
+      <view class='white-bg'>
+            <view class='note-content'>笔记：{{note}}</view> 
+            <view class='text-content'>{{content}}
+                 <text class='colorBorder top-border'></text>
+                 <text class='colorBorder  bottom-border'></text>
+            </view> 
+            <view style='margin-top:15px;text-align:right;'>-《{{title}}》-</view>
+      </view>
+</view>

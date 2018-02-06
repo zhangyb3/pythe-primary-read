@@ -1,0 +1,46 @@
+.share-notes {
+  background-color: #f1f1f1;
+  padding: 40rpx;
+  box-sizing: border-box;
+}
+
+.white-bg {
+  padding: 20rpx 24rpx;
+  background-color: #fff;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+.note-content, .text-content {
+  line-height: 1.75;
+}
+
+.text-content {
+  margin-top: 20px;
+  padding: 0 15px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.colorBorder {
+position: absolute;
+  display: block;
+  height: 10px;
+  width: 10px;
+  border: 2px solid transparent;
+}
+
+.top-border {
+  top:0;left:0;  
+  border-color: #f93 transparent transparent #f93;
+}
+
+.bottom-border {
+  bottom:0;right:0;  
+  border-color: transparent #f93 #f93 transparent ;
+}
+
+.shareBtn{background-color:#f93;color:#fff;height: 34px;width:90px;letter-spacing: 1px;float:right;margin-bottom:20px;}
+.info-pythe{overflow: hidden;margin-top:30px;}
+.info-pythe image{width:60px;height:60px;display: block;float:left;}
+.right-info{float:left;margin-left:20px;}

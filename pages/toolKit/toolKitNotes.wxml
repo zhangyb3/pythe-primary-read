@@ -11,7 +11,11 @@
 
                   <view class='note-mark-info'>
                         <text class='noted-time'>{{item.time}}</text>
-                        <image class='notes-share' src='../../images/share.png'></image>
+                        <image class='notes-share' src='../../images/share.png' bindtap='toShare' data-title='{{item.title}}' data-content='{{item.content}}' data-note='{{item.note}}'></image> 
+                        <!-- <button plain='true' class='shareBtn' open-type="share">
+                          <image class='notes-share' src='../../images/share.png'></image>
+                        </button> -->
+
                         <view class='notes-fold' bindtap='foldMore' data-fold='{{index}}' data-param='{{param[index]}}'>{{foldTxt[index]}}</view>
                         <view class='del-notes' bindtap='delNotes' data-noteid='{{item.id}}'>删除</view>
                   </view>

@@ -41,13 +41,6 @@
   <!-- style='{{tapBgc}}' 点击出现圆圈+背景色-->
   <!-- <view class='tapStyle' animation="{{animationData}}" style='top:{{tapTop}}px;left:{{tapLeft}}px;{{wh}}'></view> -->
 
-  <!-- 炸词等弹框 -->
-  <view class='operate-model' style='{{operateModel}}'>
-        <view class='operate' bindtap='bombHandle'>炸词</view>       
-        <view class='operate' bindtap='recordNotes'>想法</view>       
-        <view class='operate' bindtap='extract'>摘抄</view>       
-        <view class='operate' bindtap='closeModel'>取消</view>       
-  </view>
   <!-- 相关推荐 -->
   <view class='extra-groom'>
     <view style='background-color:#f1f1f1;padding:10rpx 0;'>
@@ -76,9 +69,18 @@
        <template is='bottom-text'></template>
     </view>
   </view>
-
   <!-- 音频控制器 当用户上拉阅读课文是，上拉高度达到一定值时显示，小某一定值时隐藏 -->
   <view class='fixedControler' hidden='{{isShowFixCtrl}}' bindtap='audioCtrer' wx:if="{{-1==audioUrl}}">
     <image src='{{audioChangeInfo.audioController}}'></image>
   </view>
 </view>
+
+<!-- 炸词等弹框 -->
+  <view class='operate-model' style='{{operateModel}}'>
+        <view class='operate' bindtap='bombHandle'>炸词</view>       
+        <view class='operate' bindtap='recordNotes'>想法</view>       
+        <view class='operate' bindtap='extract'>摘抄</view>       
+        <view class='operate' bindtap='closeModel'>取消</view>       
+  </view>
+
+  <view class='layer' style='height:{{windowHeight}}px;' hidden='{{isLayer}}' bindtap='closeModel'></view>
