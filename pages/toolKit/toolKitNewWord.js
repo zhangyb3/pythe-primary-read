@@ -19,7 +19,10 @@ Page({
 
   onLoad: function () {
     this.getDevice();
-
+    wx.showLoading({
+      title: '加载中',
+      mask: false
+    });
 		var that = this;
 		wx.request({
 			url: app.globalUrl + 'personal/rawbook',
@@ -52,6 +55,10 @@ Page({
 					classArray: that.data.classArray,
 					visibleArray: that.data.visibleArray,
 				});
+
+        setTimeout(function () {
+          wx.hideLoading()
+        }, 2000);
 				
 			}
 		})

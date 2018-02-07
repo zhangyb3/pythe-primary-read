@@ -63,7 +63,11 @@ Page({
     that.setData({
       essayId: options.essayId
     })
-	
+	  
+    wx.showLoading({
+      title: '加载中',
+      mask:false
+    })
 
   },
 
@@ -79,7 +83,7 @@ Page({
      },
      method:'GET',
      success: function (res) {
-
+       
        // 获取课文，并解析
        var essayContain = res.data.data.essay.content;
        var audioUrl = (res.data.data.essay.audio).search(/null/);
@@ -94,6 +98,10 @@ Page({
 			 }
        console.log('audioUrl'+audioUrl);
 			 that.data.essayContent = essayContain;
+
+       setTimeout(function () {
+         wx.hideLoading()
+       }, 2000)
 
 			 //加载笔记信息后展示内容
 			 wx.request({

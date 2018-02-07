@@ -7,7 +7,7 @@
             <view class='tk-note-subtitle' style='{{notesHeight[index]}}'>{{item.content}}</view>
 
             <view class='notes-info'>
-                  <view class='notes' style='max-height:{{notesHeight2[index]}}rpx;'>{{item.note}}</view>
+                  <view class='notes' style='max-height:{{notesHeight2[index]}}rpx;' data-type='{{item.type}}' data-studentid='{{item.studentid}}' data-essayid='{{item.essayid}}' bindtap='toEssay'>{{item.note}}</view>
 
                   <view class='note-mark-info'>
                         <text class='noted-time'>{{item.time}}</text>

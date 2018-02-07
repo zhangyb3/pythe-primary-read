@@ -54,6 +54,11 @@ Page({
     that.setData({
       essayId: options.essayId,
       groomType: options.type
+    });
+
+    wx.showLoading({
+      title: '加载中',
+      mask: false
     })
 
   },
@@ -86,6 +91,10 @@ Page({
 				// }
 				// console.log('audioUrl' + audioUrl);
 				that.data.essayContent = essayContain;
+
+        setTimeout(function () {
+          wx.hideLoading()
+        }, 2000);
 
 				//加载笔记信息后展示内容
 				wx.request({

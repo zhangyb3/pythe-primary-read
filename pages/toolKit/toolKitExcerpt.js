@@ -20,6 +20,11 @@ Page({
   },
   onLoad:function(){
     this.getDevice();
+
+    wx.showLoading({
+      title: '加载中',
+      mask: false
+    });
   },
 
   onShow: function () {
@@ -59,6 +64,11 @@ Page({
         that.setData({
           excerptInfo: excerptInfo
         });
+
+        setTimeout(function () {
+          wx.hideLoading()
+        }, 2000);
+
         var foldIcon = [];
         var foldHeight = [];
         var isfold = [];

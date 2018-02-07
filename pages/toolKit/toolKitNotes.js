@@ -5,6 +5,8 @@ var config = require("../../utils/config.js");
 var user = require("../../utils/user.js");
 var WxParse = require('../../wxParse/wxParse.js')
 var base = require("../../utils/base.js");
+var util = require("../../utils/util.js");
+
 Page({
   data: {
     deviceHeight:0,
@@ -20,7 +22,10 @@ Page({
 
   onLoad: function () {
     this.getDevice();
-    
+    wx.showLoading({
+      title: '加载中',
+      mask: false
+    });
   },
 
 	onShow:function(){
@@ -62,6 +67,10 @@ Page({
 					});
 
           that.fold();
+
+          setTimeout(function () {
+            wx.hideLoading()
+          }, 2000);
 				}
 			},
 			fail: function(res) {},
@@ -249,12 +258,34 @@ Page({
     var content = e.currentTarget.dataset.content;
     var note = e.currentTarget.dataset.note;
 		var nid = e.currentTarget.dataset.nid;
-    console.log(e)
-    wx.navigateTo({
-      url: 'shareNote?title=' + title + '&content=' + content+'&note='+note + '&nid=' + nid,
-    })
+   
+    // wx.navigateTo({
+    //   url: 'shareNote?title=' + title + '&content=' + content+'&note='+note + '&nid=' + nid,
+    // });
+
+		wx.navigateTo({
+			url: 'parseHTML?link=' + encodeURIComponent(config.PytheServerURL + "/note/shareNote.html?from=groupmessage&noteId=" + nid),
+			success: function(res) {},
+			fail: function(res) {},
+			complete: function(res) {},
+		});
   },
 
+toEssay:function(e,options){
+  console.log(e);
+  var essayType=e.currentTarget.dataset.type;
+  var essayid =e.currentTarget.dataset.essayid;
+  var studentid =e.currentTarget.dataset.studentid;
+  if (essayType==10){
+    wx.navigateTo({
+      url: '../readContentPage/readContentPage?essayId=' + essayid
+    })
+  } else {
+    wx.navigateTo({
+      url: '../readContentPage/extraContent?essayId=' + essayid + '&type=' + essayType,
+    })
+  }
+}
   
 
 })

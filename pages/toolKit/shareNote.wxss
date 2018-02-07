@@ -40,7 +40,7 @@ position: absolute;
   border-color: transparent #f93 #f93 transparent ;
 }
 
-.shareBtn{background-color:#f93;color:#fff;height: 34px;width:220rpx;letter-spacing: 1px;float:right;margin-bottom:20px;}
+.shareBtn{background-color:#f93;color:#fff;height: 34px;width:90px;letter-spacing: 1px;float:right;margin-bottom:20px;}
 .info-pythe{overflow: hidden;margin-top:30px;}
 .info-pythe image{width:60px;height:60px;display: block;float:left;}
 .right-info{float:left;margin-left:20px;}

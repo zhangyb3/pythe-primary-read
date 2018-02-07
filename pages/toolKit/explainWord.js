@@ -14,6 +14,10 @@ Page({
     console.log(options)
     console.log(options.word);
     var that=this;
+    wx.showLoading({
+      title: '加载中',
+      mask: false
+    });
     wx.request({
       url: app.globalUrl + 'xiandaiwen', //仅为示例，并非真实的接口地址
       data: {
@@ -35,7 +39,11 @@ Page({
           that.setData({
             hasExplain: 0
           })
-        }
+        };
+
+        setTimeout(function () {
+          wx.hideLoading()
+        }, 2000);
 
       },
       fail: function (err) {

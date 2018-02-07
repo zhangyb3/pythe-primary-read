@@ -15,6 +15,8 @@
                   <view class='word-page' bindtap='toolKitExcerpt'><view class='mine-page'>摘抄</view></view>
             </view>
 
+						
+
             <!-- <view class='tool-list'>
                   <image src='../../images/note-icon.png'></image>
                   <view class='word-page' ><view class='mine-page'>笔记 <text>4篇</text></view></view>
