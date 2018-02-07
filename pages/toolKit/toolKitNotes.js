@@ -275,7 +275,7 @@ Page({
     // });
 
 		wx.navigateTo({
-			url: 'parseHTML?link=' + encodeURIComponent(config.PytheServerURL + "/note/shareNote.html?from=groupmessage&noteId=" + nid),
+			url: 'parseHTML?link=' + encodeURIComponent(config.PytheServerURL + "/wxnote/shareNote.html?from=groupmessage&noteId=" + nid),
 			success: function(res) {},
 			fail: function(res) {},
 			complete: function(res) {},

@@ -47,7 +47,7 @@ view {
 }
 
 .article-content {
-  font-size: 16px;
+  font-size: 50px;
   line-height: 1.7;
   text-align: justify;
   margin-top: 20rpx;
@@ -55,10 +55,10 @@ view {
 }
 
 .article-content image {
-  width: 100%;
+  width: 70%;
   height: auto;
   display: block;
-  margin-bottom: 20px;
+  margin:0 auto 20px;
 }
 
 .article-audio-box {

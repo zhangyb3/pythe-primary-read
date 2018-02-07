@@ -10,7 +10,7 @@
 }  */
 
 view,text,button{
-  font-size:32rpx;
+  font-size:36rpx;
   font-family:'Microsoft Yahei';
   color:#333;
 }

@@ -283,7 +283,7 @@ Page({
 		var dataset = e.currentTarget.dataset;
 		if (dataset.hasOwnProperty('nid')) {
 			wx.navigateTo({
-				url: '../toolKit/parseHTML?link=' + encodeURIComponent(config.PytheServerURL + "/note/shareNote.html?from=groupmessage&noteId=" + dataset.nid),
+				url: '../toolKit/parseHTML?link=' + encodeURIComponent(config.PytheServerURL + "/wxnote/shareNote.html?from=groupmessage&noteId=" + dataset.nid),
 				success: function (res) { },
 				fail: function (res) { },
 				complete: function (res) { },
