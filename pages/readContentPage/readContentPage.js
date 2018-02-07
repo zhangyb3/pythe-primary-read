@@ -490,11 +490,11 @@ Page({
 		var dataset = e.currentTarget.dataset;
 		if (dataset.hasOwnProperty('nid')){
 			wx.navigateTo({
-				url: '../toolKit/shareNote?nid=' + dataset.nid + "&from=outside",
-				success: function(res) {},
-				fail: function(res) {},
-				complete: function(res) {},
-			})
+				url: '../toolKit/parseHTML?link=' + encodeURIComponent(config.PytheServerURL + "/note/shareNote.html?from=groupmessage&noteId=" + dataset.nid),
+				success: function (res) { },
+				fail: function (res) { },
+				complete: function (res) { },
+			});
 		} 
 	},
 

@@ -144,27 +144,27 @@ Page({
 					// audioUrl: audioUrl
 				});
 
-				wx.request({
-					url: app.globalUrl + 'kewen/recommendation?essayId=' + that.data.essayId,
-					data: {
+				// wx.request({
+				// 	url: app.globalUrl + 'kewen/recommendation?essayId=' + that.data.essayId,
+				// 	data: {
 
-					},
-					header: {
-						'content-type': 'application/json' // 默认值
-					},
-					success: function (res) {
-						console.log(res.data.data)
+				// 	},
+				// 	header: {
+				// 		'content-type': 'application/json' // 默认值
+				// 	},
+				// 	success: function (res) {
+				// 		console.log(res.data.data)
 
-						var similarEssay = res.data.data;
-						var similarThree = [];
-						for (var i = 0; i < 3; i++) {
-							similarThree[i] = similarEssay[i];
-						}
-						that.setData({
-							similarThree: similarThree,
-						})
-					}
-				})
+				// 		var similarEssay = res.data.data;
+				// 		var similarThree = [];
+				// 		for (var i = 0; i < 3; i++) {
+				// 			similarThree[i] = similarEssay[i];
+				// 		}
+				// 		that.setData({
+				// 			similarThree: similarThree,
+				// 		})
+				// 	}
+				// })
 			}
     })
   },
@@ -283,11 +283,11 @@ Page({
 		var dataset = e.currentTarget.dataset;
 		if (dataset.hasOwnProperty('nid')) {
 			wx.navigateTo({
-				url: '../toolKit/shareNote?nid=' + dataset.nid + "&from=outside",
+				url: '../toolKit/parseHTML?link=' + encodeURIComponent(config.PytheServerURL + "/note/shareNote.html?from=groupmessage&noteId=" + dataset.nid),
 				success: function (res) { },
 				fail: function (res) { },
 				complete: function (res) { },
-			})
+			});
 		}
 	},
 
