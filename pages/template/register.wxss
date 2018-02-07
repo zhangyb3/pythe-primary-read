@@ -166,3 +166,10 @@
   border-radius: 30rpx;
   margin:20rpx auto 0;text-align: center;color:#f93;
 }
+
+button[plain]{
+	border:none 0;
+	border-color:#fff;
+	color:#f93;
+}
+
