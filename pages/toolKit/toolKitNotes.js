@@ -216,41 +216,52 @@ Page({
 
   delNotes:function(e){
     var that=this;
-    // console.log(e.currentTarget.dataset.noteid);
-    var notes = [];
-    notes.push(e.currentTarget.dataset.noteid);
-    wx.request({
-      url: app.globalUrl+'personal/note/all/delete', 
-      data: {
-        "studentId": wx.getStorageSync(user.StudentID),
-        "notes": JSON.stringify(notes),
-        "status": 0
-      },
-      method: 'POST',
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
+    wx.showModal({
+      title: '提示',
+      content: '确定删除该笔记吗？',
       success: function (res) {
-       console.log(res.data);
-       if (res.data.status==200){
-         that.onShow();
-         wx.showToast({
-           title: '删除成功',
-           icon: 'none',
-           image: '../../images/success.png',
-           duration: 2000
-         })
-       }else{
-         wx.showToast({
-           title: '哎呀，出错了',
-           icon: 'none',
-           image: '../../images/warn.png',
-           duration: 2000
-         })
-       }
-              
+        if (res.confirm) {
+          console.log('用户点击确定');
+          var notes = [];
+          notes.push(e.currentTarget.dataset.noteid);
+          wx.request({
+            url: app.globalUrl + 'personal/note/all/delete',
+            data: {
+              "studentId": wx.getStorageSync(user.StudentID),
+              "notes": JSON.stringify(notes),
+              "status": 0
+            },
+            method: 'POST',
+            header: {
+              'content-type': 'application/json' // 默认值
+            },
+            success: function (res) {
+              console.log(res.data);
+              if (res.data.status == 200) {
+                that.onShow();
+                wx.showToast({
+                  title: '删除成功',
+                  icon: 'none',
+                  image: '../../images/success.png',
+                  duration: 2000
+                })
+              } else {
+                wx.showToast({
+                  title: '哎呀，出错了',
+                  icon: 'none',
+                  image: '../../images/warn.png',
+                  duration: 2000
+                })
+              }
+
+            }
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
       }
     })
+    
   },
 
   toShare:function(e){

@@ -192,41 +192,53 @@ Page({
 
   delExcerpt:function(e){
     console.log(e)
-    console.log('id:'+e.currentTarget.dataset.excerptid);
-    var that=this;
-    var summaries=[];
-    summaries.push(e.currentTarget.dataset.excerptid) ;
-    wx.request({
-      url: app.globalUrl +'personal/sumary/delete', 
-      data: {
-        "studentId": wx.getStorageSync(user.StudentID),
-        "summaries": JSON.stringify(summaries),
-        "status": 0
-      },
-      method:'POST',
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
+    console.log('id:' + e.currentTarget.dataset.excerptid);
+    var that = this;
+    wx.showModal({
+      title: '提示',
+      content: '确定删除该条摘抄？',
       success: function (res) {
-        console.log(res.data)
-        if (res.data.status == 200) {
-          that.onShow();
-          wx.showToast({
-            title: '删除成功',
-            icon: 'none',
-            image: '../../images/success.png',
-            duration: 2000
+        if (res.confirm) {
+          var summaries = [];
+          summaries.push(e.currentTarget.dataset.excerptid);
+          wx.request({
+            url: app.globalUrl + 'personal/sumary/delete',
+            data: {
+              "studentId": wx.getStorageSync(user.StudentID),
+              "summaries": JSON.stringify(summaries),
+              "status": 0
+            },
+            method: 'POST',
+            header: {
+              'content-type': 'application/json' // 默认值
+            },
+            success: function (res) {
+              console.log(res.data)
+              if (res.data.status == 200) {
+                that.onShow();
+                wx.showToast({
+                  title: '删除成功',
+                  icon: 'none',
+                  image: '../../images/success.png',
+                  duration: 2000
+                })
+              } else {
+                wx.showToast({
+                  title: '哎呀，出错了',
+                  icon: 'none',
+                  image: '../../images/warn.png',
+                  duration: 2000
+                })
+              }
+            }
           })
-        } else {
-          wx.showToast({
-            title: '哎呀，出错了',
-            icon: 'none',
-            image: '../../images/warn.png',
-            duration: 2000
-          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
         }
       }
     })
+    
+   
   }
 
 })
