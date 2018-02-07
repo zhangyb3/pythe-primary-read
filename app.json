@@ -7,6 +7,7 @@
     "pages/toolKit/toolKitExcerpt",
     "pages/toolKit/explainWord",
     "pages/toolKit/shareNote",
+		"pages/toolKit/parseHTML",
     "pages/priReadNewWord/priReadNewWord",
     "pages/withOut/withOut",
     "pages/readContentPage/readContentPage",

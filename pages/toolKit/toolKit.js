@@ -39,5 +39,7 @@ Page({
     wx.navigateTo({
       url: 'toolKitExcerpt'
     })
-  }
+  },
+
+
 })

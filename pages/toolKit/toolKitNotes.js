@@ -249,10 +249,17 @@ Page({
     var content = e.currentTarget.dataset.content;
     var note = e.currentTarget.dataset.note;
 		var nid = e.currentTarget.dataset.nid;
-    console.log(e)
-    wx.navigateTo({
-      url: 'shareNote?title=' + title + '&content=' + content+'&note='+note + '&nid=' + nid,
-    })
+   
+    // wx.navigateTo({
+    //   url: 'shareNote?title=' + title + '&content=' + content+'&note='+note + '&nid=' + nid,
+    // });
+
+		wx.navigateTo({
+			url: 'parseHTML?link=' + encodeURIComponent("https://app.pythe.cn/note/shareNote.html?from=groupmessage&noteId=" + nid),
+			success: function(res) {},
+			fail: function(res) {},
+			complete: function(res) {},
+		});
   },
 
   
