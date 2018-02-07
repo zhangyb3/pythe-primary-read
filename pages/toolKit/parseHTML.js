@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+		link:null,
   },
 
   /**
@@ -13,9 +13,9 @@ Page({
    */
   onLoad: function (parameters) {
 		var that = this;
-		var link = decodeURIComponent(parameters.link);
+		that.data.link = decodeURIComponent(parameters.link);
 		that.setData({
-			link: link,
+			link: that.data.link,
 		});
   },
 
@@ -72,7 +72,7 @@ Page({
 		}
 		return {
 			title: wx.getStorageSync("wxNickName") + '的笔记分享',
-			path: '/pages/priReadList/priReadList' ,
+			path: '/pages/toolKit/parseHTML?link=' + encodeURIComponent(that.data.link) ,
 			success: function (res) {
 				// 转发成功
 				wx.showToast({
@@ -97,3 +97,5 @@ Page({
 		}
 	}
 })
+
+

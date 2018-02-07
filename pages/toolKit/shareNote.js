@@ -2,6 +2,7 @@
 //获取应用实例
 const app = getApp()
 var config = require("../../utils/config.js");
+var util = require("../../utils/util.js");
 
 Page({
   data: {
@@ -89,7 +90,8 @@ Page({
     }
     return {
       title: wx.getStorageSync("wxNickName") + '的笔记分享',
-      path: '/pages/toolKit/shareNote?nid=' + that.data.nid + "&from=outside",
+			// path: '/pages/toolKit/shareNote?nid=' + (that.data.nid) + "&from=outside",
+			path: '/pages/toolKit/parseHTML?link=' + encodeURIComponent(config.PytheServerURL + "/note/shareNote.html?from=groupmessage&noteId=" + (that.data.nid)),
       success: function (res) {
         // 转发成功
         wx.showToast({

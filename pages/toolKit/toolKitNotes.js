@@ -5,6 +5,8 @@ var config = require("../../utils/config.js");
 var user = require("../../utils/user.js");
 var WxParse = require('../../wxParse/wxParse.js')
 var base = require("../../utils/base.js");
+var util = require("../../utils/util.js");
+
 Page({
   data: {
     deviceHeight:0,
@@ -255,7 +257,7 @@ Page({
     // });
 
 		wx.navigateTo({
-			url: 'parseHTML?link=' + encodeURIComponent("https://app.pythe.cn/note/shareNote.html?from=groupmessage&noteId=" + nid),
+			url: 'parseHTML?link=' + encodeURIComponent(config.PytheServerURL + "/note/shareNote.html?from=groupmessage&noteId=" + nid),
 			success: function(res) {},
 			fail: function(res) {},
 			complete: function(res) {},
