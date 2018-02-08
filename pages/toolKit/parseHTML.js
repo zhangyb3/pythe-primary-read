@@ -81,12 +81,7 @@ Page({
 			path: '/pages/toolKit/parseHTML?link=' + encodeURIComponent(that.data.link) ,
 			success: function (res) {
 				// 转发成功
-				wx.showToast({
-					title: '转发成功',
-					icon: 'none',
-					image: '../../images/success.png',
-					duration: 2000
-				})
+				
 			},
 			fail: function (res) {
 				if (res.errMsg.shareAppMessage == 'shareAppMessage:fail cancel') {

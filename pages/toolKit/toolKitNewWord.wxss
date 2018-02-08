@@ -13,7 +13,7 @@
 
 .nk-title {
   font-size: 32rpx;
-  line-height: 1;
+  line-height: 1.4;
   margin-bottom: 40rpx;
   overflow:hidden;
 }
