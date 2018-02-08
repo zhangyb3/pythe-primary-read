@@ -41,6 +41,8 @@ Page({
 			success: function(res) {
 				if(res.data.status == 200)
 				{
+          if (res.data.data.length >= 1){
+
           console.log(res.data)
 					that.data.notesInfo = res.data.data;
 					for (var i = 0; i < that.data.notesInfo.length; i++) {
@@ -70,8 +72,27 @@ Page({
 
           setTimeout(function () {
             wx.hideLoading()
-          }, 2000);
+          }, 1000);
+
+          }else{
+              
+            setTimeout(function () {
+              wx.hideLoading()
+            }, 1000);
+
+            setTimeout(function () {
+              wx.showToast({
+                title: '你暂无笔记',
+                icon: 'none',
+                image: '../../images/warn.png',
+                duration: 4000
+              })
+            }, 1000)
+
+          }
+
 				}
+        
 			},
 			fail: function(res) {},
 			complete: function(res) {},

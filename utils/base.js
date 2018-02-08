@@ -307,12 +307,12 @@ function cleanCacheFile(quantity)
 
 function loginSystem(the,success,fail) {
   var that = the;
-
+console.log('point 1');
   wx.login({
-    success: function (res) {
+    success: function (res) {console.log('point 2');
       // success
       wx.getUserInfo({
-        success: function (res) {
+        success: function (res) {console.log('point 3');
           // success
           console.log(res.rawData);
           var rawData = JSON.parse(res.rawData);

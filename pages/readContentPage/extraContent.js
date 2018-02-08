@@ -94,7 +94,7 @@ Page({
 
         setTimeout(function () {
           wx.hideLoading()
-        }, 2000);
+        }, 1000);
 
 				//加载笔记信息后展示内容
 				wx.request({
