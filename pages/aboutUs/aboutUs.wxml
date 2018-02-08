@@ -1,5 +1,7 @@
-<view class='aboutUs' style='height:{{windowHeight}}px;overflow:hidden;'>
-
+<view class='aboutUs' >
+   <view class='about2'>
+   
+   
      <view class='aboutUs-info'>
            
            <view class='info-title'>派知</view>
@@ -14,5 +16,6 @@
 
 
      </view> 
+  </view>
 
 </view>

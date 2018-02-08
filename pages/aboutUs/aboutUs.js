@@ -13,22 +13,15 @@ Page({
       success: function (res) {
         that.setData({
           windowHeight: res.windowHeight
-        })                
+        })   
+        console.log(res.windowHeight)             
       }
     })
   },
 
-  // 获取用户设备信息
-  getDevice: function () {
-    var that = this;
-    wx.getSystemInfo({
-      success: function (res) {
-        that.setData({
-          deviceHeight: res.windowHeight
-        })
-      }
-    })
-  },
+
+
+
 
 
 })
