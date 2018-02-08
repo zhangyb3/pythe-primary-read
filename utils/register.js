@@ -107,15 +107,15 @@ function commitRegister(the) {
 						lock_register: false,
 						alreadyRegister: true,
 					});
-					wx.setStorageSync('alreadyRegister', 'yes');
+					
 					wx.showToast({
 						title: '该手机号已注册',
 						icon: 'none',
 						image: '../../images/success.png',
-						duration: 1000,
-						complete: function (res) { 
+						duration: 2000,
+						complete:function(e){
 							that.onShow();
-						},
+						}
 					})
 
 					
