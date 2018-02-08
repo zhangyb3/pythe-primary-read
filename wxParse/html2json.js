@@ -156,8 +156,9 @@ function html2json(html, bindName) {
 							node.styleStr = "align-items:center; text-align:center;";
 						}
 						if (node.tag === 'p' && node.hasOwnProperty('attr') ) {
-							if (node.attr.hasOwnProperty('align') && node.attr.align == 'center'){
-								node.styleStr = "align-items:center; text-align:center;";
+							if (node.attr.hasOwnProperty('align') && node.attr.align === 'center'){
+								node.styleStr = "text-align:center;";
+								
 							}
 							
 						}
@@ -264,7 +265,7 @@ function html2json(html, bindName) {
                     parent.nodes = [];
                 }
 								
-                node.index = parent.index + '.' + parent.nodes.length;
+                node.index = parent.index + '.' + parent.nodes.length; 
 								node.location = parent.index + '_' + parent.nodes.length;
                 parent.nodes.push(node);
 								

@@ -4,7 +4,7 @@ var WxParse = require('../../wxParse/wxParse.js')
 var config = require("../../utils/config.js");
 var user = require("../../utils/user.js");
 var base = require("../../utils/base.js");
-
+ 
 const app = getApp()
 Page({
   data: {
@@ -391,7 +391,8 @@ Page({
   },
   
   getSentence: function (e, options){
-    console.log(e.currentTarget.dataset.texts);
+		var style = e.currentTarget.dataset.item_style;
+    console.log(e.currentTarget.dataset);
 		var sentence = e.currentTarget.dataset.texts.text;
 
 		var originalContent = this.data.essayContent;
@@ -402,7 +403,7 @@ Page({
 
 		//在选中文本添加特效
 		this.data.tempEssayContent = this.data.essayContent;
-		this.data.essayContent = this.data.essayContent.replace(sentence, "<p style='text-decoration:underline;'>" + sentence + "</p>");
+		this.data.essayContent = this.data.essayContent.replace(sentence, "<p style='text-decoration:underline;" + style + "'>" + sentence + "</p>");
 		WxParse.wxParse('handleEssay', 'html', this.data.essayContent, this);
 
   },

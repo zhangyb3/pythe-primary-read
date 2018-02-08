@@ -101,7 +101,26 @@ function commitRegister(the) {
 			success: function (res) {
 				// success
 				console.log(res);
-				if (res.data.data == null) {
+				if(res.data.status == 300){
+
+					that.setData({
+						lock_register: false,
+						alreadyRegister: true,
+					});
+					wx.setStorageSync('alreadyRegister', 'yes');
+					wx.showToast({
+						title: '该手机号已注册',
+						icon: 'none',
+						image: '../../images/success.png',
+						duration: 1000,
+						complete: function (res) { 
+							that.onShow();
+						},
+					})
+
+					
+				}
+				else if (res.data.data == null) {
 					wx.showModal({
 						title: '提示',
 						content: res.data.msg,
@@ -116,8 +135,10 @@ function commitRegister(the) {
 						lock_register: false,
 					});
 				}
+				else{
+					that.onShow();
+				} 
 				
-				that.onShow();
 			},
 			fail: function () {
 				// fail
