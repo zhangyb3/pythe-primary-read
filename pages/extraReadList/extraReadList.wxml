@@ -4,7 +4,7 @@
   <view style='min-height:{{deviceHeight-60}}px;'>
         <view class='extral-read' wx:for='{{extraArticleList}}' wx:key='unique' data-extraid='{{item.id}}' data-type='{{item.type}}' bindtap='extraRead'>
               <view class='extralr-title'>
-                 <text class='ex-level'>等级：0</text>
+                 <text class='ex-level'>等级：{{item.grade}}</text>
                  <view class='ex-title'>{{item.title}}</view> 
               </view>
               <view class='extra-brief'>{{item.content}}</view> 
