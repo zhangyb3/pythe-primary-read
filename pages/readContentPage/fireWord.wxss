@@ -27,8 +27,10 @@
 } 
 
 .explain-word {
-  line-height: 1.8;
+  line-height: 1.7;
   margin-top: 30rpx;
+  text-align:justify;
+  text-justify: distribute;
 }
 
 .operate-word {
