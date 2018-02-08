@@ -19,6 +19,10 @@ Page({
 
   onLoad: function (options) {
     var that=this;
+    wx.showLoading({
+      title: '加载中',
+      mask: false
+    })
     this.getDevice();
 		this.data.essayId = options.essayId
     var getBoomWord = decodeURIComponent(options.words).split(',');
@@ -30,8 +34,14 @@ Page({
     that.setData({
       getBoomWord: getBoomWord,
       classArray: classArray
-    })
+    });
 
+  },
+
+  onShow:function(){
+    setTimeout(function () {
+      wx.hideLoading()
+    }, 1000);
   },
 
   // 获取用户设备信息

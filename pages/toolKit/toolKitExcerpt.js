@@ -38,6 +38,7 @@ Page({
 			},
       method: 'GET',
       success: function (res) {
+        if (res.data.data.length >= 1){
         var excerptInfo = res.data.data;
         console.log(res.data.data)
         var excerptTime =[] ;
@@ -67,7 +68,7 @@ Page({
 
         setTimeout(function () {
           wx.hideLoading()
-        }, 2000);
+        }, 1000);
 
         var foldIcon = [];
         var foldHeight = [];
@@ -83,6 +84,22 @@ Page({
           foldHeight: foldHeight,
           isfold: isfold
         })
+        } else {
+
+          setTimeout(function () {
+            wx.hideLoading()
+          }, 1000);
+
+          setTimeout(function () {
+            wx.showToast({
+              title: '你暂无摘抄',
+              icon: 'none',
+              image: '../../images/warn.png',
+              duration: 4000
+            })
+          }, 1000)
+
+        }
       }
     })
     

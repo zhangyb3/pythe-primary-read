@@ -13,6 +13,10 @@ Page({
    */
   onLoad: function (parameters) {
 		var that = this;
+    wx.showLoading({
+      title: '加载中',
+      mask: false
+    })
 		that.data.link = decodeURIComponent(parameters.link);
 		that.setData({
 			link: that.data.link,
@@ -30,7 +34,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    setTimeout(function () {
+      wx.hideLoading()
+    }, 1000);
   },
 
   /**

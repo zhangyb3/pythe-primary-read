@@ -61,19 +61,21 @@ Page({
 
         setTimeout(function () {
           wx.hideLoading()
-        }, 2000);
+        }, 1000);
 
         }else{
           setTimeout(function () {
             wx.hideLoading()
-          }, 2000);
+          }, 1000);
         
-          setTimeout(wx.showToast({
-            title: '你暂无生词',
-            icon: 'none',
-            image: '../../images/warn.png',
-            duration: 4000
-          }),2000)
+          setTimeout(function(){
+            wx.showToast({
+              title: '你暂无生词',
+              icon: 'none',
+              image: '../../images/warn.png',
+              duration: 4000
+            })
+          },1000)
           
         }
 				
