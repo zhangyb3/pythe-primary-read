@@ -1,5 +1,5 @@
 <import src='../../wxParse/wxParse.wxml' />
-
+<scroll-view style='height:{{deviceHeight}}px;' scroll-y scroll-top="{{scrollTop}}" scroll-with-animation='true'>
 <view class='fw-explain' style='min-height:{{deviceHeight}}px'>
       <view class='fire-word'>
             <text wx:for='{{getBoomWord}}' class='{{classArray[index]}}' wx:key='unique' data-txt='{{item}}' data-li='{{index}}'  bindtap='explainWord'>{{item}}</text>          
@@ -25,3 +25,5 @@
         <image mode='widthFix' src='../../images/without.png' style='display:block;width:80%;margin:0 auto;'></image>
       </view>
 </view>
+
+</scroll-view>

@@ -15,6 +15,8 @@ Page({
     tapWord:'',
 		essayId:null,
 		explainWord:null,
+    scropllTop:0,
+    eleTop:0
   },
 
   onLoad: function (options) {
@@ -44,6 +46,7 @@ Page({
     }, 1000);
   },
 
+
   // 获取用户设备信息
   getDevice: function () {
     var that = this;
@@ -59,6 +62,17 @@ Page({
   explainWord:function(e){
     console.log(e.currentTarget.dataset.li);
     var that=this;
+
+    wx.createSelectorQuery().selectAll('.fire-word').boundingClientRect(function (rects) {
+      rects.forEach(function (rect) {
+        that.setData({
+          scrollTop: rect.height  // 节点的高度
+        })
+        console.log(rect)
+
+      })
+    }).exec();
+
     var getWordExplain='';
     var index = e.currentTarget.dataset.li;
     this.data.explainWord = e.currentTarget.dataset.txt;
