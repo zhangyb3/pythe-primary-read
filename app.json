@@ -1,7 +1,8 @@
 {
   "pages":[
     "pages/priReadList/priReadList",
-    "pages/toolKit/toolKit",   
+    "pages/toolKit/toolKit",
+    "pages/aboutUs/aboutUs",       
     "pages/toolKit/toolKitNotes",
     "pages/toolKit/toolKitNewWord",
     "pages/toolKit/toolKitExcerpt",
@@ -38,6 +39,12 @@
       "text": "工具箱",
       "iconPath": "images/toolKit.png",
       "selectedIconPath": "images/toolKitSelected.png"
+    },
+    {
+      "pagePath": "pages/aboutUs/aboutUs",
+      "text": "关于我们",
+      "iconPath": "images/aboutUs.png",
+      "selectedIconPath": "images/aboutUsSelected.png"
     }]
   }
 }

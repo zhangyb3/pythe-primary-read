@@ -1,0 +1,50 @@
+
+.aboutUs{
+  background-color:#fff;
+  padding:40rpx;
+  box-sizing:border-box;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.aboutUs-info{
+  text-align:center;
+  margin:auto auto;
+}
+
+.aboutUs-info view{
+  font-family: '微软雅黑';
+  color:#3b9aff;
+  font-weight:bold;
+}
+
+.info-title{
+  font-size:44rpx;
+  line-height:1;
+  margin-bottom:24rpx;
+  letter-spacing: 1px;
+}
+
+.inf-subTitle,.recomment{
+  font-size:36rpx;
+  line-height: 1;
+}
+
+.pz-img image{
+ margin:85rpx auto;
+ width:50%; 
+ max-width: 250px;
+ min-width:180px;
+}
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,18 @@
+<view class='aboutUs' style='min-height:{{windowHeight}}px;'>
+
+     <view class='aboutUs-info'>
+           
+           <view class='info-title'>派知</view>
+
+           <view class='inf-subTitle'>专注培养学生阅读能力</view>
+           
+           <view class='pz-img'>
+              <image mode='widthFix' src='../../images/pzAPP.jpg'></image>
+           </view>
+
+           <view class='recomment'>更多有趣功能下载‘派知阅读’APP</view>
+
+
+     </view> 
+
+</view>
