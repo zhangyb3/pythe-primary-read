@@ -1,4 +1,4 @@
-<view class='aboutUs' style='min-height:{{windowHeight}}px;'>
+<view class='aboutUs' style='height:{{windowHeight}}px;overflow:hidden;'>
 
      <view class='aboutUs-info'>
            
