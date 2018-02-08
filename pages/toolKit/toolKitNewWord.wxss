@@ -15,6 +15,7 @@
   font-size: 32rpx;
   line-height: 1;
   margin-bottom: 40rpx;
+  overflow:hidden;
 }
 
 .tk-new-word {
@@ -37,6 +38,7 @@
 	background-color: #f93;
   color: #fff;
 }
+.essay-notet-title{float:left;width:60%;overflow: hidden;text-overflow:ellipsis;white-space: nowarp;}
 
 .edit-right{float:right;}
 .edit-right text{color:#f93;}

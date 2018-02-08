@@ -7,7 +7,7 @@
            <view class='inf-subTitle'>专注培养学生阅读能力</view>
            
            <view class='pz-img'>
-              <image mode='widthFix' src='../../images/pzAPP.jpg'></image>
+              <image src='../../images/pzAPP.jpg'></image>
            </view>
 
            <view class='recomment'>更多有趣功能下载‘派知阅读’APP</view>

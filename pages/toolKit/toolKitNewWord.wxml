@@ -6,7 +6,8 @@
 	 <view class='raw_book_list' wx:for='{{rawBook}}' wx:key='unique' wx:for-index="essay_index">
 
     <view class='article-nw' data-raw_book="{{item.data}}" data-index="{{essay_index}}">
-          <view class='nk-title'>{{item.data.title}}
+          <view class='nk-title'>
+                <view class='essay-notet-title' data-type='{{item.data.type}}' data-studentid='{{item.data.studentid}}' data-essayid='{{item.data.essayid}}' bindtap='toEssay'>{{item.data.title}}</view>
 					      <view class='edit-right'>
 								    <text class='del-txt' wx:if='{{item.isEdit == true}}' data-index="{{essay_index}}" bindtap='cancelRawWords'>删除</text>
 								    <text class='edit' wx:if="{{item.isEdit == false}}" data-index="{{essay_index}}" bindtap='edit'>编辑</text>

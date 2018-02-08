@@ -270,6 +270,21 @@ Page({
 			})
 		}
 	},
-
+  
+  toEssay: function (e, options) {
+    console.log(e);
+    var essayType = e.currentTarget.dataset.type;
+    var essayid = e.currentTarget.dataset.essayid;
+    var studentid = e.currentTarget.dataset.studentid;
+    if (essayType == 10) {
+      wx.navigateTo({
+        url: '../readContentPage/readContentPage?essayId=' + essayid
+      })
+    } else {
+      wx.navigateTo({
+        url: '../readContentPage/extraContent?essayId=' + essayid + '&type=' + essayType,
+      })
+    }
+  }
 
 })
