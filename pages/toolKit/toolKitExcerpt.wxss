@@ -1,6 +1,6 @@
 @import "../templateDemo/templateDemo.wxss";
 .tk-excerpt{background-color:#f1f1f1;}
-.excerpt-list{padding:30rpx 40rpx;box-sizing: border-box;border-bottom:2px solid #fff;}
+.excerpt-item{padding:30rpx 40rpx;box-sizing: border-box;border-bottom:2px solid #fff;}
 .excerpt-txt{line-height:1.6;overflow:hidden;color:#000;}
 .isFold{text-align:right;margin-top:10rpx;}
 .isFold image{width:40rpx;height:40rpx;}
