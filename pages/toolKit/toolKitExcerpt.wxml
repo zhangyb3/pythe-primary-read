@@ -5,14 +5,16 @@
     
     <!-- 摘抄列表 -->
     <view class='excerpt-list' wx:for='{{excerptInfo}}' wx:key='unique'>
+			<view class="excerpt-item" wx:if="{{visibleArray[index]}}">
           <view class='excerpt-txt' style='{{foldHeight[index]}}'>{{item.summary}}</view>
           <view class='isFold'>
              <image bindtap='foldExcerpt' data-excerpt='{{index}}' data-isfold='{{isfold[index]}}' src='{{foldIcon[index]}}'></image>
           </view>
           <view class='from-article'>摘抄自《{{item.title}}》</view>
           <view class='excerpt-time'>{{item.time}}
-                <text data-excerptid='{{item.id}}' bindtap='delExcerpt' style='margin-left:40rpx;font-size:28rpx;'>删除</text>
+                <text data-excerptid='{{item.id}}' data-excerpt_index='{{index}}' bindtap='delExcerpt' style='margin-left:40rpx;font-size:28rpx;'>删除</text>
           </view>
+			</view>
     </view>
   </view>
   <template is='bottom-text'></template>

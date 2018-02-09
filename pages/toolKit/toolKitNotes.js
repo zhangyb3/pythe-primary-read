@@ -17,7 +17,7 @@ Page({
     foldTxt:[],
     param:[],
 		pageNum: 1,
-   
+		visibleArray:[],
   },
 
   onLoad: function () {
@@ -63,9 +63,11 @@ Page({
 							exMinutes = '0' + exMinutes;
 						}
 						that.data.notesInfo[i].time = exYear + '-' + exMonth + '-' + exDate + ' ' + exHour + ':' + exMinutes;
+						that.data.visibleArray[i] = true;
 					}
 					that.setData({
-						notesInfo: that.data.notesInfo
+						notesInfo: that.data.notesInfo,
+						visibleArray: that.data.visibleArray
 					});
 
           that.fold();
@@ -137,7 +139,8 @@ Page({
 			},
 			method: 'GET',
 			success: function (res) {
-				var tempNotes = res.data.data
+				var tempVisibleArray = [];
+				var tempNotes = res.data.data;
 				for (var i = 0; i < tempNotes.length; i++) {
 					var time = new Date(tempNotes[i].time);
 					console.log((time));
@@ -156,15 +159,17 @@ Page({
 						exMinutes = '0' + exMinutes;
 					}
 					tempNotes[i].time = exYear + '-' + exMonth + '-' + exDate + ' ' + exHour + ':' + exMinutes;
+					tempVisibleArray[i] = true;
 				}
 				var getAllData = that.data.notesInfo.concat(tempNotes);
-
+				that.data.visibleArray = that.data.visibleArray.concat(tempVisibleArray);
 				if (res.data.data) {
 
 					that.setData({
 						rawBook: getAllData,
 						pageNum: pageNum,
-						isLoadding: true
+						isLoadding: true,
+						visibleArray: that.data.visibleArray,
 					});
 					console.log(that.data.pageNum);
 				} else if (null == res.data.data) {
@@ -236,6 +241,7 @@ Page({
   },
 
   delNotes:function(e){
+		var noteIndex = e.currentTarget.dataset.note_index;
     var that=this;
     wx.showModal({
       title: '提示',
@@ -259,13 +265,17 @@ Page({
             success: function (res) {
               console.log(res.data);
               if (res.data.status == 200) {
-                that.onShow();
+                // that.onShow();
                 wx.showToast({
                   title: '删除成功',
                   icon: 'none',
                   image: '../../images/success.png',
                   duration: 2000
                 })
+								that.data.visibleArray[noteIndex] = false;
+								that.setData({
+									visibleArray: that.data.visibleArray,
+								});
               } else {
                 wx.showToast({
                   title: '哎呀，出错了',

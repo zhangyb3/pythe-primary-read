@@ -16,7 +16,7 @@ Page({
 		pageNum: 1,
 		isLoadding: true,
 		isLoadOver: true,
-		
+		visibleArray:[],
   },
   onLoad:function(){
     this.getDevice();
@@ -60,10 +60,12 @@ Page({
             exMinutes = '0' + exMinutes;
           }
           excerptInfo[i].time = exYear + '-' + exMonth + '-' + exDate + ' ' + exHour + ':' + exMinutes;
-        }
+					that.data.visibleArray[i] = true;
+				}
         // excerptInfo.time = new Date(excerptTime); 
         that.setData({
-          excerptInfo: excerptInfo
+          excerptInfo: excerptInfo,
+					visibleArray: that.data.visibleArray
         });
 
         setTimeout(function () {
@@ -126,7 +128,13 @@ Page({
 			},
 			method: 'GET',
 			success: function (res) {
-				var getAllData = that.data.gradeChineseData.concat(res.data.data)
+				var getAllData = that.data.gradeChineseData.concat(res.data.data);
+				var tempVisibleArray = [];
+				for(var count = 0; count < res.data.data.length; count++)
+				{
+					tempVisibleArray[count] = true;
+				}
+				that.data.visibleArray = that.data.visibleArray.concat(tempVisibleArray);
 				console.log(res.data)
 				if (res.data.data) {
 					if (res.data.data.length == 6) {
@@ -150,7 +158,8 @@ Page({
 					console.log('没有更多数据加载了哟');
 					that.setData({
 						isLoadding: true,
-						isLoadOver: false
+						isLoadOver: false,
+						visibleArray: that.data.visibleArray,
 					});
 				}
 
@@ -208,7 +217,8 @@ Page({
   },
 
   delExcerpt:function(e){
-    console.log(e)
+    console.log(e);
+		var excerptIndex = e.currentTarget.dataset.excerpt_index;
     console.log('id:' + e.currentTarget.dataset.excerptid);
     var that = this;
     wx.showModal({
@@ -232,13 +242,17 @@ Page({
             success: function (res) {
               console.log(res.data)
               if (res.data.status == 200) {
-                that.onShow();
+                // that.onShow();
                 wx.showToast({
                   title: '删除成功',
                   icon: 'none',
                   image: '../../images/success.png',
                   duration: 2000
-                })
+                });
+								that.data.visibleArray[excerptIndex] = false;
+								that.setData({
+									visibleArray: that.data.visibleArray
+								});
               } else {
                 wx.showToast({
                   title: '哎呀，出错了',

@@ -3,6 +3,7 @@
 <view class='toolKit-notes' style='min-height:{{deviceHeight}}px'>
     <view style='min-height:{{deviceHeight-60}}px'>
       <view class='tk-noteList' wx:for='{{notesInfo}}' wx:key='unique' >
+				<view class="tk-note-item"  wx:if="{{visibleArray[index]}}" >
             <view class='tk-note-title'>{{item.title}}</view>
             <view class='tk-note-subtitle' style='{{notesHeight[index]}}'>{{item.content}}</view>
 
@@ -17,9 +18,10 @@
                         </button> -->
 
                         <view class='notes-fold' bindtap='foldMore' data-fold='{{index}}' data-param='{{param[index]}}'>{{foldTxt[index]}}</view>
-                        <view class='del-notes' bindtap='delNotes' data-noteid='{{item.id}}'>删除</view>
+                        <view class='del-notes' bindtap='delNotes' data-noteid='{{item.id}}' data-note_index='{{index}}'>删除</view>
                   </view>
             </view>
+				</view>
       </view> 
     </view>
 

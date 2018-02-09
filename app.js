@@ -6,7 +6,7 @@ App({
 		wx.setStorageSync("alreadyRegister", 'no');
     
   },
-  globalUrl:'https://check.pythe.cn/pythe-rest/rest/',
+  globalUrl:'https://app.pythe.cn/pythe-rest/rest/',
   globalData: {
     userInfo: null
   }
