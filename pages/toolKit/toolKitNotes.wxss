@@ -4,7 +4,7 @@
   background-color: #f1f1f1;
 }
 
-.tk-noteList {
+.tk-note-item {
   background-color: #fff;
   padding: 22rpx 36rpx 34rpx 12rpx;
   box-sizing: border-box;
