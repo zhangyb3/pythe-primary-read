@@ -232,23 +232,31 @@ Page({
 		
     if (education==1){ 
         if (userGrade==0){
-           gradeId=131;
+           gradeId=111;
 
         } else if (userGrade==1){
-          gradeId = 132;
+          gradeId = 112;
         } else if (userGrade == 2) {
-          gradeId = 141;
+          gradeId = 121;
         } else if (userGrade == 3) {
-          gradeId = 142;
+          gradeId = 122;
         } else if (userGrade == 4) {
-          gradeId = 151;
+          gradeId = 131;
         } else if (userGrade == 5) {
-          gradeId = 152;
+          gradeId = 132;
         } else if (userGrade == 6) {
-          gradeId = 161;
+          gradeId = 141;
         } else if (userGrade == 7) {
-          gradeId = 162;
-        }
+          gradeId = 142;
+				} else if (userGrade == 8) {
+					gradeId = 151;
+				} else if (userGrade == 9) {
+					gradeId = 152;
+				} else if (userGrade == 10) {
+					gradeId = 161;
+				} else if (userGrade == 11) {
+					gradeId = 162;
+				} 
     } else if (education==2){
       if (userGrade == 0) {
         gradeId = 211;
